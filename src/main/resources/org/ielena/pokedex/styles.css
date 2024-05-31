@@ -1,0 +1,31 @@
+.pokemon_item{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 15;
+}
+.pokemon_item_label{
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, black, 1, 10, 0, 0);
+}
+
+.progress-bar-low{
+    -fx-accent: #ff7070;
+}
+
+.progress-bar-mid{
+    -fx-accent: #ffff7b;
+}
+
+.progress-bar-high{
+    -fx-accent: #a1e5ff;
+}
+
+.progress-bar-extraHigh{
+    -fx-accent: #a0ffa0;
+}
+
+.home_button{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
