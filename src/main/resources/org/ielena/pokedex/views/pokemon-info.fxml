@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="infoPane" prefHeight="600.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controller.PokemonInfoController">
+   <children>
+      <VBox alignment="CENTER_LEFT" prefWidth="320.0" spacing="10.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#click1" styleClass="home_button" stylesheets="@../styles.css">
+               <graphic>
+                  <FontAwesomeIconView glyphName="ARROW_LEFT" selectionStart="1" size="20" />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="5.0" top="5.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="4.0" />
+               </font></Button>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <Circle fill="#e4e4e4" opacity="0.2" radius="120.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                        </Circle>
+                        <ImageView fx:id="image" fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Label fx:id="id" style="-fx-font-weight: bold;" text="ID">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Label>
+                  <Label fx:id="name" style="-fx-font-weight: bold;" text="POKEMON">
+                     <font>
+                        <Font size="24.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label fx:id="type" text="type">
+                     <font>
+                        <Font size="18.0" />
+                     </font></Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefWidth="320.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <Label style="-fx-font-weight: bold;" text="Height" />
+                        <Label fx:id="height" text="1" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefWidth="100.0" spacing="5.0">
+                     <children>
+                        <Label style="-fx-font-weight: bold;" text="Weight" />
+                        <Label fx:id="weight" text="1" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefWidth="320.0">
+               <children>
+                  <Label alignment="CENTER" prefWidth="125.0" text="HP" />
+                  <StackPane>
+                     <children>
+                        <ProgressBar fx:id="hp_pb" prefWidth="280.0" progress="0.0" stylesheets="@../styles.css" />
+                        <Label fx:id="hp" text="0" />
+                     </children>
+                  </StackPane>
+               </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="333.0" prefWidth="320.0">
+               <children>
+                  <Label alignment="CENTER" prefWidth="125.0" text="Attack" />
+                  <StackPane>
+                     <children>
+                        <ProgressBar fx:id="attack_pb" prefWidth="280.0" progress="0.0" stylesheets="@../styles.css" />
+                        <Label fx:id="attack" text="0" />
+                     </children>
+                  </StackPane>
+               </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="361.0" prefWidth="320.0">
+               <children>
+                  <Label alignment="CENTER" prefWidth="125.0" text="Defense" />
+                  <StackPane>
+                     <children>
+                        <ProgressBar fx:id="defense_pb" prefWidth="280.0" progress="0.0" stylesheets="@../styles.css" />
+                        <Label fx:id="defense" text="0" />
+                     </children>
+                  </StackPane>
+               </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="389.0" prefWidth="320.0">
+               <children>
+                  <Label alignment="CENTER" prefWidth="125.0" text="Sp. Attack" />
+                  <StackPane>
+                     <children>
+                        <ProgressBar fx:id="specialAttack_pb" prefWidth="280.0" progress="0.0" stylesheets="@../styles.css" />
+                        <Label fx:id="specialAttack" text="0" />
+                     </children>
+                  </StackPane>
+               </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="417.0" prefWidth="320.0">
+               <children>
+                  <Label alignment="CENTER" prefWidth="125.0" text="Sp. Defense" />
+                  <StackPane>
+                     <children>
+                        <ProgressBar fx:id="specialDefense_pb" prefWidth="280.0" progress="0.0" stylesheets="@../styles.css" />
+                        <Label fx:id="specialDefense" text="0" />
+                     </children>
+                  </StackPane>
+               </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="445.0" prefWidth="320.0">
+               <children>
+                  <Label alignment="CENTER" prefWidth="125.0" text="Speed" />
+                  <StackPane>
+                     <children>
+                        <ProgressBar fx:id="speed_pb" prefWidth="280.0" progress="0.0" stylesheets="@../styles.css" />
+                        <Label fx:id="speed" text="0" />
+                     </children>
+                  </StackPane>
+               </children>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
