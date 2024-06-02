@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.ielena.pokedex.controllers.MainController;
+import org.ielena.pokedex.controllers.PokedexController;
 import org.ielena.pokedex.singletons.SpringContextSingleton;
 import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Component;
@@ -24,8 +25,7 @@ public class ProjectJavaFxApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource("views/pokedex-view.fxml"));
         fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
         Scene scene = new Scene(fxmlLoader.load());
-        MainController mainController = fxmlLoader.getController();
-        mainController.loadPage(0);
+        PokedexController pokedexController = fxmlLoader.getController();
         stage.setTitle("Pokedex");
         stage.setScene(scene);
         stage.show();

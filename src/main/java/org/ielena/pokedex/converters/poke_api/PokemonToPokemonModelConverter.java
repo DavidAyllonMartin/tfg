@@ -1,9 +1,6 @@
 package org.ielena.pokedex.converters.poke_api;
 
 import jakarta.annotation.Resource;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 import org.ielena.pokedex.models.AbilityModel;
 import org.ielena.pokedex.models.MoveModel;
 import org.ielena.pokedex.models.PokemonModel;
@@ -19,6 +16,11 @@ import org.ielena.pokedex.poke_api.side_classes.PokemonCries;
 import org.ielena.pokedex.poke_api.side_classes.PokemonMove;
 import org.ielena.pokedex.poke_api.side_classes.PokemonSprites;
 import org.ielena.pokedex.poke_api.side_classes.PokemonType;
+import org.ielena.pokedex.services.ImageService;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 import java.util.Map;
@@ -38,6 +40,10 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
     private Converter<Move, MoveModel> moveConverter;
     @Resource
     private Converter<Ability, AbilityModel> abilityConverter;
+    @Resource
+    private RestTemplate restTemplate;
+    @Resource
+    private ImageService defaultImageService;
 
     @Override
     public PokemonModel convert(Pokemon pokemon) {
@@ -82,6 +88,9 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
                                             .map(moveConverter::convert)
                                             .collect(Collectors.toSet());
 
+        byte[] imgData = downloadData(frontDefaultUrl);
+        byte[] cryData = downloadData(cryUrl);
+
         return PokemonModel.builder()
                            .id(pokemon.getId())
                            .name(pokemon.getName())
@@ -109,9 +118,24 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
                            .baseExperience(pokemon.getBaseExperience())
                            .imgUrl(frontDefaultUrl)
                            .cryUrl(cryUrl)
+                           .imgData(imgData)
+                           .cryData(cryData)
+                           .color(defaultImageService.getDominantColorHex(imgData))
                            .types(typeModels)
                            .abilities(abilityModels)
                            .moves(moveModels)
                            .build();
+    }
+
+    private byte[] downloadData(String url) {
+        if (url == null) {
+            return null;
+        }
+        try {
+            return restTemplate.getForObject(url, byte[].class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

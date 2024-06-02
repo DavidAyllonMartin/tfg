@@ -1,8 +1,7 @@
 package org.ielena.pokedex.converters;
 
 import jakarta.annotation.Resource;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
+import javafx.scene.image.Image;
 import org.ielena.pokedex.dtos.AbilityDto;
 import org.ielena.pokedex.dtos.MoveDto;
 import org.ielena.pokedex.dtos.PokemonDto;
@@ -11,7 +10,12 @@ import org.ielena.pokedex.models.AbilityModel;
 import org.ielena.pokedex.models.MoveModel;
 import org.ielena.pokedex.models.PokemonModel;
 import org.ielena.pokedex.models.TypeModel;
+import org.ielena.pokedex.services.ImageService;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +30,8 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
     private Converter<AbilityModel, AbilityDto> abilityDtoConverter;
     @Resource
     private Converter<TypeModel, TypeDto> typeDtoConverter;
+    @Resource
+    private ImageService defaultImageService;
 
     @Override
     public PokemonDto convert(PokemonModel pokemonModel) {
@@ -51,9 +57,16 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
                                       .map(typeDtoConverter::convert)
                                       .collect(Collectors.toList());
 
+        Image resizedImage = null;
+        try {
+            resizedImage = defaultImageService.getResizedImage(pokemonModel.getImgData(), 200, 200);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         return PokemonDto.builder()
                          .id(pokemonModel.getId())
-                         .name(pokemonModel.getName())
+                         .name(StringUtils.capitalize(pokemonModel.getName()))
                          .hp(pokemonModel.getHp())
                          .attack(pokemonModel.getAttack())
                          .defense(pokemonModel.getDefense())
@@ -69,6 +82,9 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
                          .abilities(abilities)
                          .moves(moves)
                          .types(types)
+                         .color(pokemonModel.getColor())
+                         .cry(pokemonModel.getCryData())
+                         .img(resizedImage)
                          .build();
     }
 }

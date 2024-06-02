@@ -22,6 +22,7 @@ import java.io.IOException;
 @Component
 public class PokemonItemController {
 
+    private static final String FX_BACKGROUND = "-fx-background-color: %s";
     private PokemonDto pokemon;
 
     @FXML
@@ -43,10 +44,8 @@ public class PokemonItemController {
         name.setText(pokemon.getName());
         type1.setText(pokemon.getTypes().get(0).getName());
 //        type2.setText(pokemon.getType2());
-        Image value = new Image(pokemon.getImgUrl());
-        image.setImage(value);
-        image.setSmooth(true);
-        image.setCache(true);
+        image.setImage(pokemon.getImg());
+        pokemonCard.setStyle(String.format("-fx-background-color: %s;", pokemon.getColor()));
 
 //        setBackgroundColor(pokemon);
     }

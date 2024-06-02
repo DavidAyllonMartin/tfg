@@ -1,5 +1,6 @@
 package org.ielena.pokedex.dtos;
 
+import javafx.scene.image.Image;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,4 +31,7 @@ public class PokemonDto {
     private Integer baseExperience;
     private String imgUrl;
     private String cryUrl;
+    private String color;
+    private Image img;
+    private byte[] cry;
 }

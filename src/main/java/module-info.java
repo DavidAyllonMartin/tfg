@@ -16,6 +16,8 @@ module org.ielena.buscadormtg {
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
     requires spring.web;
+    requires spring.data.commons;
+    requires java.desktop;
 
     opens org.ielena.pokedex to spring.core, spring.beans, spring.context, javafx.fxml;
     opens org.ielena.pokedex.controllers to javafx.fxml, spring.beans, spring.context, spring.core;

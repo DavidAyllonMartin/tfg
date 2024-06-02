@@ -7,6 +7,7 @@ import org.ielena.pokedex.dtos.MoveDto;
 import org.ielena.pokedex.dtos.TypeDto;
 import org.ielena.pokedex.models.MoveModel;
 import org.ielena.pokedex.models.TypeModel;
+import org.springframework.util.StringUtils;
 
 @Component
 public class MoveModelToMoveDtoConverter implements Converter<MoveModel, MoveDto> {
@@ -19,14 +20,14 @@ public class MoveModelToMoveDtoConverter implements Converter<MoveModel, MoveDto
 
         return MoveDto.builder()
                       .id(moveModel.getId())
-                      .name(moveModel.getName())
+                      .name(StringUtils.capitalize(moveModel.getName()))
                       .pp(moveModel.getPp())
                       .accuracy(moveModel.getAccuracy())
                       .type(typeDtoConverter.convert(moveModel.getType()))
                       .power(moveModel.getPower())
                       .priority(moveModel.getPriority())
                       .effectChance(moveModel.getEffectChance())
-                      .flavorText(moveModel.getFlavorText())
+                      .flavorText(StringUtils.capitalize(moveModel.getFlavorText()))
                       .build();
     }
 }

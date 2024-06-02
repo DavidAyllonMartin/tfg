@@ -1,5 +1,6 @@
 package org.ielena.pokedex.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -37,7 +38,7 @@ public class MoveModel {
     private String flavorText;
     private String generation;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "type_id")
     private TypeModel type;
 }

@@ -4,6 +4,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.ielena.pokedex.dtos.TypeDto;
 import org.ielena.pokedex.models.TypeModel;
+import org.springframework.util.StringUtils;
 
 @Component
 public class TypeModelToTypeDtoConverter implements Converter<TypeModel, TypeDto> {
@@ -13,7 +14,7 @@ public class TypeModelToTypeDtoConverter implements Converter<TypeModel, TypeDto
 
         return TypeDto.builder()
                       .id(typeModel.getId())
-                      .name(typeModel.getName())
+                      .name(StringUtils.capitalize(typeModel.getName()))
                       .build();
     }
 }

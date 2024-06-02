@@ -1,15 +1,17 @@
 package org.ielena.pokedex.converters.poke_api;
 
 import jakarta.annotation.Resource;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 import org.ielena.pokedex.models.MoveModel;
 import org.ielena.pokedex.models.TypeModel;
 import org.ielena.pokedex.poke_api.Move;
 import org.ielena.pokedex.poke_api.Type;
 import org.ielena.pokedex.poke_api.side_classes.FlavorText;
+import org.ielena.pokedex.poke_api.side_classes.NamedAPIResource;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
+import java.util.Collections;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
@@ -31,13 +33,14 @@ public class MoveToMoveModelConverter implements Converter<Move, MoveModel> {
     }
 
     private MoveModel getMoveModel(Move move) {
-        String flavorText = move.getFlavorTextEntries()
-                                .stream()
-                                .filter(text -> "en".equals(text.getLanguage()
-                                                                .getName()))
-                                .map(FlavorText::getFlavorText)
-                                .findFirst()
-                                .orElse("");
+        String flavorText = Optional.ofNullable(move.getFlavorTextEntries())
+                                    .orElse(Collections.emptyList())
+                                    .stream()
+                                    .filter(text -> "en".equals(text.getLanguage()
+                                                                    .getName()))
+                                    .map(FlavorText::getFlavorText)
+                                    .findFirst()
+                                    .orElse("");
 
         TypeModel typeModel = Optional.ofNullable(move.getType())
                                       .map(type -> type.createObject(Type.class))
@@ -52,10 +55,12 @@ public class MoveToMoveModelConverter implements Converter<Move, MoveModel> {
                         .pp(move.getPp())
                         .priority(move.getPriority())
                         .power(move.getPower())
-                        .moveDamageClass(move.getDamageClass()
-                                             .getName())
-                        .generation(move.getGeneration()
-                                        .getName())
+                        .moveDamageClass(Optional.ofNullable(move.getDamageClass())
+                                                 .map(NamedAPIResource::getName)
+                                                 .orElse(""))
+                        .generation(Optional.ofNullable(move.getGeneration())
+                                            .map(NamedAPIResource::getName)
+                                            .orElse(""))
                         .type(typeModel)
                         .flavorText(flavorText)
                         .build();

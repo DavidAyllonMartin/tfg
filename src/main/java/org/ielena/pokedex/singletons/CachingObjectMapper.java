@@ -36,11 +36,26 @@ public class CachingObjectMapper extends ObjectMapper {
         try {
             HttpResponse<String> response = HttpClientSingleton.getInstance()
                                                                .send(request, HttpResponse.BodyHandlers.ofString());
-            return response.body();
+
+            if (response.statusCode() == 200) {
+                return response.body();
+            } else if (url.endsWith("/")){
+                return downloadJson(removeTrailingSlash(url));
+            }else {
+                System.err.println("Failed to download JSON, status code: " + response.statusCode());
+                return "{\"id\":0, \"name\":\"not found\"}";
+            }
+
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
-            return null;
+            return "{\"id\":0, \"name\":\"not found\"}";
         }
     }
-}
 
+    private static String removeTrailingSlash(String input) {
+        if (input != null && input.endsWith("/")) {
+            return input.substring(0, input.length() - 1);
+        }
+        return input;
+    }
+}

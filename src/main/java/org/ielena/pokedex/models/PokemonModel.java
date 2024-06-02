@@ -1,11 +1,13 @@
 package org.ielena.pokedex.models;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -52,8 +54,16 @@ public class PokemonModel {
     private String imgUrl;
     @Column(name = "cry")
     private String cryUrl;
+    @Lob
+    @Column(name = "img_data")
+    private byte[] imgData;
+    @Lob
+    @Column(name = "cry_data")
+    private byte[] cryData;
+    @Column(name = "color")
+    private String color;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "pokemon_abilities",
             joinColumns = {@JoinColumn(name = "pokemon_id", referencedColumnName = "pokemon_id")},
@@ -61,7 +71,7 @@ public class PokemonModel {
     )
     private Set<AbilityModel> abilities;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "pokemon_moves",
             joinColumns = {@JoinColumn(name = "pokemon_id", referencedColumnName = "pokemon_id")},
@@ -69,7 +79,7 @@ public class PokemonModel {
     )
     private Set<MoveModel> moves;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "pokemon_types",
             joinColumns = {@JoinColumn(name = "pokemon_id", referencedColumnName = "pokemon_id")},
