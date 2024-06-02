@@ -62,6 +62,8 @@ public class PokemonModel {
     private byte[] cryData;
     @Column(name = "color")
     private String color;
+    @Column(name = "description")
+    private String description;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(

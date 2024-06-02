@@ -29,3 +29,63 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
+
+.infoContainer {
+    -fx-background-image: url("img/info-background.png");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
+}
+
+.progress-bar {
+    -fx-accent: #4CAF50; /* Cambia el color de la barra de progreso */
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10px; /* Redondea los bordes del fondo */
+    -fx-padding: 0; /* Elimina el espacio alrededor de la barra de progreso */
+    -fx-pref-height: 15px; /* Ajusta la altura de la barra de progreso */
+}
+
+.progress-bar .track {
+    -fx-background-color: #E0E0E0;
+    -fx-background-radius: 10px; /* Redondea los bordes del track */
+    -fx-padding: 0; /* Asegúrate de que el track ocupe todo el ancho */
+    -fx-background-insets: 0; /* Elimina cualquier espacio alrededor del track */
+}
+
+.progress-bar .bar {
+    -fx-background-radius: 8px; /* Redondea los bordes de la barra */
+    -fx-background-insets: 0; /* Elimina cualquier espacio alrededor de la barra */
+}
+
+.grid-attribute{
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-padding: 0 0 0 25px;
+}
+
+.grid-number{
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+}
+
+.pokemon-name{
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+}
+
+.stat-label{
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+.value-label{
+    -fx-font-size: 14px;
+}
+
+.description-label{
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}

@@ -15,11 +15,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import lombok.SneakyThrows;
 import org.ielena.pokedex.ProjectJavaFxApp;
+import org.ielena.pokedex.controllers.mediator.Mediator;
+import org.ielena.pokedex.controllers.mediator.PokedexControllerMediator;
 import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.dtos.TypeDto;
 import org.ielena.pokedex.facades.PokemonFacade;
 import org.ielena.pokedex.facades.TypeFacade;
 import org.ielena.pokedex.services.DatabaseUpdateService;
+import org.ielena.pokedex.singletons.MasterControllerSingleton;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
@@ -29,7 +32,7 @@ import java.util.Optional;
 import java.util.function.IntFunction;
 
 @Component
-public class PokedexController {
+public class PokedexController implements ViewController{
 
     @Resource
     private PokemonFacade pokemonFacade;
@@ -65,12 +68,15 @@ public class PokedexController {
 
     private Page<PokemonDto> currentPage;
 
+    private PokedexControllerMediator mediator;
+
     private static final int ITEMS_PER_PAGE = 9;
 
     public void initialize() {
         loadTypes();
         loadPokemons(0);
         configureSearchField();
+        setMediator(MasterControllerSingleton.getInstance());
     }
 
     private void loadTypes() {
@@ -235,5 +241,10 @@ public class PokedexController {
         Thread thread = new Thread(task);
         thread.setDaemon(true);
         thread.start();
+    }
+
+    @Override
+    public void setMediator(Mediator mediator) {
+        this.mediator = (PokedexControllerMediator) mediator;
     }
 }

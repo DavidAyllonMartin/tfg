@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -59,7 +60,7 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
 
         Image resizedImage = null;
         try {
-            resizedImage = defaultImageService.getResizedImage(pokemonModel.getImgData(), 200, 200);
+            resizedImage = defaultImageService.getResizedImage(pokemonModel.getImgData(), 325, 325);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -74,8 +75,8 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
                          .specialDefense(pokemonModel.getSpecialDefense())
                          .speed(pokemonModel.getSpeed())
                          .baseExperience(pokemonModel.getBaseExperience())
-                         .height(pokemonModel.getHeight())
-                         .weight(pokemonModel.getWeight())
+                         .height(BigDecimal.valueOf(pokemonModel.getHeight() / 10.0))
+                         .weight(BigDecimal.valueOf(pokemonModel.getWeight() / 10.0))
                          .cryUrl(pokemonModel.getCryUrl())
                          .imgUrl(pokemonModel.getImgUrl())
                          .isDefault(pokemonModel.getIsDefault())
@@ -85,6 +86,7 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
                          .color(pokemonModel.getColor())
                          .cry(pokemonModel.getCryData())
                          .img(resizedImage)
+                         .description(StringUtils.capitalize(pokemonModel.getDescription()))
                          .build();
     }
 }

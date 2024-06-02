@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Builder
@@ -25,8 +26,8 @@ public class PokemonDto {
     private Integer speed;
     private Integer specialAttack;
     private Integer specialDefense;
-    private Integer height;
-    private Integer weight;
+    private BigDecimal height;
+    private BigDecimal weight;
     private Boolean isDefault;
     private Integer baseExperience;
     private String imgUrl;
@@ -34,4 +35,5 @@ public class PokemonDto {
     private String color;
     private Image img;
     private byte[] cry;
+    private String description;
 }

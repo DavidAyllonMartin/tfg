@@ -1,13 +1,17 @@
 package org.ielena.pokedex;
 
+import jakarta.annotation.Resource;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.ielena.pokedex.controllers.MainController;
-import org.ielena.pokedex.controllers.PokedexController;
+import org.ielena.pokedex.controllers.MasterController;
+import org.ielena.pokedex.controllers.ViewController;
+import org.ielena.pokedex.controllers.mediator.Mediator;
+import org.ielena.pokedex.singletons.MasterControllerSingleton;
 import org.ielena.pokedex.singletons.SpringContextSingleton;
 import org.springframework.boot.SpringApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -25,7 +29,9 @@ public class ProjectJavaFxApp extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource("views/pokedex-view.fxml"));
         fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
         Scene scene = new Scene(fxmlLoader.load());
-        PokedexController pokedexController = fxmlLoader.getController();
+        MasterController masterController = MasterControllerSingleton.getInstance();
+        masterController.setStage(stage);
+        masterController.setPokedexView(scene);
         stage.setTitle("Pokedex");
         stage.setScene(scene);
         stage.show();
@@ -33,6 +39,7 @@ public class ProjectJavaFxApp extends Application {
 
     @Override
     public void stop() {
-        SpringContextSingleton.getContext().close();
+        SpringContextSingleton.getContext()
+                              .close();
     }
 }

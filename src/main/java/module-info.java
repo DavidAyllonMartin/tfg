@@ -43,4 +43,5 @@ module org.ielena.buscadormtg {
     exports org.ielena.pokedex.facades;
     exports org.ielena.pokedex.facades.impl;
     exports org.ielena.pokedex.controllers;
+    exports org.ielena.pokedex.controllers.mediator;
 }

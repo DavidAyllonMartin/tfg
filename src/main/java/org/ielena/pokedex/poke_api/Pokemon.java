@@ -68,8 +68,8 @@ public class Pokemon {
     @JsonProperty("cries")
     private PokemonCries cries;
 
-//    @JsonProperty("species")
-//    private NamedAPIResource species;
+    @JsonProperty("species")
+    private NamedAPIResource species;
 
     @JsonProperty("stats")
     private List<PokemonStat> stats;
