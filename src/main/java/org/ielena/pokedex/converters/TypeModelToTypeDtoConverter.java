@@ -15,6 +15,7 @@ public class TypeModelToTypeDtoConverter implements Converter<TypeModel, TypeDto
         return TypeDto.builder()
                       .id(typeModel.getId())
                       .name(StringUtils.capitalize(typeModel.getName()))
+                      .color(typeModel.getColor())
                       .build();
     }
 }

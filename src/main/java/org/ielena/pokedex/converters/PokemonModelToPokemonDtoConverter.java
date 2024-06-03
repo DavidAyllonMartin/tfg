@@ -58,9 +58,9 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
                                       .map(typeDtoConverter::convert)
                                       .collect(Collectors.toList());
 
-        Image resizedImage = null;
+        Image image = null;
         try {
-            resizedImage = defaultImageService.getResizedImage(pokemonModel.getImgData(), 325, 325);
+            image = defaultImageService.getImage(pokemonModel.getImgData());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -85,7 +85,7 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
                          .types(types)
                          .color(pokemonModel.getColor())
                          .cry(pokemonModel.getCryData())
-                         .img(resizedImage)
+                         .img(image)
                          .description(StringUtils.capitalize(pokemonModel.getDescription()))
                          .build();
     }

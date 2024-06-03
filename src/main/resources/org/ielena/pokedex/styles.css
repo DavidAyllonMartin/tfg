@@ -89,3 +89,15 @@
     -fx-font-weight: bold;
     -fx-font-size: 16px;
 }
+
+.type-container {
+    -fx-background-radius: 20;
+    -fx-padding: 5;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, grey, 1, 0.7, 1, 1);
+}
+
+.type-name {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}

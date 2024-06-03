@@ -15,6 +15,8 @@ public class TypeDto {
 
     private String name;
 
+    private String color;
+
     @Override
     public String toString() {
         return name;

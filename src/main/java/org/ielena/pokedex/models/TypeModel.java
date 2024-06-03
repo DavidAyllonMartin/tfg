@@ -29,4 +29,6 @@ public class TypeModel {
 
     @Column(name = "move_damage_class")
     private String moveDamageClass;
+
+    private String color;
 }

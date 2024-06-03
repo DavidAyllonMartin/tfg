@@ -2,16 +2,22 @@ package org.ielena.pokedex.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import lombok.SneakyThrows;
+import org.ielena.pokedex.ProjectJavaFxApp;
 import org.ielena.pokedex.controllers.mediator.Mediator;
 import org.ielena.pokedex.controllers.mediator.PokemonInfoControllerMediator;
 import org.ielena.pokedex.dtos.PokemonDto;
+import org.ielena.pokedex.dtos.TypeDto;
 import org.ielena.pokedex.singletons.MasterControllerSingleton;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
 
 @Component
 public class PokemonInfoController implements ViewController{
@@ -88,6 +94,9 @@ public class PokemonInfoController implements ViewController{
 
         heightLabel.setText(String.format("%.1f m", pokemonDto.getHeight()));
         weightLabel.setText(String.format("%.1f kg", pokemonDto.getWeight()));
+
+        pokemonDto.getTypes().forEach(this::addType);
+
         descriptionLabel.setText(pokemonDto.getDescription());
 
         hpLabel.setText(String.valueOf(pokemonDto.getHp()));
@@ -106,6 +115,16 @@ public class PokemonInfoController implements ViewController{
         speedProgressBar.setProgress(pokemonDto.getSpeed() / MAX_STAT);
 
         infoContainer.setStyle(String.format("-fx-background-color: %s;", pokemonDto.getColor()));
+    }
+
+    @SneakyThrows
+    private void addType(TypeDto typeDto) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/type-container.fxml"));
+        AnchorPane anchorPane = fxmlLoader.load();
+        TypeContainerController typeContainerController = fxmlLoader.getController();
+        typeContainerController.setPokemonType(typeDto, 18);
+        typesHBox.getChildren().add(anchorPane);
     }
 
     public void onBack(ActionEvent actionEvent) {
