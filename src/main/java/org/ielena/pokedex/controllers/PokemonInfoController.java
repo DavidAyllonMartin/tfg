@@ -12,6 +12,7 @@ import lombok.SneakyThrows;
 import org.ielena.pokedex.ProjectJavaFxApp;
 import org.ielena.pokedex.controllers.mediator.Mediator;
 import org.ielena.pokedex.controllers.mediator.PokemonInfoControllerMediator;
+import org.ielena.pokedex.dtos.AbilityDto;
 import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.dtos.TypeDto;
 import org.ielena.pokedex.singletons.MasterControllerSingleton;
@@ -96,6 +97,7 @@ public class PokemonInfoController implements ViewController{
         weightLabel.setText(String.format("%.1f kg", pokemonDto.getWeight()));
 
         pokemonDto.getTypes().forEach(this::addType);
+        pokemonDto.getAbilities().forEach(this::addAbility);
 
         descriptionLabel.setText(pokemonDto.getDescription());
 
@@ -125,6 +127,16 @@ public class PokemonInfoController implements ViewController{
         TypeContainerController typeContainerController = fxmlLoader.getController();
         typeContainerController.setPokemonType(typeDto, 18);
         typesHBox.getChildren().add(anchorPane);
+    }
+
+    @SneakyThrows
+    private void addAbility(AbilityDto abilityDto) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/ability-item.fxml"));
+        AnchorPane anchorPane = fxmlLoader.load();
+        AbilityItemController abilityItemController = fxmlLoader.getController();
+        abilityItemController.setData(abilityDto);
+        abilitiesHBox.getChildren().add(anchorPane);
     }
 
     public void onBack(ActionEvent actionEvent) {

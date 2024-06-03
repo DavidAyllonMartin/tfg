@@ -101,3 +101,21 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
+
+.ability-item {
+    -fx-background-color: white; /* Fondo blanco */
+    -fx-backgroud-radius: 15; /* Bordes redondeados */
+}
+
+/* Estilos para el nombre de la habilidad */
+.ability-name {
+    -fx-background-color: black; /* Fondo negro */
+    -fx-text-fill: white; /* Texto en blanco */
+    -fx-padding: 5px; /* Espaciado interno */
+    -fx-background-radius: 5px; /* Bordes redondeados */
+}
+
+/* Estilos para la descripción de la habilidad */
+.ability-description {
+    -fx-padding: 5px; /* Espaciado interno */
+}

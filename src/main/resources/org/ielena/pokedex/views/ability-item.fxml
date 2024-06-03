@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane prefWidth="320.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@../styles.css" styleClass="ability-item" fx:controller="org.ielena.pokedex.controllers.AbilityItemController">
+    <VBox prefHeight="120.0" AnchorPane.leftAnchor="10.0"
+          AnchorPane.rightAnchor="10.0">
+        <Label fx:id="name" styleClass="ability-name"/>
+        <Label fx:id="description" styleClass="ability-description"/>
+    </VBox>
+</AnchorPane>
+

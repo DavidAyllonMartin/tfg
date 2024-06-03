@@ -72,13 +72,10 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
                                     .map(PokemonSpecies::getFlavorTextEntries)
                                     .orElse(Collections.emptyList())
                                     .stream()
-                                    .filter(text -> "en".equals(text.getLanguage()
-                                                                    .getName()))
+                                    .filter(text -> "en".equals(text.getLanguage().getName()))
                                     .map(FlavorText::getFlavorText)
                                     .findFirst()
-                                    .map(s -> StringUtils.replace(s, "\n", " "))
-                                    .map(s -> StringUtils.replace(s, "\f", " "))
-                                    .map(s -> StringUtils.replace(s, "POKéMON", "pokémon"))
+                                    .map(this::sanitizeFlavorText)
                                     .orElse("");
 
         Set<TypeModel> typeModels = Optional.ofNullable(pokemon.getTypes())
@@ -155,5 +152,12 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
             e.printStackTrace();
             return null;
         }
+    }
+
+    private String sanitizeFlavorText(String text) {
+        return text.replace("\n", " ")
+                   .replace("\f", " ")
+                   .replace("POKéMON", "pokémon")
+                   .replace("- ", "");
     }
 }
