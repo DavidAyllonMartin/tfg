@@ -9,7 +9,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import org.ielena.pokedex.dtos.TypeDto;
+import org.springframework.stereotype.Component;
 
+@Component
 public class TypeContainerController {
 
     @FXML

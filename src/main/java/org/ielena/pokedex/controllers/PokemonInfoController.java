@@ -3,28 +3,38 @@ package org.ielena.pokedex.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import lombok.SneakyThrows;
 import org.ielena.pokedex.ProjectJavaFxApp;
 import org.ielena.pokedex.controllers.mediator.Mediator;
 import org.ielena.pokedex.controllers.mediator.PokemonInfoControllerMediator;
 import org.ielena.pokedex.dtos.AbilityDto;
+import org.ielena.pokedex.dtos.MoveDto;
 import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.dtos.TypeDto;
 import org.ielena.pokedex.singletons.MasterControllerSingleton;
+import org.ielena.pokedex.singletons.SpringContextSingleton;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class PokemonInfoController implements ViewController{
 
     private static final double MAX_STAT = 200.0;
     public AnchorPane infoContainer;
+    public ScrollPane movesContainer;
+    public VBox movesVBox;
+    public VBox statisticsContainer;
 
     @FXML
     private ImageView pokemonImg;
@@ -98,6 +108,7 @@ public class PokemonInfoController implements ViewController{
 
         pokemonDto.getTypes().forEach(this::addType);
         pokemonDto.getAbilities().forEach(this::addAbility);
+        movesVBox.getChildren().addAll(pokemonDto.getMoves().parallelStream().map(this::createMove).toList());
 
         descriptionLabel.setText(pokemonDto.getDescription());
 
@@ -133,22 +144,36 @@ public class PokemonInfoController implements ViewController{
     private void addAbility(AbilityDto abilityDto) {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/ability-item.fxml"));
+//        fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
         AnchorPane anchorPane = fxmlLoader.load();
         AbilityItemController abilityItemController = fxmlLoader.getController();
         abilityItemController.setData(abilityDto);
         abilitiesHBox.getChildren().add(anchorPane);
     }
 
+    @SneakyThrows
+    private Node createMove(MoveDto moveDto) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/move-item.fxml"));
+//        fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
+        Node anchorPane = fxmlLoader.load();
+        MoveItemController moveItemController = fxmlLoader.getController();
+        moveItemController.setData(moveDto);
+        return anchorPane;
+    }
+
     public void onBack(ActionEvent actionEvent) {
         mediator.changeToMainWindow();
     }
 
-    public void onStatistics(ActionEvent actionEvent) {
-
+    public void onStatistics() {
+        statisticsContainer.setVisible(true);
+        movesContainer.setVisible(false);
     }
 
-    public void onMoves(ActionEvent actionEvent) {
-
+    public void onMoves() {
+        statisticsContainer.setVisible(false);
+        movesContainer.setVisible(true);
     }
 
     @Override

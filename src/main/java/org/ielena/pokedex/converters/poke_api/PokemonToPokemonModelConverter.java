@@ -22,7 +22,6 @@ import org.ielena.pokedex.services.ImageService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
@@ -72,7 +71,8 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
                                     .map(PokemonSpecies::getFlavorTextEntries)
                                     .orElse(Collections.emptyList())
                                     .stream()
-                                    .filter(text -> "en".equals(text.getLanguage().getName()))
+                                    .filter(text -> "en".equals(text.getLanguage()
+                                                                    .getName()))
                                     .map(FlavorText::getFlavorText)
                                     .findFirst()
                                     .map(this::sanitizeFlavorText)

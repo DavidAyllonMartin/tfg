@@ -119,3 +119,8 @@
 .ability-description {
     -fx-padding: 5px; /* Espaciado interno */
 }
+
+.button:focused {
+    -fx-focus-color: transparent; /* Elimina el color de foco (halo azul) */
+    -fx-faint-focus-color: transparent; /* Elimina el color de foco débil */
+}
