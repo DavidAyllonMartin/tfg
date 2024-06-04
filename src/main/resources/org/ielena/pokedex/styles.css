@@ -219,7 +219,9 @@
 }
 
 .type-background {
-    -fx-fill: #4CAF50; /* color de fondo del tipo */
+    -fx-arc-height: 20;
+    -fx-arc-width: 20;
+    -fx-fill: #4CAF50;
 }
 
 .type-label {
