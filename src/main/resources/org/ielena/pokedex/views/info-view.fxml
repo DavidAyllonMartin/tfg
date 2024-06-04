@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane fx:id="infoContainer" prefHeight="688.0" prefWidth="1280.0" styleClass="infoContainer" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controllers.PokemonInfoController">
-    <Button layoutX="1152.0" layoutY="16.0" mnemonicParsing="true" onAction="#onBack" prefHeight="60.0" prefWidth="120.0" text="_BACK" styleClass="backButton" />
+    <Button layoutX="1152.0" layoutY="16.0" mnemonicParsing="true" onAction="#onBack" prefHeight="60.0" prefWidth="120.0" styleClass="backButton" text="_BACK" />
     <ImageView fx:id="pokemonImg" fitHeight="325.0" fitWidth="325.0" layoutX="52.0" layoutY="125.0" pickOnBounds="true" />
 
     <VBox layoutX="20.0" layoutY="460.0" prefHeight="218.0" prefWidth="390.0">
@@ -24,14 +24,14 @@
             <padding>
                 <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
             </padding>
-            <Label fx:id="descriptionLabel" styleClass="description-label" prefHeight="92.0" prefWidth="396.0" text="Description" textAlignment="CENTER" wrapText="true" />
+            <Label fx:id="descriptionLabel" prefHeight="92.0" prefWidth="396.0" styleClass="description-label" text="Description" textAlignment="CENTER" wrapText="true" />
         </HBox>
     </VBox>
 
-    <Button layoutX="747.0" layoutY="125.0" mnemonicParsing="false" onAction="#onStatistics" prefHeight="39.0" prefWidth="126.0" text="Statistics" styleClass="menu-button"/>
-    <Button layoutX="880.0" layoutY="125.0" mnemonicParsing="false" onAction="#onMoves" prefHeight="39.0" prefWidth="120.0" text="Moves" styleClass="menu-button"/>
+    <Button layoutX="747.0" layoutY="125.0" mnemonicParsing="false" onAction="#onStatistics" prefHeight="30.0" prefWidth="120.0" styleClass="menu-button" text="Statistics" />
+    <Button layoutX="880.0" layoutY="125.0" mnemonicParsing="false" onAction="#onMoves" prefHeight="30.0" prefWidth="120.0" styleClass="menu-button" text="Moves" />
 
-    <StackPane layoutX="459.0" layoutY="228.0" prefHeight="400.0" prefWidth="805.0">
+    <StackPane layoutX="459.0" layoutY="185.0" prefHeight="493.0" prefWidth="806.0">
         <VBox fx:id="statisticsContainer">
             <GridPane prefHeight="203.0" prefWidth="805.0">
                 <columnConstraints>
@@ -47,12 +47,12 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
-                <Label text="HP:" styleClass="grid-attribute" />
-                <Label text="Attack:" styleClass="grid-attribute" GridPane.rowIndex="1" />
-                <Label text="Defense:" styleClass="grid-attribute" GridPane.rowIndex="2" />
-                <Label text="Special Attack:" styleClass="grid-attribute" GridPane.rowIndex="3" />
-                <Label text="Special Defense:" styleClass="grid-attribute" GridPane.rowIndex="4" />
-                <Label text="Speed:" styleClass="grid-attribute" GridPane.rowIndex="5" />
+                <Label styleClass="grid-attribute" text="HP:" />
+                <Label styleClass="grid-attribute" text="Attack:" GridPane.rowIndex="1" />
+                <Label styleClass="grid-attribute" text="Defense:" GridPane.rowIndex="2" />
+                <Label styleClass="grid-attribute" text="Special Attack:" GridPane.rowIndex="3" />
+                <Label styleClass="grid-attribute" text="Special Defense:" GridPane.rowIndex="4" />
+                <Label styleClass="grid-attribute" text="Speed:" GridPane.rowIndex="5" />
 
                 <Label fx:id="hpLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="grid-number" text="1" GridPane.columnIndex="1" />
                 <Label fx:id="attackLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="grid-number" text="2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -67,9 +67,18 @@
                 <ProgressBar fx:id="sAttackProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                 <ProgressBar fx:id="sDefenseProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                 <ProgressBar fx:id="speedProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <VBox.margin>
+               <Insets bottom="40.0" />
+            </VBox.margin>
             </GridPane>
-            <Label layoutY="466.0" prefHeight="25.0" prefWidth="92.0" styleClass="grid-attribute" text="Abilities" />
+            <Label layoutY="466.0" prefHeight="26.0" prefWidth="271.0" styleClass="grid-attribute" text="Abilities" />
             <HBox fx:id="abilitiesHBox" layoutY="492.0" prefHeight="131.0" prefWidth="816.0" />
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
+         <padding>
+            <Insets top="50.0" />
+         </padding>
         </VBox>
 
         <ScrollPane fx:id="movesContainer" fitToWidth="true" visible="false">
