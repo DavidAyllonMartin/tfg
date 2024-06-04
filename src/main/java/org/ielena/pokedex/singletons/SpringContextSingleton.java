@@ -10,7 +10,8 @@ public class SpringContextSingleton {
     @Getter
     private static ConfigurableApplicationContext context;
 
-    private SpringContextSingleton() {}
+    private SpringContextSingleton() {
+    }
 
 }
 

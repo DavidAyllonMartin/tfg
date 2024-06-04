@@ -10,6 +10,13 @@ import java.net.http.HttpResponse;
 
 public class CachingObjectMapper extends ObjectMapper {
 
+    private static String removeTrailingSlash(String input) {
+        if (input != null && input.endsWith("/")) {
+            return input.substring(0, input.length() - 1);
+        }
+        return input;
+    }
+
     @Override
     public <T> T readValue(String url, Class<T> valueType) throws JsonProcessingException {
 
@@ -39,9 +46,9 @@ public class CachingObjectMapper extends ObjectMapper {
 
             if (response.statusCode() == 200) {
                 return response.body();
-            } else if (url.endsWith("/")){
+            } else if (url.endsWith("/")) {
                 return downloadJson(removeTrailingSlash(url));
-            }else {
+            } else {
                 System.err.println("Failed to download JSON, status code: " + response.statusCode());
                 return "{\"id\":0, \"name\":\"not found\"}";
             }
@@ -50,12 +57,5 @@ public class CachingObjectMapper extends ObjectMapper {
             e.printStackTrace();
             return "{\"id\":0, \"name\":\"not found\"}";
         }
-    }
-
-    private static String removeTrailingSlash(String input) {
-        if (input != null && input.endsWith("/")) {
-            return input.substring(0, input.length() - 1);
-        }
-        return input;
     }
 }

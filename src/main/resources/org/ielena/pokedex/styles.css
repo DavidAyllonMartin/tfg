@@ -124,3 +124,22 @@
     -fx-focus-color: transparent; /* Elimina el color de foco (halo azul) */
     -fx-faint-focus-color: transparent; /* Elimina el color de foco débil */
 }
+
+.backButton {
+    -fx-background-radius: 50;
+    -fx-background-color: white;
+    -fx-padding: 1;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, grey, 5, 0.7, 3, 3);
+    -fx-font-weight: bold;
+    -fx-font-size: 24px;
+}
+
+.menu-button {
+    -fx-background-radius: 50;
+    -fx-background-color: white;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, grey, 1, 0.7, 1, 1);
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}

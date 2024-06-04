@@ -7,9 +7,6 @@ public class ObjectCache {
 
     private static final Map<String, Object> pokeApiCache = new ConcurrentHashMap<>();
 
-    private ObjectCache() {
-    }
-
     public static void addToCache(String key, Object value) {
         pokeApiCache.put(key, value);
     }

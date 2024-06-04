@@ -1,9 +1,9 @@
 package org.ielena.pokedex.converters;
 
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
 import org.ielena.pokedex.dtos.AbilityDto;
 import org.ielena.pokedex.models.AbilityModel;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 @Component

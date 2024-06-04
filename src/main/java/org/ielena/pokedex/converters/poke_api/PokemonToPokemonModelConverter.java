@@ -75,7 +75,6 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
                                                                     .getName()))
                                     .map(FlavorText::getFlavorText)
                                     .findFirst()
-                                    .map(this::sanitizeFlavorText)
                                     .orElse("");
 
         Set<TypeModel> typeModels = Optional.ofNullable(pokemon.getTypes())
@@ -152,12 +151,5 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
             e.printStackTrace();
             return null;
         }
-    }
-
-    private String sanitizeFlavorText(String text) {
-        return text.replace("\n", " ")
-                   .replace("\f", " ")
-                   .replace("POKéMON", "pokémon")
-                   .replace("- ", "");
     }
 }

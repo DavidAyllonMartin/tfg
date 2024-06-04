@@ -2,7 +2,6 @@ package org.ielena.pokedex.services.impl;
 
 import jakarta.annotation.Resource;
 import org.ielena.pokedex.daos.PokemonDao;
-import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.models.PokemonModel;
 import org.ielena.pokedex.models.TypeModel;
 import org.ielena.pokedex.services.PokemonService;

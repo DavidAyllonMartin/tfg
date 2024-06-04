@@ -1,17 +1,13 @@
 package org.ielena.pokedex;
 
-import jakarta.annotation.Resource;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.ielena.pokedex.controllers.MasterController;
-import org.ielena.pokedex.controllers.ViewController;
-import org.ielena.pokedex.controllers.mediator.Mediator;
 import org.ielena.pokedex.singletons.MasterControllerSingleton;
 import org.ielena.pokedex.singletons.SpringContextSingleton;
 import org.springframework.boot.SpringApplication;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;

@@ -6,7 +6,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import lombok.SneakyThrows;
 import org.ielena.pokedex.ProjectJavaFxApp;
-import org.ielena.pokedex.dtos.AbilityDto;
 import org.ielena.pokedex.dtos.MoveDto;
 import org.ielena.pokedex.dtos.TypeDto;
 import org.springframework.stereotype.Component;
@@ -33,8 +32,9 @@ public class MoveItemController {
 
         addType(moveDto.getType());
         TypeDto damageClass = TypeDto.builder()
-                .name(moveDto.getDamageClass())
-                .color("#FF00FF")
+                                     .id(0L)
+                                     .name(moveDto.getDamageClass())
+                                     .color("#00FF00")
                                      .build();
         addType(damageClass);
 
@@ -43,10 +43,11 @@ public class MoveItemController {
     @SneakyThrows
     private void addType(TypeDto typeDto) {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/type-container.fxml"));
+        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/type-item.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
-        TypeContainerController typeContainerController = fxmlLoader.getController();
-        typeContainerController.setPokemonType(typeDto, 16);
-        typeContainer.getChildren().add(anchorPane);
+        TypeItemController typeItemController = fxmlLoader.getController();
+        typeItemController.setPokemonType(typeDto, 16);
+        typeContainer.getChildren()
+                     .add(anchorPane);
     }
 }

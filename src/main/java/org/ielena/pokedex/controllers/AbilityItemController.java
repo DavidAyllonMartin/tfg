@@ -9,7 +9,7 @@ public class AbilityItemController {
     public Label name;
     public Label description;
 
-    public void setData(AbilityDto abilityDto){
+    public void setData(AbilityDto abilityDto) {
         name.setText(abilityDto.getName());
         description.setText(abilityDto.getEffect());
     }

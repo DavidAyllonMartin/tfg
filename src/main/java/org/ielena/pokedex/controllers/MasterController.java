@@ -1,6 +1,5 @@
 package org.ielena.pokedex.controllers;
 
-import jakarta.annotation.Resource;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -12,6 +11,7 @@ import org.ielena.pokedex.controllers.mediator.PokedexControllerMediator;
 import org.ielena.pokedex.controllers.mediator.PokemonInfoControllerMediator;
 import org.ielena.pokedex.controllers.mediator.PokemonItemMediator;
 import org.ielena.pokedex.dtos.PokemonDto;
+import org.ielena.pokedex.singletons.SpringContextSingleton;
 
 @Setter
 public class MasterController implements Mediator, PokedexControllerMediator, PokemonInfoControllerMediator, PokemonItemMediator {
@@ -25,6 +25,7 @@ public class MasterController implements Mediator, PokedexControllerMediator, Po
     public void changeToInfoWindow(PokemonDto pokemon) {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/info-view.fxml"));
+        fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
         Scene scene = new Scene(fxmlLoader.load());
         PokemonInfoController infoController = fxmlLoader.getController();
         infoController.setData(pokemon);

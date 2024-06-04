@@ -12,6 +12,14 @@ public class FlavorText {
     private String flavorText;
     @JsonProperty("language")
     private NamedAPIResource language;
+
     @JsonProperty("version_group")
     private NamedAPIResource versionGroup;
+
+    public String getFlavorText() {
+        return flavorText.replace("\n", " ")
+                         .replace("\f", " ")
+                         .replace("POKéMON", "pokémon")
+                         .replace("- ", "");
+    }
 }

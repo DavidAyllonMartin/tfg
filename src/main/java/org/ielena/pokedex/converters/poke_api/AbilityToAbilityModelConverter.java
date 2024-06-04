@@ -1,11 +1,11 @@
 package org.ielena.pokedex.converters.poke_api;
 
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 import org.ielena.pokedex.models.AbilityModel;
 import org.ielena.pokedex.poke_api.Ability;
 import org.ielena.pokedex.poke_api.side_classes.FlavorText;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

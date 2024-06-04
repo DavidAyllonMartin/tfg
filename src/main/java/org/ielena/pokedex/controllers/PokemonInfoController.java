@@ -1,5 +1,6 @@
 package org.ielena.pokedex.controllers;
 
+import jakarta.annotation.Resource;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import org.ielena.pokedex.dtos.AbilityDto;
 import org.ielena.pokedex.dtos.MoveDto;
 import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.dtos.TypeDto;
+import org.ielena.pokedex.services.impl.MoveDtoCache;
 import org.ielena.pokedex.singletons.MasterControllerSingleton;
 import org.springframework.stereotype.Component;
 
@@ -30,13 +32,13 @@ import java.util.concurrent.ConcurrentHashMap;
 public class PokemonInfoController implements ViewController {
 
     private static final Map<MoveDto, Node> cache = new ConcurrentHashMap<>();
-
     private static final double MAX_STAT = 255.0;
     public AnchorPane infoContainer;
     public ScrollPane movesContainer;
     public VBox movesVBox;
     public VBox statisticsContainer;
-
+    @Resource
+    private MoveDtoCache moveDtoCache;
     @FXML
     private ImageView pokemonImg;
 
@@ -95,6 +97,20 @@ public class PokemonInfoController implements ViewController {
 
     private PokemonInfoControllerMediator mediator;
 
+    private static Node createMoveDtoNode(MoveDto moveDto) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/move-item.fxml"));
+        Node anchorPane = null;
+        try {
+            anchorPane = fxmlLoader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        MoveItemController moveItemController = fxmlLoader.getController();
+        moveItemController.setData(moveDto);
+        return anchorPane;
+    }
+
     public void initialize() {
         setMediator(MasterControllerSingleton.getInstance());
     }
@@ -140,10 +156,10 @@ public class PokemonInfoController implements ViewController {
     @SneakyThrows
     private void addType(TypeDto typeDto) {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/type-container.fxml"));
+        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/type-item.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
-        TypeContainerController typeContainerController = fxmlLoader.getController();
-        typeContainerController.setPokemonType(typeDto, 18);
+        TypeItemController typeItemController = fxmlLoader.getController();
+        typeItemController.setPokemonType(typeDto, 18);
         typesHBox.getChildren()
                  .add(anchorPane);
     }
@@ -152,7 +168,6 @@ public class PokemonInfoController implements ViewController {
     private void addAbility(AbilityDto abilityDto) {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/ability-item.fxml"));
-//        fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
         AnchorPane anchorPane = fxmlLoader.load();
         AbilityItemController abilityItemController = fxmlLoader.getController();
         abilityItemController.setData(abilityDto);
@@ -161,21 +176,13 @@ public class PokemonInfoController implements ViewController {
     }
 
     private Node createMove(MoveDto moveDto) {
-
-        return cache.computeIfAbsent(moveDto, move -> {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/move-item.fxml"));
-            Node anchorPane = null;
-            try {
-                anchorPane = fxmlLoader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            MoveItemController moveItemController = fxmlLoader.getController();
-            moveItemController.setData(moveDto);
+        if (moveDtoCache.isMoveDtoNodeInCache(moveDto)) {
+            return moveDtoCache.getMoveDtoNodeFromCache(moveDto);
+        } else {
+            Node anchorPane = createMoveDtoNode(moveDto);
+            moveDtoCache.addMoveDtoNodeToCache(moveDto, anchorPane);
             return anchorPane;
-        });
-
+        }
     }
 
     public void onBack(ActionEvent actionEvent) {

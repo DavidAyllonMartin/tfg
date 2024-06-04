@@ -1,11 +1,8 @@
 package org.ielena.pokedex.facades;
 
-import javafx.scene.image.Image;
 import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.dtos.TypeDto;
-import org.ielena.pokedex.models.TypeModel;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;

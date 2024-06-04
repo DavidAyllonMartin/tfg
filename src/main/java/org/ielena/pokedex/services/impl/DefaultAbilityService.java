@@ -1,10 +1,10 @@
 package org.ielena.pokedex.services.impl;
 
 import jakarta.annotation.Resource;
-import org.springframework.stereotype.Service;
 import org.ielena.pokedex.daos.AbilityDao;
 import org.ielena.pokedex.models.AbilityModel;
 import org.ielena.pokedex.services.AbilityService;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;

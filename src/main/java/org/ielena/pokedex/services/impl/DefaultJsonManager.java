@@ -1,8 +1,8 @@
 package org.ielena.pokedex.services.impl;
 
-import org.springframework.stereotype.Service;
 import org.ielena.pokedex.services.JsonManager;
 import org.ielena.pokedex.singletons.HttpClientSingleton;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.net.URI;

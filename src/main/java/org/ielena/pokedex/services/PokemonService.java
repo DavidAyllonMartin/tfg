@@ -1,6 +1,5 @@
 package org.ielena.pokedex.services;
 
-import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.models.PokemonModel;
 import org.ielena.pokedex.models.TypeModel;
 import org.springframework.data.domain.Page;

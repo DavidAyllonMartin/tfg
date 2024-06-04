@@ -8,6 +8,7 @@ import java.io.IOException;
 public interface ImageService {
 
     Image getImage(byte[] imageData) throws IOException;
+
     Image getResizedImage(byte[] imageData, int newWidth, int newHeight) throws IOException;
 
     Color getDominantColor(byte[] imageData);

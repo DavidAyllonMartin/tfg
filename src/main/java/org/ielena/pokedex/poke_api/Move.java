@@ -3,17 +3,8 @@ package org.ielena.pokedex.poke_api;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import org.ielena.pokedex.poke_api.side_classes.APIResource;
-import org.ielena.pokedex.poke_api.side_classes.AbilityEffectChange;
-import org.ielena.pokedex.poke_api.side_classes.ContestComboSets;
 import org.ielena.pokedex.poke_api.side_classes.FlavorText;
-import org.ielena.pokedex.poke_api.side_classes.MachineVersionDetail;
-import org.ielena.pokedex.poke_api.side_classes.MoveMetaData;
-import org.ielena.pokedex.poke_api.side_classes.MoveStatChange;
-import org.ielena.pokedex.poke_api.side_classes.Name;
 import org.ielena.pokedex.poke_api.side_classes.NamedAPIResource;
-import org.ielena.pokedex.poke_api.side_classes.PastMoveStatValues;
-import org.ielena.pokedex.poke_api.side_classes.VerboseEffect;
 
 import java.util.List;
 
@@ -35,7 +26,7 @@ public class Move {
     private Integer priority;
     @JsonProperty("power")
     private Integer power;
-//    @JsonProperty("contest_combos")
+    //    @JsonProperty("contest_combos")
 //    private ContestComboSets contestCombos;
 //    @JsonProperty("contest_effect")
 //    private APIResource contestEffect;
@@ -43,7 +34,7 @@ public class Move {
 //    private NamedAPIResource contestType;
     @JsonProperty("damage_class")
     private NamedAPIResource damageClass;
-//    @JsonProperty("effect_changes")
+    //    @JsonProperty("effect_changes")
 //    private List<AbilityEffectChange> effectChanges;
 //    @JsonProperty("effect_entries")
 //    private List<VerboseEffect> effectEntries;
@@ -53,7 +44,7 @@ public class Move {
     private List<FlavorText> flavorTextEntries;
     @JsonProperty("generation")
     private NamedAPIResource generation;
-//    @JsonProperty("machines")
+    //    @JsonProperty("machines")
 //    private List<MachineVersionDetail> machines;
 //    @JsonProperty("meta")
 //    private MoveMetaData meta;

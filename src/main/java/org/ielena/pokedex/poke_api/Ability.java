@@ -3,11 +3,8 @@ package org.ielena.pokedex.poke_api;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
-import org.ielena.pokedex.poke_api.side_classes.AbilityEffectChange;
 import org.ielena.pokedex.poke_api.side_classes.FlavorText;
-import org.ielena.pokedex.poke_api.side_classes.Name;
 import org.ielena.pokedex.poke_api.side_classes.NamedAPIResource;
-import org.ielena.pokedex.poke_api.side_classes.VerboseEffect;
 
 import java.util.List;
 

@@ -3,11 +3,9 @@ package org.ielena.pokedex.services.impl;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import org.ielena.pokedex.services.ImageService;
-import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

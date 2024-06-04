@@ -6,13 +6,10 @@ import lombok.Data;
 import org.ielena.pokedex.poke_api.side_classes.NamedAPIResource;
 import org.ielena.pokedex.poke_api.side_classes.PokemonAbility;
 import org.ielena.pokedex.poke_api.side_classes.PokemonCries;
-import org.ielena.pokedex.poke_api.side_classes.PokemonHeldItem;
 import org.ielena.pokedex.poke_api.side_classes.PokemonMove;
 import org.ielena.pokedex.poke_api.side_classes.PokemonSprites;
 import org.ielena.pokedex.poke_api.side_classes.PokemonStat;
 import org.ielena.pokedex.poke_api.side_classes.PokemonType;
-import org.ielena.pokedex.poke_api.side_classes.PokemonTypePast;
-import org.ielena.pokedex.poke_api.side_classes.VersionGameIndex;
 
 import java.util.List;
 

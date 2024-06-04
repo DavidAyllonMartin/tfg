@@ -1,10 +1,10 @@
 package org.ielena.pokedex.services.impl;
 
 import jakarta.annotation.Resource;
-import org.springframework.stereotype.Service;
 import org.ielena.pokedex.daos.TypeDao;
 import org.ielena.pokedex.models.TypeModel;
 import org.ielena.pokedex.services.TypeService;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;

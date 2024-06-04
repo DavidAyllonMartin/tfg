@@ -32,49 +32,36 @@ import java.util.Optional;
 import java.util.function.IntFunction;
 
 @Component
-public class PokedexController implements ViewController{
-
-    @Resource
-    private PokemonFacade pokemonFacade;
-
-    @Resource
-    private TypeFacade typeFacade;
-
-    @Resource
-    private DatabaseUpdateService databaseUpdateService;
-
-    @FXML
-    private TextField searchField;
-
-    @FXML
-    private GridPane gridPane;
-
-    @FXML
-    private Button prevButton;
-
-    @FXML
-    private Button nextButton;
-
-    @FXML
-    private Label pageLabel;
-
-    @FXML
-    private ComboBox<Integer> pageComboBox;
-
-    @FXML
-    private ComboBox<TypeDto> typeComboBox;
-
-    private IntFunction<Page<PokemonDto>> load;
-
-    private Page<PokemonDto> currentPage;
-
-    private PokedexControllerMediator mediator;
+public class PokedexController implements ViewController {
 
     private static final int ITEMS_PER_PAGE = 9;
+    @Resource
+    private PokemonFacade pokemonFacade;
+    @Resource
+    private TypeFacade typeFacade;
+    @Resource
+    private DatabaseUpdateService databaseUpdateService;
+    @FXML
+    private TextField searchField;
+    @FXML
+    private GridPane gridPane;
+    @FXML
+    private Button prevButton;
+    @FXML
+    private Button nextButton;
+    @FXML
+    private Label pageLabel;
+    @FXML
+    private ComboBox<Integer> pageComboBox;
+    @FXML
+    private ComboBox<TypeDto> typeComboBox;
+    private IntFunction<Page<PokemonDto>> load;
+    private Page<PokemonDto> currentPage;
+    private PokedexControllerMediator mediator;
 
     public void initialize() {
         loadTypes();
-        loadPokemons(0);
+        loadPokemons();
         configureSearchField();
         setMediator(MasterControllerSingleton.getInstance());
     }
@@ -104,13 +91,13 @@ public class PokedexController implements ViewController{
         boolean isTypeSelected = selectedType != null && selectedType.getId() != null;
 
         if (isQueryNotEmpty && isTypeSelected) {
-            loadPokemonsByNameAndType(query, selectedType, 0);
+            loadPokemonsByNameAndType(query, selectedType);
         } else if (isTypeSelected) {
-            loadPokemonsByType(selectedType, 0);
+            loadPokemonsByType(selectedType);
         } else if (isQueryNotEmpty) {
-            loadPokemonsByName(query, 0);
+            loadPokemonsByName(query);
         } else {
-            loadPokemons(0);
+            loadPokemons();
         }
     }
 
@@ -136,24 +123,24 @@ public class PokedexController implements ViewController{
         // Implement logic to show favorite Pokemons here
     }
 
-    private void loadPokemons(int page) {
+    private void loadPokemons() {
         load = pageNum -> pokemonFacade.findAll(PageRequest.of(pageNum, ITEMS_PER_PAGE));
-        executeLoad(page);
+        executeLoad(0);
     }
 
-    private void loadPokemonsByName(String name, int page) {
+    private void loadPokemonsByName(String name) {
         load = pageNum -> pokemonFacade.findByName(name, PageRequest.of(pageNum, ITEMS_PER_PAGE));
-        executeLoad(page);
+        executeLoad(0);
     }
 
-    private void loadPokemonsByType(TypeDto type, int page) {
+    private void loadPokemonsByType(TypeDto type) {
         load = pageNum -> pokemonFacade.findByType(type, PageRequest.of(pageNum, ITEMS_PER_PAGE));
-        executeLoad(page);
+        executeLoad(0);
     }
 
-    private void loadPokemonsByNameAndType(String name, TypeDto type, int page) {
+    private void loadPokemonsByNameAndType(String name, TypeDto type) {
         load = pageNum -> pokemonFacade.findByNameAndType(name, type, PageRequest.of(pageNum, ITEMS_PER_PAGE));
-        executeLoad(page);
+        executeLoad(0);
     }
 
     private void navigateToPage(int page) {
