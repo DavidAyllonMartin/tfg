@@ -4,7 +4,6 @@
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/org/ielena/pokedex/utils" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/org/ielena/pokedex/img/info-background.png" charset="ISO-8859-1" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/org/ielena/pokedex/views/info-view.fxml" charset="ISO-8859-1" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/org/ielena/pokedex/views/info-view.fxml" charset="UTF-8" />
   </component>
 </project>

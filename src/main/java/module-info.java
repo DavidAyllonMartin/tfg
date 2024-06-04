@@ -1,4 +1,4 @@
-module org.ielena.buscadormtg {
+module org.ielena.pokedex {
     requires javafx.controls;
     requires javafx.fxml;
     requires spring.boot;

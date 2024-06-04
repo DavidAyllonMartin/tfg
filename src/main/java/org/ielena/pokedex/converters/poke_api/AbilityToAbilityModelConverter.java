@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class AbilityToAbilityModelConverter implements Converter<Ability, AbilityModel> {
 
-    public static final Map<Long, AbilityModel> cache = new ConcurrentHashMap<>();
+    private static final Map<Long, AbilityModel> cache = new ConcurrentHashMap<>();
     private static final String ASSERTION_FAILED = "[Assertion failed] - abilityPokeAPI is required; it must not be null";
 
     @Override

@@ -19,7 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class MoveToMoveModelConverter implements Converter<Move, MoveModel> {
 
-    public static final Map<Long, MoveModel> cache = new ConcurrentHashMap<>();
+    private static final Map<Long, MoveModel> cache = new ConcurrentHashMap<>();
     private static final String ASSERTION_FAILED = "[Assertion failed] - movePokeAPI is required; it must not be null";
 
     @Resource

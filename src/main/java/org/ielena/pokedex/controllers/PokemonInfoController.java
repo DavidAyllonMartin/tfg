@@ -20,17 +20,18 @@ import org.ielena.pokedex.dtos.MoveDto;
 import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.dtos.TypeDto;
 import org.ielena.pokedex.singletons.MasterControllerSingleton;
-import org.ielena.pokedex.singletons.SpringContextSingleton;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Component
-public class PokemonInfoController implements ViewController{
+public class PokemonInfoController implements ViewController {
 
-    private static final double MAX_STAT = 200.0;
+    private static final Map<MoveDto, Node> cache = new ConcurrentHashMap<>();
+
+    private static final double MAX_STAT = 255.0;
     public AnchorPane infoContainer;
     public ScrollPane movesContainer;
     public VBox movesVBox;
@@ -38,7 +39,7 @@ public class PokemonInfoController implements ViewController{
 
     @FXML
     private ImageView pokemonImg;
-    
+
     @FXML
     private Label idLabel;
 
@@ -94,7 +95,7 @@ public class PokemonInfoController implements ViewController{
 
     private PokemonInfoControllerMediator mediator;
 
-    public void initialize(){
+    public void initialize() {
         setMediator(MasterControllerSingleton.getInstance());
     }
 
@@ -106,9 +107,15 @@ public class PokemonInfoController implements ViewController{
         heightLabel.setText(String.format("%.1f m", pokemonDto.getHeight()));
         weightLabel.setText(String.format("%.1f kg", pokemonDto.getWeight()));
 
-        pokemonDto.getTypes().forEach(this::addType);
-        pokemonDto.getAbilities().forEach(this::addAbility);
-        movesVBox.getChildren().addAll(pokemonDto.getMoves().parallelStream().map(this::createMove).toList());
+        pokemonDto.getTypes()
+                  .forEach(this::addType);
+        pokemonDto.getAbilities()
+                  .forEach(this::addAbility);
+        movesVBox.getChildren()
+                 .addAll(pokemonDto.getMoves()
+                                   .parallelStream()
+                                   .map(this::createMove)
+                                   .toList());
 
         descriptionLabel.setText(pokemonDto.getDescription());
 
@@ -137,7 +144,8 @@ public class PokemonInfoController implements ViewController{
         AnchorPane anchorPane = fxmlLoader.load();
         TypeContainerController typeContainerController = fxmlLoader.getController();
         typeContainerController.setPokemonType(typeDto, 18);
-        typesHBox.getChildren().add(anchorPane);
+        typesHBox.getChildren()
+                 .add(anchorPane);
     }
 
     @SneakyThrows
@@ -148,18 +156,26 @@ public class PokemonInfoController implements ViewController{
         AnchorPane anchorPane = fxmlLoader.load();
         AbilityItemController abilityItemController = fxmlLoader.getController();
         abilityItemController.setData(abilityDto);
-        abilitiesHBox.getChildren().add(anchorPane);
+        abilitiesHBox.getChildren()
+                     .add(anchorPane);
     }
 
-    @SneakyThrows
     private Node createMove(MoveDto moveDto) {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/move-item.fxml"));
-//        fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
-        Node anchorPane = fxmlLoader.load();
-        MoveItemController moveItemController = fxmlLoader.getController();
-        moveItemController.setData(moveDto);
-        return anchorPane;
+
+        return cache.computeIfAbsent(moveDto, move -> {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/move-item.fxml"));
+            Node anchorPane = null;
+            try {
+                anchorPane = fxmlLoader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            MoveItemController moveItemController = fxmlLoader.getController();
+            moveItemController.setData(moveDto);
+            return anchorPane;
+        });
+
     }
 
     public void onBack(ActionEvent actionEvent) {
