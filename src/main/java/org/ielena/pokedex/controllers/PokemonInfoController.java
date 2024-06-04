@@ -97,6 +97,8 @@ public class PokemonInfoController implements ViewController {
 
     private PokemonInfoControllerMediator mediator;
 
+    private PokemonDto pokemon;
+
     private static Node createMoveDtoNode(MoveDto moveDto) {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/move-item.fxml"));
@@ -116,6 +118,7 @@ public class PokemonInfoController implements ViewController {
     }
 
     public void setData(PokemonDto pokemonDto) {
+        pokemon = pokemonDto;
         idLabel.setText(String.format("#%03d  %s", pokemonDto.getId(), pokemonDto.getName()));
 
         pokemonImg.setImage(pokemonDto.getImg());
@@ -170,7 +173,7 @@ public class PokemonInfoController implements ViewController {
         fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/ability-item.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
         AbilityItemController abilityItemController = fxmlLoader.getController();
-        abilityItemController.setData(abilityDto);
+        abilityItemController.setData(abilityDto, pokemon.getColor());
         abilitiesHBox.getChildren()
                      .add(anchorPane);
     }

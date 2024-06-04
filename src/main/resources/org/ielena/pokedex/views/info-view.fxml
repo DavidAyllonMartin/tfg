@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="infoContainer" prefHeight="688.0" prefWidth="1280.0" styleClass="infoContainer" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controllers.PokemonInfoController">
-    <Button layoutX="1152.0" layoutY="16.0" mnemonicParsing="true" onAction="#onBack" prefHeight="60.0" prefWidth="120.0" styleClass="backButton" text="_BACK" />
+<AnchorPane fx:id="infoContainer" prefHeight="688.0" prefWidth="1280.0" styleClass="infoContainer" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controllers.PokemonInfoController">
+    <Button layoutX="1133.0" layoutY="21.0" mnemonicParsing="true" onAction="#onBack" prefHeight="60.0" prefWidth="120.0" styleClass="backButton" text="_BACK" />
     <ImageView fx:id="pokemonImg" fitHeight="325.0" fitWidth="325.0" layoutX="52.0" layoutY="125.0" pickOnBounds="true" />
 
-    <VBox layoutX="20.0" layoutY="460.0" prefHeight="218.0" prefWidth="390.0">
+    <VBox layoutX="20.0" layoutY="460.0" prefHeight="218.0" prefWidth="390.0" spacing="10.0">
         <HBox alignment="CENTER">
             <Label fx:id="idLabel" styleClass="pokemon-name" text="#001 BULBASAUR" />
         </HBox>
@@ -21,15 +30,17 @@
             <Label fx:id="weightLabel" styleClass="value-label" text="1 Kg" />
         </HBox>
         <HBox alignment="CENTER">
-            <padding>
-                <Insets bottom="20.0" left="40.0" right="40.0" top="20.0" />
-            </padding>
-            <Label fx:id="descriptionLabel" prefHeight="92.0" prefWidth="396.0" styleClass="description-label" text="Description" textAlignment="CENTER" wrapText="true" />
+            <Label fx:id="descriptionLabel" alignment="CENTER" prefHeight="92.0" prefWidth="396.0" styleClass="description-label" text="Description" textAlignment="CENTER" wrapText="true" />
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
         </HBox>
     </VBox>
 
-    <Button layoutX="747.0" layoutY="125.0" mnemonicParsing="false" onAction="#onStatistics" prefHeight="30.0" prefWidth="120.0" styleClass="menu-button" text="Statistics" />
-    <Button layoutX="880.0" layoutY="125.0" mnemonicParsing="false" onAction="#onMoves" prefHeight="30.0" prefWidth="120.0" styleClass="menu-button" text="Moves" />
+    <HBox alignment="CENTER" layoutX="461.0" layoutY="115.0" prefHeight="70.0" prefWidth="819.0" spacing="10.0">
+        <Button mnemonicParsing="false" onAction="#onStatistics" prefHeight="30.0" prefWidth="120.0" styleClass="menu-button" text="Statistics" />
+        <Button mnemonicParsing="false" onAction="#onMoves" prefHeight="30.0" prefWidth="120.0" styleClass="menu-button" text="Moves" />
+    </HBox>
 
     <StackPane layoutX="459.0" layoutY="185.0" prefHeight="493.0" prefWidth="806.0">
         <VBox fx:id="statisticsContainer">
@@ -71,8 +82,10 @@
                <Insets bottom="40.0" />
             </VBox.margin>
             </GridPane>
-            <Label layoutY="466.0" prefHeight="26.0" prefWidth="271.0" styleClass="grid-attribute" text="Abilities" />
-            <HBox fx:id="abilitiesHBox" layoutY="492.0" prefHeight="131.0" prefWidth="816.0" />
+            <VBox layoutY="466.0" prefHeight="157.0" prefWidth="816.0" spacing="20">
+                <Label prefHeight="26.0" prefWidth="271.0" styleClass="grid-attribute" text="Abilities" />
+                <HBox fx:id="abilitiesHBox" alignment="CENTER" prefHeight="131.0" prefWidth="816.0" spacing="20.0" />
+            </VBox>
          <StackPane.margin>
             <Insets />
          </StackPane.margin>

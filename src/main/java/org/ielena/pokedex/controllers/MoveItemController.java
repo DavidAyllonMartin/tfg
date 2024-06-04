@@ -1,13 +1,7 @@
 package org.ielena.pokedex.controllers;
 
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import lombok.SneakyThrows;
-import org.ielena.pokedex.ProjectJavaFxApp;
 import org.ielena.pokedex.dtos.MoveDto;
-import org.ielena.pokedex.dtos.TypeDto;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,8 +12,9 @@ public class MoveItemController {
     public Label pp;
     public Label priority;
     public Label power;
-    public HBox typeContainer;
     public Label flavorText;
+    public Label typeLabel;
+    public Label damageClassLabel;
 
     public void setData(MoveDto moveDto) {
         name.setText(moveDto.getName());
@@ -29,25 +24,9 @@ public class MoveItemController {
         priority.setText(String.valueOf(moveDto.getPriority()));
         power.setText(String.valueOf(moveDto.getPower()));
         flavorText.setText(moveDto.getFlavorText());
+        damageClassLabel.setText(moveDto.getDamageClass());
+        typeLabel.setText(moveDto.getType()
+                                 .getName());
 
-        addType(moveDto.getType());
-        TypeDto damageClass = TypeDto.builder()
-                                     .id(0L)
-                                     .name(moveDto.getDamageClass())
-                                     .color("#00FF00")
-                                     .build();
-        addType(damageClass);
-
-    }
-
-    @SneakyThrows
-    private void addType(TypeDto typeDto) {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/type-item.fxml"));
-        AnchorPane anchorPane = fxmlLoader.load();
-        TypeItemController typeItemController = fxmlLoader.getController();
-        typeItemController.setPokemonType(typeDto, 16);
-        typeContainer.getChildren()
-                     .add(anchorPane);
     }
 }

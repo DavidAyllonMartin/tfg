@@ -87,7 +87,7 @@
 
 .description-label{
     -fx-font-weight: bold;
-    -fx-font-size: 16px;
+    -fx-font-size: 15px;
 }
 
 .type-container {
@@ -109,15 +109,14 @@
 
 /* Estilos para el nombre de la habilidad */
 .ability-name {
-    -fx-background-color: black; /* Fondo negro */
-    -fx-text-fill: white; /* Texto en blanco */
-    -fx-padding: 5px; /* Espaciado interno */
-    -fx-background-radius: 5px; /* Bordes redondeados */
+    -fx-font-weight: bold;
+    -fx-font-size: 20;
 }
 
 /* Estilos para la descripción de la habilidad */
 .ability-description {
     -fx-padding: 5px; /* Espaciado interno */
+    -fx-font-size: 16;
 }
 
 .button:focused {
@@ -176,4 +175,54 @@
 
 .scroll-pane > .corner {
     -fx-background-color: transparent;
+}
+
+.rounded-component {
+    -fx-background-radius: 10; /* Radio de las esquinas redondeadas */
+    -fx-border-radius: 10; /* Radio de las esquinas redondeadas */
+    -fx-background-color: white; /* Fondo blanco */
+    -fx-border-color: transparent; /* Para que el borde redondeado sea visible */
+}
+
+#coloredPart {
+    -fx-background-color: #3498db; /* Cambia este color según tus necesidades */
+    -fx-background-radius: 10 10 0 0; /* Esquinas redondeadas en la parte superior */
+}
+
+#whitePart {
+    -fx-background-color: white;
+    -fx-background-radius: 0 0 10 10; /* Esquinas redondeadas en la parte inferior */
+}
+
+
+
+.move-item-box {
+    -fx-background-color: #e0e0e0;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.description-box {
+    -fx-padding: 5px 10px;
+    -fx-background-color: #f5f5f5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.description-label {
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+}
+
+.type-damage-box {
+    -fx-padding: 5px 10px;
+}
+
+.type-background {
+    -fx-fill: #4CAF50; /* color de fondo del tipo */
+}
+
+.type-label {
+    -fx-text-fill: white;
+    -fx-alignment: center;
 }
