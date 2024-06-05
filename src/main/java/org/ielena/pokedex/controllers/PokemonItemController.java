@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.SneakyThrows;
@@ -26,7 +27,7 @@ public class PokemonItemController implements ViewController {
 
     private static final String FX_BACKGROUND = "-fx-background-color: %s";
 
-    public HBox typesContainer;
+    public VBox typesContainer;
 
     private PokemonDto pokemon;
 
@@ -37,7 +38,7 @@ public class PokemonItemController implements ViewController {
     @FXML
     private ImageView image;
     @FXML
-    private HBox pokemonCard;
+    private AnchorPane pokemonCard;
 
     public void initialize() {
         setMediator(MasterControllerSingleton.getInstance());
@@ -50,7 +51,7 @@ public class PokemonItemController implements ViewController {
         name.setText(pokemon.getName());
         pokemon.getTypes()
                .forEach(this::addType);
-        image.setImage(pokemon.getImg());
+        image.setImage(pokemon.getThumbnail());
         pokemonCard.setStyle(String.format(FX_BACKGROUND, pokemon.getColor()));
     }
 
@@ -66,7 +67,7 @@ public class PokemonItemController implements ViewController {
     @SneakyThrows
     private void addType(TypeDto typeDto) {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/type-item.fxml"));
+        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/items/type-item.fxml"));
         fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
         AnchorPane anchorPane = fxmlLoader.load();
         TypeItemController typeItemController = fxmlLoader.getController();

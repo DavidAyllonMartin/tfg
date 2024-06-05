@@ -115,7 +115,7 @@ public class PokemonInfoController implements ViewController {
 
     @SneakyThrows
     private void addType(TypeDto typeDto) {
-        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource("views/type-item.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource("views/items/type-item.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
         TypeItemController typeItemController = fxmlLoader.getController();
         typeItemController.setPokemonType(typeDto, 18);
@@ -124,7 +124,7 @@ public class PokemonInfoController implements ViewController {
 
     @SneakyThrows
     private void addAbility(AbilityDto abilityDto) {
-        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource("views/ability-item.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource("views/items/ability-item.fxml"));
         AnchorPane anchorPane = fxmlLoader.load();
         AbilityItemController abilityItemController = fxmlLoader.getController();
         abilityItemController.setData(abilityDto, pokemon.getColor());
@@ -155,7 +155,7 @@ public class PokemonInfoController implements ViewController {
 
     @SneakyThrows
     private static Node createMoveDtoNode(MoveDto moveDto) {
-        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource("views/move-item.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource("views/items/move-item.fxml"));
         Node anchorPane = fxmlLoader.load();
         MoveItemController moveItemController = fxmlLoader.getController();
         moveItemController.setData(moveDto);

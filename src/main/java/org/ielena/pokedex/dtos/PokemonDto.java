@@ -34,6 +34,7 @@ public class PokemonDto {
     private String cryUrl;
     private String color;
     private Image img;
+    private Image thumbnail;
     private byte[] cry;
     private String description;
 }

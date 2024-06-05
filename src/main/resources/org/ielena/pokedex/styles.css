@@ -1,12 +1,16 @@
 .pokemon_item{
-    -fx-background-color: #FFFFFF;
     -fx-background-radius: 15;
+    -fx-background-image: url("img/pokemon-item-background.png");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
 }
+
 .pokemon_item_label{
     -fx-font-weight: bold;
-    -fx-font-size: 16px;
+    -fx-font-size: 18;
     -fx-text-fill: white;
-    -fx-effect: dropshadow(gaussian, black, 1, 10, 0, 0);
+    -fx-effect: dropshadow(gaussian, black, 0, 1, 1, 1);
 }
 
 .progress-bar-low{
@@ -100,6 +104,7 @@
 .type-name {
     -fx-text-fill: white;
     -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, black, 0, 1, 1, 1);
 }
 
 .ability-item {

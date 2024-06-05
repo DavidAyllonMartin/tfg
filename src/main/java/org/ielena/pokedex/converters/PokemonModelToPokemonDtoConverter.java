@@ -65,6 +65,13 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
             throw new RuntimeException(e);
         }
 
+        Image thumbnail = null;
+        try {
+            thumbnail = defaultImageService.getResizedImage(pokemonModel.getImgData(), 110, 110);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         return PokemonDto.builder()
                          .id(pokemonModel.getId())
                          .name(StringUtils.capitalize(pokemonModel.getName()))
@@ -86,6 +93,7 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
                          .color(pokemonModel.getColor())
                          .cry(pokemonModel.getCryData())
                          .img(image)
+                         .thumbnail(thumbnail)
                          .description(StringUtils.capitalize(pokemonModel.getDescription()))
                          .build();
     }

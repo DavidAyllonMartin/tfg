@@ -34,7 +34,7 @@ import java.util.function.IntFunction;
 @Component
 public class PokedexController implements ViewController {
 
-    private static final int ITEMS_PER_PAGE = 9;
+    private static final int ITEMS_PER_PAGE = 15; // 3 filas x 5 columnas
     @Resource
     private PokemonFacade pokemonFacade;
     @Resource
@@ -183,18 +183,17 @@ public class PokedexController implements ViewController {
 
     @SneakyThrows
     private void updateGrid() {
-        gridPane.getChildren()
-                .clear();
+        gridPane.getChildren().clear();
         List<PokemonDto> pokemonList = currentPage.getContent();
         for (int i = 0; i < pokemonList.size(); i++) {
             PokemonDto pokemon = pokemonList.get(i);
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/pokemon-item.fxml"));
+            fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/items/pokemon-item.fxml"));
             AnchorPane anchorPane = fxmlLoader.load();
             PokemonItemController itemController = fxmlLoader.getController();
             itemController.setData(pokemon);
-            int col = i % 3;
-            int row = i / 3;
+            int col = i % 5;
+            int row = i / 5;
             gridPane.add(anchorPane, col, row);
         }
     }
