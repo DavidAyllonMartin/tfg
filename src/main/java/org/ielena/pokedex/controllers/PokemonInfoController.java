@@ -21,15 +21,12 @@ import org.ielena.pokedex.dtos.AbilityDto;
 import org.ielena.pokedex.dtos.MoveDto;
 import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.dtos.TypeDto;
-import org.ielena.pokedex.services.impl.MoveDtoCache;
+import org.ielena.pokedex.services.MoveService;
+import org.ielena.pokedex.services.impl.DefaultCacheService;
 import org.ielena.pokedex.singletons.MasterControllerSingleton;
-import org.ielena.pokedex.singletons.SpringContextSingleton;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class PokemonInfoController implements ViewController {
@@ -60,13 +57,15 @@ public class PokemonInfoController implements ViewController {
     @FXML private HBox abilitiesHBox;
     @FXML private GridPane movesGridPane;
 
-    @Resource private MoveDtoCache moveDtoCache;
+    @Resource private DefaultCacheService defaultCacheService;
+    @Resource private MoveService moveService;
 
     private PokemonInfoControllerMediator mediator;
     private PokemonDto pokemon;
 
     public void initialize() {
         setMediator(MasterControllerSingleton.getInstance());
+
     }
 
     @Override
@@ -135,8 +134,9 @@ public class PokemonInfoController implements ViewController {
         int row = 0;
         int col = 0;
 
-        for (MoveDto moveDto : moveDtos) {
-            Node moveNode = createMove(moveDto);
+        List<Node> nodes = moveDtos.parallelStream().map(this::createMove).toList();
+
+        for (Node moveNode : nodes) {
             movesGridPane.add(moveNode, col, row);
             col = (col + 1) % 2;
             if (col == 0) row++;
@@ -144,11 +144,11 @@ public class PokemonInfoController implements ViewController {
     }
 
     private Node createMove(MoveDto moveDto) {
-        if (moveDtoCache.isMoveDtoNodeInCache(moveDto)) {
-            return moveDtoCache.getMoveDtoNodeFromCache(moveDto);
+        if (defaultCacheService.isMoveDtoNodeInCache(moveDto)) {
+            return defaultCacheService.getMoveDtoNodeFromCache(moveDto);
         } else {
             Node moveNode = createMoveDtoNode(moveDto);
-            moveDtoCache.addMoveDtoNodeToCache(moveDto, moveNode);
+            defaultCacheService.addMoveDtoNodeToCache(moveDto, moveNode);
             return moveNode;
         }
     }

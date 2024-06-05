@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -17,28 +18,34 @@ import lombok.SneakyThrows;
 import org.ielena.pokedex.ProjectJavaFxApp;
 import org.ielena.pokedex.controllers.mediator.Mediator;
 import org.ielena.pokedex.controllers.mediator.PokedexControllerMediator;
+import org.ielena.pokedex.dtos.MoveDto;
 import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.dtos.TypeDto;
 import org.ielena.pokedex.facades.PokemonFacade;
 import org.ielena.pokedex.facades.TypeFacade;
 import org.ielena.pokedex.services.DatabaseUpdateService;
+import org.ielena.pokedex.services.impl.DefaultCacheService;
 import org.ielena.pokedex.singletons.MasterControllerSingleton;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.IntFunction;
+import java.util.stream.Collectors;
 
 @Component
 public class PokedexController implements ViewController {
 
-    private static final int ITEMS_PER_PAGE = 15; // 3 filas x 5 columnas
+    private static final int ITEMS_PER_PAGE = 15;
     @Resource
     private PokemonFacade pokemonFacade;
     @Resource
     private TypeFacade typeFacade;
+    @Resource
+    private DefaultCacheService defaultCacheService;
     @Resource
     private DatabaseUpdateService databaseUpdateService;
     @FXML
@@ -184,18 +191,34 @@ public class PokedexController implements ViewController {
     @SneakyThrows
     private void updateGrid() {
         gridPane.getChildren().clear();
-        List<PokemonDto> pokemonList = currentPage.getContent();
-        for (int i = 0; i < pokemonList.size(); i++) {
-            PokemonDto pokemon = pokemonList.get(i);
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/items/pokemon-item.fxml"));
-            AnchorPane anchorPane = fxmlLoader.load();
-            PokemonItemController itemController = fxmlLoader.getController();
-            itemController.setData(pokemon);
+        List<Node> pokemonNodeList = currentPage.getContent().stream().map(this::createPokemon).toList();
+
+        for (int i = 0; i < pokemonNodeList.size(); i++) {
+            Node pokemonNode = pokemonNodeList.get(i);
             int col = i % 5;
             int row = i / 5;
-            gridPane.add(anchorPane, col, row);
+            gridPane.add(pokemonNode, col, row);
         }
+    }
+
+    private Node createPokemon(PokemonDto pokemonDto) {
+        if (defaultCacheService.isPokemonDtoNodeInCache(pokemonDto)) {
+            return defaultCacheService.getPokemonDtoNodeFromCache(pokemonDto);
+        } else {
+            Node pokemonNode = createPokemonNode(pokemonDto);
+            defaultCacheService.addPokemonDtoNodeToCache(pokemonDto, pokemonNode);
+            return pokemonNode;
+        }
+    }
+
+    @SneakyThrows
+    private Node createPokemonNode(PokemonDto pokemon) {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/items/pokemon-item.fxml"));
+        Node node = fxmlLoader.load();
+        PokemonItemController itemController = fxmlLoader.getController();
+        itemController.setData(pokemon);
+        return node;
     }
 
     @FXML
