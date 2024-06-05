@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="infoContainer" prefHeight="688.0" prefWidth="1280.0" styleClass="infoContainer" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controllers.PokemonInfoController">
+<AnchorPane fx:id="infoContainer" prefHeight="688.0" prefWidth="1280.0" styleClass="infoContainer" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controllers.PokemonInfoController">
     <Button layoutX="1133.0" layoutY="21.0" mnemonicParsing="true" onAction="#onBack" prefHeight="60.0" prefWidth="120.0" styleClass="backButton" text="_BACK" />
     <ImageView fx:id="pokemonImg" fitHeight="325.0" fitWidth="325.0" layoutX="52.0" layoutY="125.0" pickOnBounds="true" />
 
-    <VBox layoutX="20.0" layoutY="460.0" prefHeight="218.0" prefWidth="390.0" spacing="10.0">
+    <VBox layoutX="-1.0" layoutY="460.0" prefHeight="218.0" prefWidth="411.0" spacing="5.0">
         <HBox alignment="CENTER">
             <Label fx:id="idLabel" styleClass="pokemon-name" text="#001 BULBASAUR" />
         </HBox>
         <HBox fx:id="typesHBox" alignment="CENTER" prefHeight="50.0" prefWidth="390.0" spacing="10.0" />
         <HBox alignment="CENTER" spacing="10.0">
             <Label styleClass="stat-label" text="Height:" />
-            <Label fx:id="heightLabel" styleClass="value-label" text="1 m" />
+            <Label fx:id="heightLabel" styleClass="value-label" text="1 m">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin></Label>
             <Label styleClass="stat-label" text="Weight:" />
             <Label fx:id="weightLabel" styleClass="value-label" text="1 Kg" />
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
         </HBox>
         <HBox alignment="CENTER">
-            <Label fx:id="descriptionLabel" alignment="CENTER" prefHeight="92.0" prefWidth="396.0" styleClass="description-label" text="Description" textAlignment="CENTER" wrapText="true" />
+            <Label fx:id="descriptionLabel" alignment="TOP_CENTER" prefHeight="92.0" prefWidth="381.0" styleClass="description-label" text="Description" textAlignment="CENTER" wrapText="true" />
          <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
          </padding>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
         </HBox>
     </VBox>
 
@@ -42,7 +42,7 @@
         <Button mnemonicParsing="false" onAction="#onMoves" prefHeight="30.0" prefWidth="120.0" styleClass="menu-button" text="Moves" />
     </HBox>
 
-    <StackPane layoutX="459.0" layoutY="185.0" prefHeight="493.0" prefWidth="806.0">
+    <StackPane layoutX="459.0" layoutY="198.0" prefHeight="481.0" prefWidth="806.0">
         <VBox fx:id="statisticsContainer">
             <GridPane prefHeight="203.0" prefWidth="805.0">
                 <columnConstraints>
@@ -94,10 +94,16 @@
          </padding>
         </VBox>
 
-        <ScrollPane fx:id="movesContainer" fitToWidth="true" visible="false">
-            <VBox fx:id="movesVBox" prefHeight="400.0" prefWidth="805.0" spacing="10.0">
-                <!-- Aquí se agregarán dinámicamente las habilidades -->
-            </VBox>
+        <ScrollPane fx:id="movesContainer" fitToWidth="true" prefHeight="422.0" prefWidth="806.0" visible="false">
+            <GridPane fx:id="movesGridPane" alignment="CENTER" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
+                </rowConstraints>
+            </GridPane>
         </ScrollPane>
     </StackPane>
 </AnchorPane>

@@ -9,6 +9,8 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
+import java.util.Optional;
+
 @Component
 public class MoveModelToMoveDtoConverter implements Converter<MoveModel, MoveDto> {
 
@@ -21,12 +23,12 @@ public class MoveModelToMoveDtoConverter implements Converter<MoveModel, MoveDto
         return MoveDto.builder()
                       .id(moveModel.getId())
                       .name(StringUtils.capitalize(moveModel.getName()))
-                      .pp(moveModel.getPp())
-                      .accuracy(moveModel.getAccuracy())
+                      .pp(Optional.ofNullable(moveModel.getPp()).map(String::valueOf).orElse("-"))
+                      .accuracy(Optional.ofNullable(moveModel.getAccuracy()).map(String::valueOf).orElse("-"))
                       .type(typeDtoConverter.convert(moveModel.getType()))
-                      .power(moveModel.getPower())
-                      .priority(moveModel.getPriority())
-                      .effectChance(moveModel.getEffectChance())
+                      .power(Optional.ofNullable(moveModel.getPower()).map(String::valueOf).orElse("-"))
+                      .priority(Optional.ofNullable(moveModel.getPriority()).map(String::valueOf).orElse("-"))
+                      .effectChance(Optional.ofNullable(moveModel.getEffectChance()).map(String::valueOf).orElse("-"))
                       .flavorText(StringUtils.capitalize(moveModel.getFlavorText()))
                       .damageClass(StringUtils.capitalize(moveModel.getMoveDamageClass()))
                       .build();

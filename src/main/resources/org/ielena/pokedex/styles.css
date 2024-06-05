@@ -38,16 +38,16 @@
 }
 
 .progress-bar {
-    -fx-accent: #4CAF50; /* Cambia el color de la barra de progreso */
+    -fx-accent: #ffffff; /* Cambia el color de la barra de progreso */
     -fx-background-color: transparent;
     -fx-background-insets: 0;
     -fx-background-radius: 10px; /* Redondea los bordes del fondo */
     -fx-padding: 0; /* Elimina el espacio alrededor de la barra de progreso */
-    -fx-pref-height: 15px; /* Ajusta la altura de la barra de progreso */
+    -fx-pref-height: 20px; /* Ajusta la altura de la barra de progreso */
 }
 
 .progress-bar .track {
-    -fx-background-color: #E0E0E0;
+    -fx-background-color: #818181;
     -fx-background-radius: 10px; /* Redondea los bordes del track */
     -fx-padding: 0; /* Asegúrate de que el track ocupe todo el ancho */
     -fx-background-insets: 0; /* Elimina cualquier espacio alrededor del track */
@@ -227,4 +227,32 @@
 .type-label {
     -fx-text-fill: white;
     -fx-alignment: center;
+}
+
+/* styles.css */
+#infoButton {
+    -fx-background-radius: 50%;
+    -fx-border-radius: 50%;
+    -fx-min-width: 25px;
+    -fx-min-height: 25px;
+    -fx-pref-width: 25px;
+    -fx-pref-height: 25px;
+    -fx-max-width: 25px;
+    -fx-max-height: 25px;
+    -fx-background-color: white; /* Fondo blanco o el color que prefieras */
+    -fx-border-color: grey; /* Color del borde */
+    -fx-border-width: 1px;
+    -fx-focus-color: transparent; /* Eliminar color azul cuando se pulsa */
+    -fx-faint-focus-color: transparent; /* Eliminar color azul cuando se pulsa */
+    -fx-font-size: 12px; /* Ajustar tamaño de la fuente si es necesario */
+}
+
+/* Opcional: Cambiar color al pasar el mouse por encima */
+#infoButton:hover {
+    -fx-background-color: lightgrey; /* Fondo gris claro al pasar el mouse */
+}
+
+/* Opcional: Cambiar color cuando se presiona */
+#infoButton:pressed {
+    -fx-background-color: grey; /* Fondo gris oscuro cuando se presiona */
 }

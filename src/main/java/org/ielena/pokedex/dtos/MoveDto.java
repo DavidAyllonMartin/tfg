@@ -15,15 +15,15 @@ public class MoveDto {
 
     private String name;
 
-    private Integer accuracy;
+    private String accuracy;
 
-    private Integer effectChance;
+    private String effectChance;
 
-    private Integer pp;
+    private String pp;
 
-    private Integer priority;
+    private String priority;
 
-    private Integer power;
+    private String power;
 
     private String damageClass;
 
