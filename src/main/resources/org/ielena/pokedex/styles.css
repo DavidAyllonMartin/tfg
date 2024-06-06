@@ -124,7 +124,7 @@
     -fx-font-size: 16;
 }
 
-.button:focused {
+.navigation-button:focused {
     -fx-focus-color: transparent; /* Elimina el color de foco (halo azul) */
     -fx-faint-focus-color: transparent; /* Elimina el color de foco débil */
 }
@@ -301,4 +301,13 @@
 .type-combobox .list-cell {
     -fx-alignment: center;
     -fx-font-size: 18px;
+}
+
+.navigation-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.navigation-button:pressed .button-image-view {
+    -fx-opacity: 0.7;
 }
