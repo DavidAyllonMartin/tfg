@@ -34,7 +34,7 @@
     -fx-border-color: transparent;
 }
 
-.infoContainer {
+.info-container {
     -fx-background-image: url("img/info-background.png");
     -fx-background-size: cover;
     -fx-background-position: center center;
@@ -129,7 +129,7 @@
     -fx-faint-focus-color: transparent; /* Elimina el color de foco débil */
 }
 
-.backButton {
+.back-button {
     -fx-background-radius: 50;
     -fx-background-color: white;
     -fx-padding: 1;
@@ -139,7 +139,7 @@
     -fx-font-size: 24px;
 }
 
-.menu-button {
+.info-button {
     -fx-background-radius: 50;
     -fx-background-color: white;
     -fx-alignment: center;
@@ -260,4 +260,45 @@
 /* Opcional: Cambiar color cuando se presiona */
 #infoButton:pressed {
     -fx-background-color: grey; /* Fondo gris oscuro cuando se presiona */
+}
+
+.text-field-custom {
+    -fx-pref-height: 60px;
+    -fx-pref-width: 700;
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-background-radius: 50;
+    -fx-padding: 1;
+    -fx-alignment: center;
+    -fx-effect: dropshadow(gaussian, grey, 5, 0.7, 3, 3);
+    -fx-font-weight: bold;
+    -fx-font-size: 24px;
+}
+
+/* Estilo para el botón de favoritos */
+.button-favorites {
+    -fx-background-color: #ffcc00;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-pref-height: 60px;
+    -fx-pref-width: 120px;
+    -fx-background-radius: 10px; /* Rounded corners */
+    -fx-border-color: #b38f00;
+    -fx-border-width: 2px;
+}
+
+.type-combobox {
+    -fx-background-color: white;
+    -fx-font-size: 16px;
+    -fx-pref-height: 60px;
+    -fx-background-radius: 50;
+    -fx-effect: dropshadow(gaussian, grey, 5, 0.7, 3, 3);
+    -fx-alignment: center;
+    -fx-font-weight: bold;
+}
+
+.type-combobox .list-cell {
+    -fx-alignment: center;
+    -fx-font-size: 18px;
 }

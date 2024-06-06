@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="infoContainer" prefHeight="688.0" prefWidth="1280.0" styleClass="infoContainer" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controllers.PokemonInfoController">
-    <Button layoutX="1133.0" layoutY="21.0" mnemonicParsing="true" onAction="#onBack" prefHeight="60.0" prefWidth="120.0" styleClass="backButton" text="_BACK" />
+<AnchorPane fx:id="infoContainer" prefHeight="688.0" prefWidth="1280.0" styleClass="info-container" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controllers.PokemonInfoController">
+    <Button layoutX="1133.0" layoutY="21.0" mnemonicParsing="true" onAction="#onBack" prefHeight="60.0" prefWidth="120.0" styleClass="back-button" text="_BACK" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
     <ImageView fx:id="pokemonImg" fitHeight="325.0" fitWidth="325.0" layoutX="52.0" layoutY="125.0" pickOnBounds="true" />
 
     <VBox layoutX="-1.0" layoutY="460.0" prefHeight="218.0" prefWidth="411.0" spacing="5.0">
@@ -38,8 +47,8 @@
     </VBox>
 
     <HBox alignment="CENTER" layoutX="461.0" layoutY="115.0" prefHeight="70.0" prefWidth="819.0" spacing="10.0">
-        <Button mnemonicParsing="false" onAction="#onStatistics" prefHeight="30.0" prefWidth="120.0" styleClass="menu-button" text="Statistics" />
-        <Button mnemonicParsing="false" onAction="#onMoves" prefHeight="30.0" prefWidth="120.0" styleClass="menu-button" text="Moves" />
+        <Button mnemonicParsing="false" onAction="#onStatistics" prefHeight="30.0" prefWidth="120.0" styleClass="info-button" text="Statistics" />
+        <Button mnemonicParsing="false" onAction="#onMoves" prefHeight="30.0" prefWidth="120.0" styleClass="info-button" text="Moves" />
     </HBox>
 
     <StackPane layoutX="459.0" layoutY="198.0" prefHeight="481.0" prefWidth="806.0">

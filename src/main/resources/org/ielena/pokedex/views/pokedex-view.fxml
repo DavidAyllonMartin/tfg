@@ -1,51 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="org.ielena.pokedex.controllers.PokedexController">
-    <VBox prefHeight="688" prefWidth="1280" spacing="10.0">
-        <MenuBar>
-            <Menu text="Opciones">
-                <MenuItem text="Actualizar Base de Datos" onAction="#updateDatabase"/>
-            </Menu>
-        </MenuBar>
-        <HBox alignment="CENTER" spacing="5.0">
-            <TextField fx:id="searchField" promptText="Search"/>
-            <Button onAction="#onSearch" text="Go!"/>
-            <ComboBox fx:id="typeComboBox" onAction="#onSearch" promptText="Filter by Type" />
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="1280.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controllers.PokedexController">
+   <center>
+           <GridPane fx:id="gridPane" alignment="CENTER" hgap="10" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="1280" vgap="10">
+               <columnConstraints>
+                   <ColumnConstraints halignment="CENTER" />
+                   <ColumnConstraints halignment="CENTER" />
+                   <ColumnConstraints halignment="CENTER" />
+                   <ColumnConstraints halignment="CENTER" />
+                   <ColumnConstraints halignment="CENTER" />
+               </columnConstraints>
+               <rowConstraints>
+                   <RowConstraints valignment="CENTER" />
+                   <RowConstraints valignment="CENTER" />
+                   <RowConstraints valignment="CENTER" />
+               </rowConstraints>
+           </GridPane>
+   </center>
+   <top>
+       <HBox alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="1280.0" spacing="30.0" BorderPane.alignment="CENTER_RIGHT">
+           <padding>
+               <Insets right="25.0" />
+           </padding>
             <Button onAction="#onShowFavorites" text="Show Favorites" />
-        </HBox>
-        <GridPane fx:id="gridPane" maxHeight="600" maxWidth="1280" prefHeight="600" prefWidth="1280" alignment="CENTER" vgap="10" hgap="10">
-            <columnConstraints>
-                <ColumnConstraints halignment="CENTER" />
-                <ColumnConstraints halignment="CENTER" />
-                <ColumnConstraints halignment="CENTER" />
-                <ColumnConstraints halignment="CENTER" />
-                <ColumnConstraints halignment="CENTER" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints valignment="CENTER" />
-                <RowConstraints valignment="CENTER" />
-                <RowConstraints valignment="CENTER" />
-            </rowConstraints>
-        </GridPane>
-        <HBox alignment="CENTER" spacing="10.0" style="-fx-padding: 10px;">
+            <ComboBox fx:id="typeComboBox" onAction="#onSearch" prefWidth="200.0" promptText="Filter by Type" styleClass="type-combobox" />
+           <TextField fx:id="searchField" promptText="Search" styleClass="text-field-custom" />
+           <Button onAction="#onSearch" prefHeight="60.0" prefWidth="120.0" styleClass="back-button" text="GO!" />
+         <BorderPane.margin>
+            <Insets top="25.0" />
+         </BorderPane.margin>
+       </HBox>
+   </top>
+   <bottom>
+        <HBox alignment="CENTER" spacing="10.0" style="-fx-padding: 10px;" BorderPane.alignment="CENTER">
             <Button fx:id="prevButton" onAction="#onPrevious" text="Previous" />
             <Label fx:id="pageLabel" text="Page 1/1" />
             <ComboBox fx:id="pageComboBox" onAction="#onGoToPage" prefWidth="80" />
             <Button fx:id="nextButton" onAction="#onNext" text="Next" />
         </HBox>
-    </VBox>
-</AnchorPane>
+   </bottom>
+</BorderPane>
