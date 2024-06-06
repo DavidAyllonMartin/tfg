@@ -1,32 +1,38 @@
 package org.ielena.pokedex.controllers;
 
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import org.ielena.pokedex.dtos.AbilityDto;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
+import java.awt.Color;
 
 @Component
 public class AbilityItemController {
 
-    public Label name;
+    private static final String FX_BACKGROUND_COLOR = "-fx-background-color: %s;";
 
+    @FXML
+    public Label name;
+    @FXML
     public Label description;
+    @FXML
     public VBox coloredPart;
+    @FXML
     public VBox whitePart;
 
     public void setData(AbilityDto abilityDto, String color) {
         name.setText(abilityDto.getName());
         description.setText(abilityDto.getEffect());
-        coloredPart.setStyle(String.format("-fx-background-color: %s;", color));
+        coloredPart.setStyle(String.format(FX_BACKGROUND_COLOR, color));
 
         Color headerColor = Color.decode(color);
         Color lighterColor = makeLighter(headerColor);
 
         String lighterColorHex = String.format("#%02x%02x%02x",
                 lighterColor.getRed(), lighterColor.getGreen(), lighterColor.getBlue());
-        whitePart.setStyle(String.format("-fx-background-color: %s;", lighterColorHex));
+        whitePart.setStyle(String.format(FX_BACKGROUND_COLOR, lighterColorHex));
     }
 
     private Color makeLighter(Color color) {

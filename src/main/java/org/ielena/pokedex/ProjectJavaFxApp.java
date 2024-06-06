@@ -15,6 +15,9 @@ import java.io.IOException;
 @Component
 public class ProjectJavaFxApp extends Application {
 
+    private static final String APP_TITLE = "Pokedex";
+    public static final String VIEW_FXML = "views/pokedex-view.fxml";
+
     @Override
     public void init() {
         SpringContextSingleton.setContext(SpringApplication.run(ProjectSpringBootApp.class));
@@ -22,13 +25,13 @@ public class ProjectJavaFxApp extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource("views/pokedex-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource(VIEW_FXML));
         fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
         Scene scene = new Scene(fxmlLoader.load());
         MasterController masterController = MasterControllerSingleton.getInstance();
         masterController.setStage(stage);
         masterController.setPokedexView(scene);
-        stage.setTitle("Pokedex");
+        stage.setTitle(APP_TITLE);
         stage.setScene(scene);
         stage.show();
     }

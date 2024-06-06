@@ -36,6 +36,7 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
 
     private static final Map<Long, PokemonModel> cache = new ConcurrentHashMap<>();
     private static final String ASSERTION_FAILED = "[Assertion failed] - pokemonPokeAPI is required; it must not be null";
+
     @Resource
     private Converter<Type, TypeModel> typeConverter;
     @Resource

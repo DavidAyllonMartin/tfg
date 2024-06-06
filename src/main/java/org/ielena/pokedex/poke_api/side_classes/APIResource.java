@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.SneakyThrows;
-import org.ielena.pokedex.singletons.CachingObjectMapper;
+import org.ielena.pokedex.utils.CachingObjectMapper;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)

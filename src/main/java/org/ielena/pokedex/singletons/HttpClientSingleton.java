@@ -4,20 +4,15 @@ import java.net.http.HttpClient;
 
 public class HttpClientSingleton {
 
-    private static HttpClient instance;
-
     private HttpClientSingleton() {
     }
 
+    private static final class InstanceHolder {
+        private static final HttpClient instance = HttpClient.newHttpClient();
+    }
+
     public static HttpClient getInstance() {
-        if (instance == null) {
-            synchronized (HttpClientSingleton.class) {
-                if (instance == null) {
-                    instance = HttpClient.newHttpClient();
-                }
-            }
-        }
-        return instance;
+        return InstanceHolder.instance;
     }
 }
 

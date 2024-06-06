@@ -7,7 +7,7 @@ import org.ielena.pokedex.poke_api.Pokemon;
 import org.ielena.pokedex.poke_api.side_classes.PokeAPIResponse;
 import org.ielena.pokedex.services.DatabaseUpdateService;
 import org.ielena.pokedex.services.PokemonService;
-import org.ielena.pokedex.singletons.CachingObjectMapper;
+import org.ielena.pokedex.utils.CachingObjectMapper;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +20,6 @@ public class DefaultDatabaseUpdateService implements DatabaseUpdateService {
 
     @Resource
     private Converter<Pokemon, PokemonModel> converter;
-
     @Resource
     private PokemonService pokemonService;
 

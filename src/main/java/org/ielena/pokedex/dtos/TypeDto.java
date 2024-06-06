@@ -12,13 +12,6 @@ import lombok.NoArgsConstructor;
 public class TypeDto {
 
     private Long id;
-
     private String name;
-
     private String color;
-
-    @Override
-    public String toString() {
-        return name;
-    }
 }

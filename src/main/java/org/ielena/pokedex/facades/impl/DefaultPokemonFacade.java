@@ -23,7 +23,6 @@ public class DefaultPokemonFacade implements PokemonFacade {
     private PokemonService pokemonService;
     @Resource
     private Converter<TypeDto, TypeModel> typeModelConverter;
-
     @Resource
     private Converter<PokemonModel, PokemonDto> pokemonDtoConverter;
 

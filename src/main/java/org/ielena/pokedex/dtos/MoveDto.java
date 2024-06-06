@@ -12,22 +12,13 @@ import lombok.NoArgsConstructor;
 public class MoveDto {
 
     private Long id;
-
     private String name;
-
     private String accuracy;
-
     private String effectChance;
-
     private String pp;
-
     private String priority;
-
     private String power;
-
     private String damageClass;
-
     private String flavorText;
-
     private TypeDto type;
 }

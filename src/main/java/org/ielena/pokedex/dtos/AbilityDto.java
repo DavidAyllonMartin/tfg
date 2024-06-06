@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 public class AbilityDto {
 
     private Long id;
-
     private String name;
-
     private String effect;
 }

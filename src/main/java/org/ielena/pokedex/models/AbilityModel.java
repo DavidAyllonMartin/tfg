@@ -22,14 +22,10 @@ public class AbilityModel {
     @Id
     @Column(name = "ability_id")
     private Long id;
-
     private String name;
-
     @Column(name = "is_main_series")
     private Boolean isMainSeries;
-
     private String generation;
-
     @Column(name = "flavor_text")
     private String flavorText;
 }

@@ -22,13 +22,9 @@ public class TypeModel {
     @Id
     @Column(name = "type_id")
     private Long id;
-
     private String name;
-
     private String generation;
-
     @Column(name = "move_damage_class")
     private String moveDamageClass;
-
     private String color;
 }

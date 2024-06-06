@@ -16,9 +16,9 @@ import java.util.concurrent.ConcurrentHashMap;
 public class TypeToTypeModelConverter implements Converter<Type, TypeModel> {
 
     private static final Map<Long, TypeModel> cache = new ConcurrentHashMap<>();
-    private static final String ASSERTION_FAILED = "[Assertion failed] - typePokeAPI is required; it must not be null";
-
     private static final Map<Long, String> TYPE_COLORS = new HashMap<>();
+    private static final String ASSERTION_FAILED = "[Assertion failed] - typePokeAPI is required; it must not be null";
+    private static final String DEFAULT_COLOR = "#FFFFFF";
 
     static {
         TYPE_COLORS.put(1L, "#A8A77A"); //normal
@@ -63,6 +63,6 @@ public class TypeToTypeModelConverter implements Converter<Type, TypeModel> {
     }
 
     private String getColorForType(Long typeId) {
-        return TYPE_COLORS.getOrDefault(typeId, "#FFFFFF"); // Default color if type is not recognized
+        return TYPE_COLORS.getOrDefault(typeId, DEFAULT_COLOR);
     }
 }

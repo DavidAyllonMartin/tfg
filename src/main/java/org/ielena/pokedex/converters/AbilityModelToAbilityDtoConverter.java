@@ -9,7 +9,6 @@ import org.springframework.util.StringUtils;
 @Component
 public class AbilityModelToAbilityDtoConverter implements Converter<AbilityModel, AbilityDto> {
 
-
     @Override
     public AbilityDto convert(AbilityModel abilityModel) {
 

@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,18 +26,19 @@ public class PokemonItemController implements ViewController {
 
     private static final String FX_BACKGROUND = "-fx-background-color: %s";
 
-    public VBox typesContainer;
-
-    private PokemonDto pokemon;
-
-    private PokemonItemMediator mediator;
-
     @FXML
-    private Label name, id;
+    private Label id;
+    @FXML
+    private Label name;
     @FXML
     private ImageView image;
     @FXML
     private AnchorPane pokemonCard;
+    @FXML
+    private VBox typesContainer;
+
+    private PokemonItemMediator mediator;
+    private PokemonDto pokemon;
 
     public void initialize() {
         setMediator(MasterControllerSingleton.getInstance());
@@ -60,6 +60,7 @@ public class PokemonItemController implements ViewController {
         this.mediator = (PokemonItemMediator) mediator;
     }
 
+    @FXML
     public void onPokemonCardClicked(MouseEvent mouseEvent) {
         mediator.changeToInfoWindow(this.pokemon);
     }

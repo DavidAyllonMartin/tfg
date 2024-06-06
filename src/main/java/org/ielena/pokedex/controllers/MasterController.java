@@ -16,15 +16,16 @@ import org.ielena.pokedex.singletons.SpringContextSingleton;
 @Setter
 public class MasterController implements Mediator, PokedexControllerMediator, PokemonInfoControllerMediator, PokemonItemMediator {
 
-    private Stage stage;
+    private static final String VIEW_FXML = "views/info-view.fxml";
 
+    private Stage stage;
     private Scene pokedexView;
 
     @SneakyThrows
     @Override
     public void changeToInfoWindow(PokemonDto pokemon) {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/info-view.fxml"));
+        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(VIEW_FXML));
         fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
         Scene scene = new Scene(fxmlLoader.load());
         PokemonInfoController infoController = fxmlLoader.getController();

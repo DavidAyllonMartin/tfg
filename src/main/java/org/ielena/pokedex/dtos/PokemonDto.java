@@ -18,6 +18,7 @@ public class PokemonDto {
     List<MoveDto> moves;
     List<AbilityDto> abilities;
     List<TypeDto> types;
+
     private Long id;
     private String name;
     private Integer attack;

@@ -12,13 +12,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import lombok.SneakyThrows;
 import org.ielena.pokedex.ProjectJavaFxApp;
 import org.ielena.pokedex.controllers.mediator.Mediator;
 import org.ielena.pokedex.controllers.mediator.PokedexControllerMediator;
-import org.ielena.pokedex.dtos.MoveDto;
 import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.dtos.TypeDto;
 import org.ielena.pokedex.facades.PokemonFacade;
@@ -30,16 +28,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.IntFunction;
-import java.util.stream.Collectors;
 
 @Component
 public class PokedexController implements ViewController {
 
     private static final int ITEMS_PER_PAGE = 15;
+    private static final String POKEMON_ITEM_FXML = "views/items/pokemon-item.fxml";
+
     @Resource
     private PokemonFacade pokemonFacade;
     @Resource
@@ -48,6 +46,7 @@ public class PokedexController implements ViewController {
     private DefaultCacheService defaultCacheService;
     @Resource
     private DatabaseUpdateService databaseUpdateService;
+
     @FXML
     private TextField searchField;
     @FXML
@@ -62,6 +61,7 @@ public class PokedexController implements ViewController {
     private ComboBox<Integer> pageComboBox;
     @FXML
     private ComboBox<TypeDto> typeComboBox;
+
     private IntFunction<Page<PokemonDto>> load;
     private Page<PokemonDto> currentPage;
     private PokedexControllerMediator mediator;
@@ -190,8 +190,12 @@ public class PokedexController implements ViewController {
 
     @SneakyThrows
     private void updateGrid() {
-        gridPane.getChildren().clear();
-        List<Node> pokemonNodeList = currentPage.getContent().stream().map(this::createPokemon).toList();
+        gridPane.getChildren()
+                .clear();
+        List<Node> pokemonNodeList = currentPage.getContent()
+                                                .stream()
+                                                .map(this::createPokemon)
+                                                .toList();
 
         for (int i = 0; i < pokemonNodeList.size(); i++) {
             Node pokemonNode = pokemonNodeList.get(i);
@@ -214,7 +218,7 @@ public class PokedexController implements ViewController {
     @SneakyThrows
     private Node createPokemonNode(PokemonDto pokemon) {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/items/pokemon-item.fxml"));
+        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(POKEMON_ITEM_FXML));
         Node node = fxmlLoader.load();
         PokemonItemController itemController = fxmlLoader.getController();
         itemController.setData(pokemon);

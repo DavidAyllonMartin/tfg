@@ -32,40 +32,66 @@ import java.util.List;
 public class PokemonInfoController implements ViewController {
 
     private static final double MAX_STAT = 255.0;
+    public static final String MOVE_ITEM_FXML = "views/items/move-item.fxml";
+    public static final String FX_BACKGROUND_COLOR = "-fx-background-color: %s;";
+    public static final String TYPE_ITEM_FXML = "views/items/type-item.fxml";
+    public static final String ABILITY_ITEM_FXML = "views/items/ability-item.fxml";
 
-    @FXML private AnchorPane infoContainer;
-    @FXML private ScrollPane movesContainer;
-    @FXML private VBox statisticsContainer;
-    @FXML private ImageView pokemonImg;
-    @FXML private Label idLabel;
-    @FXML private HBox typesHBox;
-    @FXML private Label heightLabel;
-    @FXML private Label weightLabel;
-    @FXML private Label descriptionLabel;
-    @FXML private Label hpLabel;
-    @FXML private Label attackLabel;
-    @FXML private Label defenseLabel;
-    @FXML private Label sAttackLabel;
-    @FXML private Label sDefenseLabel;
-    @FXML private Label speedLabel;
-    @FXML private ProgressBar hpProgressBar;
-    @FXML private ProgressBar attackProgressBar;
-    @FXML private ProgressBar defenseProgressBar;
-    @FXML private ProgressBar sAttackProgressBar;
-    @FXML private ProgressBar sDefenseProgressBar;
-    @FXML private ProgressBar speedProgressBar;
-    @FXML private HBox abilitiesHBox;
-    @FXML private GridPane movesGridPane;
+    @Resource
+    private DefaultCacheService defaultCacheService;
 
-    @Resource private DefaultCacheService defaultCacheService;
-    @Resource private MoveService moveService;
+    @FXML
+    private AnchorPane infoContainer;
+    @FXML
+    private ScrollPane movesContainer;
+    @FXML
+    private VBox statisticsContainer;
+    @FXML
+    private ImageView pokemonImg;
+    @FXML
+    private Label idLabel;
+    @FXML
+    private HBox typesHBox;
+    @FXML
+    private Label heightLabel;
+    @FXML
+    private Label weightLabel;
+    @FXML
+    private Label descriptionLabel;
+    @FXML
+    private Label hpLabel;
+    @FXML
+    private Label attackLabel;
+    @FXML
+    private Label defenseLabel;
+    @FXML
+    private Label sAttackLabel;
+    @FXML
+    private Label sDefenseLabel;
+    @FXML
+    private Label speedLabel;
+    @FXML
+    private ProgressBar hpProgressBar;
+    @FXML
+    private ProgressBar attackProgressBar;
+    @FXML
+    private ProgressBar defenseProgressBar;
+    @FXML
+    private ProgressBar sAttackProgressBar;
+    @FXML
+    private ProgressBar sDefenseProgressBar;
+    @FXML
+    private ProgressBar speedProgressBar;
+    @FXML
+    private HBox abilitiesHBox;
+    @FXML
+    private GridPane movesGridPane;
 
     private PokemonInfoControllerMediator mediator;
     private PokemonDto pokemon;
 
     public void initialize() {
         setMediator(MasterControllerSingleton.getInstance());
-
     }
 
     @Override
@@ -103,38 +129,44 @@ public class PokemonInfoController implements ViewController {
         sDefenseProgressBar.setProgress(pokemon.getSpecialDefense() / MAX_STAT);
         speedProgressBar.setProgress(pokemon.getSpeed() / MAX_STAT);
 
-        infoContainer.setStyle(String.format("-fx-background-color: %s;", pokemon.getColor()));
+        infoContainer.setStyle(String.format(FX_BACKGROUND_COLOR, pokemon.getColor()));
     }
 
     private void configureContainers() {
-        pokemon.getTypes().forEach(this::addType);
-        pokemon.getAbilities().forEach(this::addAbility);
+        pokemon.getTypes()
+               .forEach(this::addType);
+        pokemon.getAbilities()
+               .forEach(this::addAbility);
         addMovesToGrid(pokemon.getMoves());
     }
 
     @SneakyThrows
     private void addType(TypeDto typeDto) {
-        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource("views/items/type-item.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource(TYPE_ITEM_FXML));
         AnchorPane anchorPane = fxmlLoader.load();
         TypeItemController typeItemController = fxmlLoader.getController();
         typeItemController.setPokemonType(typeDto, 18);
-        typesHBox.getChildren().add(anchorPane);
+        typesHBox.getChildren()
+                 .add(anchorPane);
     }
 
     @SneakyThrows
     private void addAbility(AbilityDto abilityDto) {
-        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource("views/items/ability-item.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource(ABILITY_ITEM_FXML));
         AnchorPane anchorPane = fxmlLoader.load();
         AbilityItemController abilityItemController = fxmlLoader.getController();
         abilityItemController.setData(abilityDto, pokemon.getColor());
-        abilitiesHBox.getChildren().add(anchorPane);
+        abilitiesHBox.getChildren()
+                     .add(anchorPane);
     }
 
     private void addMovesToGrid(List<MoveDto> moveDtos) {
         int row = 0;
         int col = 0;
 
-        List<Node> nodes = moveDtos.parallelStream().map(this::createMove).toList();
+        List<Node> nodes = moveDtos.parallelStream()
+                                   .map(this::createMove)
+                                   .toList();
 
         for (Node moveNode : nodes) {
             movesGridPane.add(moveNode, col, row);
@@ -154,23 +186,26 @@ public class PokemonInfoController implements ViewController {
     }
 
     @SneakyThrows
-    private static Node createMoveDtoNode(MoveDto moveDto) {
-        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource("views/items/move-item.fxml"));
+    private Node createMoveDtoNode(MoveDto moveDto) {
+        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource(MOVE_ITEM_FXML));
         Node anchorPane = fxmlLoader.load();
         MoveItemController moveItemController = fxmlLoader.getController();
         moveItemController.setData(moveDto);
         return anchorPane;
     }
 
+    @FXML
     public void onBack(ActionEvent actionEvent) {
         mediator.changeToMainWindow();
     }
 
+    @FXML
     public void onStatistics() {
         statisticsContainer.setVisible(true);
         movesContainer.setVisible(false);
     }
 
+    @FXML
     public void onMoves() {
         statisticsContainer.setVisible(false);
         movesContainer.setVisible(true);
