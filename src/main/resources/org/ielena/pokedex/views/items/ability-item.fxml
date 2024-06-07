@@ -9,7 +9,7 @@
         <VBox fx:id="coloredPart" styleClass="ability-item-header" alignment="CENTER" maxHeight="35.0" maxWidth="250.0" prefHeight="35.0" prefWidth="250.0">
             <Label fx:id="name" alignment="CENTER" maxHeight="35.0" maxWidth="250.0" prefHeight="35.0" prefWidth="250.0" styleClass="ability-item-name" />
         </VBox>
-        <VBox fx:id="whitePart" alignment="CENTER" maxHeight="85.0" maxWidth="250.0" prefHeight="85.0" prefWidth="250.0">
+        <VBox fx:id="whitePart" styleClass="ability-item-body" alignment="CENTER" maxHeight="85.0" maxWidth="250.0" prefHeight="85.0" prefWidth="250.0">
             <Label fx:id="description" alignment="CENTER" prefHeight="85.0" prefWidth="250.0" styleClass="ability-item-description" textAlignment="CENTER" wrapText="true" />
         </VBox>
     </VBox>

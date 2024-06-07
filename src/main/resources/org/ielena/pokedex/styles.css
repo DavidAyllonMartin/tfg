@@ -60,6 +60,48 @@
     -fx-faint-focus-color: transparent;
 }
 
+.pokedex-page-label {
+    -fx-pref-width: 40px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.pokedex-page-combobox {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.pokedex-page-combobox .combo-box-popup {
+    -fx-background-color: transparent;
+}
+
+.pokedex-page-combobox .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.pokedex-page-combobox .arrow {
+    -fx-background-color: white;
+}
+
+.pokedex-page-combobox .list-view {
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+    -fx-text-fill: white;
+}
+
+.pokedex-page-combobox .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.pokedex-page-combobox .list-cell:filled:selected,
+.pokedex-page-combobox .list-cell:filled:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
 /*INFO VIEW*/
 .info-container {
     -fx-background-image: url("img/info-background.png");
@@ -189,6 +231,10 @@
     -fx-background-color: #e0e0e0;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
+}
+
+.move-item-header {
+    -fx-background-color: #f80000;
 }
 
 .move-item-label {

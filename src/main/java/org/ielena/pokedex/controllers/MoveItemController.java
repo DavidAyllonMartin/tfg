@@ -53,7 +53,6 @@ public class MoveItemController {
         accuracy.setText(String.valueOf(moveDto.getAccuracy()));
         effectChance.setText(String.valueOf(moveDto.getEffectChance()));
         pp.setText(String.valueOf(moveDto.getPp()));
-        priority.setText(String.valueOf(moveDto.getPriority()));
         power.setText(String.valueOf(moveDto.getPower()));
         damageClassLabel.setText(moveDto.getDamageClass());
         typeLabel.setText(moveDto.getType()

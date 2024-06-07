@@ -169,7 +169,11 @@ public class PokedexController implements ViewController {
 
         updatePaginationComboBox();
         updatePaginationButtons();
-        pageLabel.setText("Page " + (currentPage.getNumber() + 1) + "/" + currentPage.getTotalPages());
+        if(currentPage.getTotalPages() != 0){
+            pageLabel.setText((currentPage.getNumber() + 1) + "/" + currentPage.getTotalPages());
+        }else{
+            pageLabel.setText("0/0");
+        }
     }
 
     private void updatePaginationComboBox() {
@@ -231,7 +235,7 @@ public class PokedexController implements ViewController {
             @Override
             protected Void call() {
                 try {
-                    databaseUpdateService.updateDatabase(251, 0);
+                    databaseUpdateService.updateDatabase(904, 0);
                 } catch (JsonProcessingException e) {
                     e.printStackTrace();
                 }
