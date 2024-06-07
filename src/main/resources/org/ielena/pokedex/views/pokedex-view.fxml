@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="1280.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controllers.PokedexController">
+<BorderPane styleClass="pokedex-container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="1280.0" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controllers.PokedexController">
    <center>
            <GridPane fx:id="gridPane" alignment="CENTER" hgap="10" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="1280" vgap="10">
                <columnConstraints>
@@ -31,14 +31,11 @@
            </GridPane>
    </center>
    <top>
-       <HBox alignment="CENTER_RIGHT" prefHeight="70.0" prefWidth="1280.0" spacing="30.0" BorderPane.alignment="CENTER_RIGHT">
-           <padding>
-               <Insets right="25.0" />
-           </padding>
+       <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1280.0" spacing="30.0" BorderPane.alignment="CENTER">
             <Button onAction="#onShowFavorites" text="Show Favorites" />
-            <ComboBox fx:id="typeComboBox" onAction="#onSearch" prefWidth="200.0" promptText="Filter by Type" styleClass="type-combobox" />
-           <TextField fx:id="searchField" promptText="Search" styleClass="text-field-custom" />
-           <Button onAction="#onSearch" prefHeight="60.0" prefWidth="120.0" styleClass="back-button" text="GO!" />
+            <ComboBox fx:id="typeComboBox" onAction="#onSearch" prefWidth="200.0" promptText="Filter by Type" styleClass="pokedex-type-combobox" />
+           <TextField fx:id="searchField" promptText="Search" styleClass="pokedex-search-box" />
+           <Button onAction="#onSearch"  styleClass="pokedex-go-button" text="GO!" />
          <BorderPane.margin>
             <Insets top="25.0" />
          </BorderPane.margin>
@@ -46,9 +43,9 @@
    </top>
     <bottom>
         <HBox alignment="CENTER" spacing="10.0" style="-fx-padding: 10px;" BorderPane.alignment="CENTER">
-            <Button fx:id="prevButton" onAction="#onPrevious" styleClass="navigation-button">
+            <Button fx:id="prevButton" onAction="#onPrevious" styleClass="pokedex-navigation-button">
                 <graphic>
-                    <ImageView fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" styleClass="button-image-view">
+                    <ImageView styleClass="button-image-view" fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@../img/left-arrow.png" />
                         </image>
@@ -57,9 +54,9 @@
             </Button>
             <Label fx:id="pageLabel" text="Page 1/1" />
             <ComboBox fx:id="pageComboBox" onAction="#onGoToPage" prefWidth="80" />
-            <Button fx:id="nextButton" onAction="#onNext" styleClass="navigation-button">
+            <Button fx:id="nextButton" onAction="#onNext" styleClass="pokedex-navigation-button">
                 <graphic>
-                    <ImageView fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true" styleClass="button-image-view">
+                    <ImageView styleClass="button-image-view" fitHeight="60.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
                         <image>
                             <Image url="@../img/right-arrow.png" />
                         </image>

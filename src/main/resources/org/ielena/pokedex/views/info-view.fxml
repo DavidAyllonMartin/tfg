@@ -15,28 +15,28 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane fx:id="infoContainer" prefHeight="688.0" prefWidth="1280.0" styleClass="info-container" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controllers.PokemonInfoController">
-    <Button layoutX="1133.0" layoutY="21.0" mnemonicParsing="true" onAction="#onBack" prefHeight="60.0" prefWidth="120.0" styleClass="back-button" text="_BACK" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
+    <Button layoutX="1133.0" layoutY="21.0" mnemonicParsing="true" onAction="#onBack" prefHeight="60.0" prefWidth="120.0" styleClass="info-back-button" text="_BACK" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
     <ImageView fx:id="pokemonImg" fitHeight="325.0" fitWidth="325.0" layoutX="52.0" layoutY="125.0" pickOnBounds="true" />
 
     <VBox layoutX="-1.0" layoutY="460.0" prefHeight="218.0" prefWidth="411.0" spacing="5.0">
         <HBox alignment="CENTER">
-            <Label fx:id="idLabel" styleClass="pokemon-name" text="#001 BULBASAUR" />
+            <Label fx:id="idLabel" styleClass="info-name" text="#001 BULBASAUR" />
         </HBox>
         <HBox fx:id="typesHBox" alignment="CENTER" prefHeight="50.0" prefWidth="390.0" spacing="10.0" />
         <HBox alignment="CENTER" spacing="10.0">
-            <Label styleClass="stat-label" text="Height:" />
-            <Label fx:id="heightLabel" styleClass="value-label" text="1 m">
+            <Label styleClass="info-data" text="Height:" />
+            <Label fx:id="heightLabel" styleClass="info-value" text="1 m">
             <HBox.margin>
                <Insets />
             </HBox.margin></Label>
-            <Label styleClass="stat-label" text="Weight:" />
-            <Label fx:id="weightLabel" styleClass="value-label" text="1 Kg" />
+            <Label styleClass="info-data" text="Weight:" />
+            <Label fx:id="weightLabel" styleClass="info-value" text="1 Kg" />
          <VBox.margin>
             <Insets top="10.0" />
          </VBox.margin>
         </HBox>
         <HBox alignment="CENTER">
-            <Label fx:id="descriptionLabel" alignment="TOP_CENTER" prefHeight="92.0" prefWidth="381.0" styleClass="description-label" text="Description" textAlignment="CENTER" wrapText="true" />
+            <Label fx:id="descriptionLabel" alignment="TOP_CENTER" prefHeight="92.0" prefWidth="381.0" styleClass="info-description" text="Description" textAlignment="CENTER" wrapText="true" />
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
          </padding>
@@ -67,32 +67,32 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
-                <Label styleClass="grid-attribute" text="HP:" />
-                <Label styleClass="grid-attribute" text="Attack:" GridPane.rowIndex="1" />
-                <Label styleClass="grid-attribute" text="Defense:" GridPane.rowIndex="2" />
-                <Label styleClass="grid-attribute" text="Special Attack:" GridPane.rowIndex="3" />
-                <Label styleClass="grid-attribute" text="Special Defense:" GridPane.rowIndex="4" />
-                <Label styleClass="grid-attribute" text="Speed:" GridPane.rowIndex="5" />
+                <Label styleClass="info-grid-label" text="HP:" />
+                <Label styleClass="info-grid-label" text="Attack:" GridPane.rowIndex="1" />
+                <Label styleClass="info-grid-label" text="Defense:" GridPane.rowIndex="2" />
+                <Label styleClass="info-grid-label" text="Special Attack:" GridPane.rowIndex="3" />
+                <Label styleClass="info-grid-label" text="Special Defense:" GridPane.rowIndex="4" />
+                <Label styleClass="info-grid-label" text="Speed:" GridPane.rowIndex="5" />
 
-                <Label fx:id="hpLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="grid-number" text="1" GridPane.columnIndex="1" />
-                <Label fx:id="attackLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="grid-number" text="2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Label fx:id="defenseLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="grid-number" text="3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <Label fx:id="sAttackLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="grid-number" text="4" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <Label fx:id="sDefenseLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="grid-number" text="5" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <Label fx:id="speedLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="grid-number" text="6" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                <Label fx:id="hpLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="info-grid-value" text="1" GridPane.columnIndex="1" />
+                <Label fx:id="attackLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="info-grid-value" text="2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Label fx:id="defenseLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="info-grid-value" text="3" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Label fx:id="sAttackLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="info-grid-value" text="4" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label fx:id="sDefenseLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="info-grid-value" text="5" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Label fx:id="speedLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="info-grid-value" text="6" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-                <ProgressBar fx:id="hpProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" />
-                <ProgressBar fx:id="attackProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                <ProgressBar fx:id="defenseProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                <ProgressBar fx:id="sAttackProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                <ProgressBar fx:id="sDefenseProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                <ProgressBar fx:id="speedProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                <ProgressBar fx:id="hpProgressBar" styleClass="info-progress-bar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" />
+                <ProgressBar fx:id="attackProgressBar" styleClass="info-progress-bar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <ProgressBar fx:id="defenseProgressBar" styleClass="info-progress-bar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <ProgressBar fx:id="sAttackProgressBar" styleClass="info-progress-bar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <ProgressBar fx:id="sDefenseProgressBar" styleClass="info-progress-bar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <ProgressBar fx:id="speedProgressBar" styleClass="info-progress-bar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <VBox.margin>
                <Insets bottom="40.0" />
             </VBox.margin>
             </GridPane>
             <VBox layoutY="466.0" prefHeight="157.0" prefWidth="816.0" spacing="20">
-                <Label prefHeight="26.0" prefWidth="271.0" styleClass="grid-attribute" text="Abilities" />
+                <Label prefHeight="26.0" prefWidth="271.0" styleClass="info-grid-label" text="Abilities" />
                 <HBox fx:id="abilitiesHBox" alignment="CENTER" prefHeight="131.0" prefWidth="816.0" spacing="20.0" />
             </VBox>
          <StackPane.margin>

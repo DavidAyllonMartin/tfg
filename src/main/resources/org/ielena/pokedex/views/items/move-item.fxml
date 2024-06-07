@@ -7,7 +7,7 @@
 
 <AnchorPane maxWidth="350.0" minWidth="350.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controllers.MoveItemController">
 
-    <VBox maxWidth="330.0" minWidth="330.0" prefWidth="330.0" spacing="10.0" styleClass="move-item-box" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <VBox maxWidth="330.0" minWidth="330.0" prefWidth="330.0" spacing="10.0" styleClass="move-item-container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
         </padding>
@@ -24,30 +24,30 @@
                 <RowConstraints minHeight="10.0" prefHeight="20.0" valignment="CENTER" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="20.0" valignment="CENTER" vgrow="SOMETIMES" />
             </rowConstraints>
-            <Label styleClass="header-label" text="Name" />
-            <Label styleClass="header-label" text="Power" GridPane.columnIndex="1" />
-            <Label styleClass="header-label" text="Accuracy" GridPane.columnIndex="2" />
-            <Label styleClass="header-label" text="PP" GridPane.columnIndex="3" />
-            <Label styleClass="header-label" text="Ef. Chance" GridPane.columnIndex="4" />
-            <Label styleClass="header-label" text="Priority" GridPane.columnIndex="5" />
-            <Label fx:id="name" styleClass="data-label" GridPane.rowIndex="1" />
-            <Label fx:id="power" styleClass="data-label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="accuracy" styleClass="data-label" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label fx:id="pp" styleClass="data-label" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label fx:id="effectChance" styleClass="data-label" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <Label fx:id="priority" styleClass="data-label" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <Label styleClass="move-item-label" text="Name" />
+            <Label styleClass="move-item-label" text="Power" GridPane.columnIndex="1" />
+            <Label styleClass="move-item-label" text="Accuracy" GridPane.columnIndex="2" />
+            <Label styleClass="move-item-label" text="PP" GridPane.columnIndex="3" />
+            <Label styleClass="move-item-label" text="Ef. Chance" GridPane.columnIndex="4" />
+            <Label styleClass="move-item-label" text="Priority" GridPane.columnIndex="5" />
+            <Label fx:id="name" styleClass="move-item-data" GridPane.rowIndex="1" />
+            <Label fx:id="power" styleClass="move-item-data" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="accuracy" styleClass="move-item-data" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="pp" styleClass="move-item-data" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label fx:id="effectChance" styleClass="move-item-data" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Label fx:id="priority" styleClass="move-item-data" GridPane.columnIndex="5" GridPane.rowIndex="1" />
         </GridPane>
 
-        <HBox alignment="CENTER" maxWidth="330.0" minWidth="330.0" prefWidth="330.0" spacing="10.0" styleClass="type-damage-box">
+        <HBox alignment="CENTER" maxWidth="330.0" minWidth="330.0" prefWidth="330.0" spacing="10.0" styleClass="move-item-type-box">
             <StackPane maxWidth="180.0" minWidth="180.0" prefWidth="180.0">
-                <Rectangle fx:id="typeRectangle" height="25" styleClass="type-background" width="180.0" />
-                <Label fx:id="typeLabel" styleClass="type-label" />
+                <Rectangle fx:id="typeRectangle" height="25" styleClass="move-item-type-rectangle" width="180.0" />
+                <Label fx:id="typeLabel" styleClass="move-item-type-label" />
             </StackPane>
             <StackPane maxWidth="80.0" minWidth="80.0" prefWidth="80.0">
-                <Rectangle fx:id="damageClassRectangle" height="25" styleClass="type-background" width="80" />
-                <Label fx:id="damageClassLabel" styleClass="type-label" />
+                <Rectangle fx:id="damageClassRectangle" height="25" styleClass="move-item-damage-class-rectangle" width="80" />
+                <Label fx:id="damageClassLabel" styleClass="move-item-damage-class-label" />
             </StackPane>
-            <Button fx:id="infoButton" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" prefHeight="25.0" prefWidth="25.0" text="i" />
+            <Button fx:id="infoButton" styleClass="move-item-info-button" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" prefHeight="25.0" prefWidth="25.0" text="i" />
         </HBox>
     </VBox>
 
