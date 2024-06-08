@@ -18,6 +18,10 @@ module org.ielena.pokedex {
     requires spring.web;
     requires spring.data.commons;
     requires java.desktop;
+    requires spring.security.crypto;
+    requires spring.security.config;
+    requires spring.security.core;
+    requires spring.security.web;
 
     opens org.ielena.pokedex to spring.core, spring.beans, spring.context, javafx.fxml;
     opens org.ielena.pokedex.controllers to javafx.fxml, spring.beans, spring.context, spring.core;
@@ -28,6 +32,7 @@ module org.ielena.pokedex {
     opens org.ielena.pokedex.converters.poke_api to spring.beans, spring.core, org.hibernate.orm.core;
     opens org.ielena.pokedex.poke_api to com.fasterxml.jackson.databind, com.fasterxml.jackson.core, com.fasterxml.jackson.annotation;
     opens org.ielena.pokedex.poke_api.side_classes to com.fasterxml.jackson.databind, com.fasterxml.jackson.core, com.fasterxml.jackson.annotation;
+    opens org.ielena.pokedex.singletons to spring.beans;
 
 
     exports org.ielena.pokedex;
