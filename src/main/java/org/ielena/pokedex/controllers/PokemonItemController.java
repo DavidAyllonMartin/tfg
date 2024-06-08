@@ -1,8 +1,10 @@
 package org.ielena.pokedex.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -19,12 +21,16 @@ import org.ielena.pokedex.singletons.MasterControllerSingleton;
 import org.ielena.pokedex.singletons.SpringContextSingleton;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Getter
 @Setter
 @Component
 public class PokemonItemController implements ViewController {
 
     private static final String FX_BACKGROUND = "-fx-background-color: %s";
+    private static final String TYPE_ITEM_FXML = "views/items/type-item.fxml";
+
 
     @FXML
     private Label id;
@@ -36,6 +42,8 @@ public class PokemonItemController implements ViewController {
     private AnchorPane pokemonCard;
     @FXML
     private VBox typesContainer;
+    @FXML
+    public ImageView favoriteImage;
 
     private PokemonItemMediator mediator;
     private PokemonDto pokemon;
@@ -68,7 +76,7 @@ public class PokemonItemController implements ViewController {
     @SneakyThrows
     private void addType(TypeDto typeDto) {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource("views/items/type-item.fxml"));
+        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(TYPE_ITEM_FXML));
         fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
         AnchorPane anchorPane = fxmlLoader.load();
         TypeItemController typeItemController = fxmlLoader.getController();
@@ -76,4 +84,18 @@ public class PokemonItemController implements ViewController {
         typesContainer.getChildren()
                       .add(anchorPane);
     }
+
+//    @FXML
+//    private void onFavoriteButtonClicked() {
+//        pokemon.setFavorite(!pokemon.isFavorite());
+//        updateFavoriteButton();
+//    }
+//
+//    private void updateFavoriteButton() {
+//        if (pokemon.isFavorite()) {
+//            favoriteImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("img/star_filled.png"))));
+//        } else {
+//            favoriteImage.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("img/star_empty.png"))));
+//        }
+//    }
 }

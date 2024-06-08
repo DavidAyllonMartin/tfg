@@ -1,7 +1,9 @@
 package org.ielena.pokedex.controllers;
 
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import lombok.Setter;
 import lombok.SneakyThrows;
@@ -25,46 +27,83 @@ public class MasterController implements Mediator, PokedexControllerMediator, Po
 
     private Stage stage;
     private Scene pokedexView;
+    private Scene infoView;
+    private Scene registerView;
+    private Scene loginView;
 
     @SneakyThrows
     @Override
     public void changeToInfoWindow(PokemonDto pokemon) {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(VIEW_FXML));
-        fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
-        Scene scene = new Scene(fxmlLoader.load());
-        PokemonInfoController infoController = fxmlLoader.getController();
-        infoController.setData(pokemon);
-        stage.setScene(scene);
+        if (infoView == null) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(VIEW_FXML));
+            fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
+            infoView = new Scene(fxmlLoader.load());
+            PokemonInfoController infoController = fxmlLoader.getController();
+            infoController.setData(pokemon);
+            infoView.setUserData(infoController);
+        } else {
+            PokemonInfoController infoController = (PokemonInfoController) infoView.getUserData();
+            infoController.setData(pokemon);
+        }
+        stage.setScene(infoView);
         stage.show();
+        centerStage(stage);
     }
 
     @SneakyThrows
     @Override
     public void changeToMainWindow() {
+        if (pokedexView == null) {
+            FXMLLoader pokedexLoader = new FXMLLoader();
+            pokedexLoader.setLocation(ProjectJavaFxApp.class.getResource(POKEDEX_FXML));
+            pokedexLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
+            pokedexView = new Scene(pokedexLoader.load());
+            PokedexController pokedexController = pokedexLoader.getController();
+            pokedexController.executeLoad();
+            pokedexView.setUserData(pokedexController);
+        }else{
+            PokedexController pokedexController = (PokedexController) pokedexView.getUserData();
+            pokedexController.executeLoad();
+        }
         stage.setScene(pokedexView);
         stage.show();
+        centerStage(stage);
     }
 
     @SneakyThrows
     @Override
     public void changeToRegisterWindow() {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(REGISTER_FXML));
-        fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
+        if (registerView == null) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(REGISTER_FXML));
+            fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
+            registerView = new Scene(fxmlLoader.load());
+        }
+        stage.setScene(registerView);
         stage.show();
+        centerStage(stage);
     }
 
     @SneakyThrows
     @Override
     public void changeToLoginWindow() {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(LOGIN_FXML));
-        fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setScene(scene);
+        if (loginView == null) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(LOGIN_FXML));
+            fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
+            loginView = new Scene(fxmlLoader.load());
+        }
+        stage.setScene(loginView);
         stage.show();
+        centerStage(stage);
     }
+
+    private void centerStage(Stage stage) {
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+
+        stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
+        stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
+    }
+
 }

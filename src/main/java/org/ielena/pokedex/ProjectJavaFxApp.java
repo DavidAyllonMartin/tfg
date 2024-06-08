@@ -39,14 +39,8 @@ public class ProjectJavaFxApp extends Application {
         fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
         Scene scene = new Scene(fxmlLoader.load());
 
-        FXMLLoader pokedexLoader = new FXMLLoader();
-        pokedexLoader.setLocation(ProjectJavaFxApp.class.getResource(POKEDEX_FXML));
-        pokedexLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
-        Scene pokedexView = new Scene(pokedexLoader.load());
-
         MasterController masterController = MasterControllerSingleton.getInstance();
         masterController.setStage(stage);
-        masterController.setPokedexView(pokedexView);
 
         stage.setScene(scene);
         stage.show();

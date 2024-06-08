@@ -43,13 +43,13 @@ public class UserModel {
             inverseJoinColumns = {@JoinColumn(name = "pokemon_id", referencedColumnName = "pokemon_id")},
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")}
     )
-    private Set<PokemonModel> favorites = new HashSet<>();
+    private Set<PokemonBasicInfoModel> favorites = new HashSet<>();
 
-    public void addFavorite(PokemonModel pokemonModel){
+    public void addFavorite(PokemonBasicInfoModel pokemonModel){
         favorites.add(pokemonModel);
     }
 
-    public void deleteFavorite(PokemonModel pokemonModel){
+    public void deleteFavorite(PokemonBasicInfoModel pokemonModel){
         favorites.remove(pokemonModel);
     }
 }

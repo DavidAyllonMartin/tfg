@@ -11,6 +11,8 @@ import org.ielena.pokedex.models.MoveModel;
 import org.ielena.pokedex.models.PokemonModel;
 import org.ielena.pokedex.models.TypeModel;
 import org.ielena.pokedex.services.ImageService;
+import org.ielena.pokedex.services.UserService;
+import org.ielena.pokedex.singletons.UserSession;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -33,6 +35,10 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
     private Converter<TypeModel, TypeDto> typeDtoConverter;
     @Resource
     private ImageService defaultImageService;
+    @Resource
+    private UserService userService;
+    @Resource
+    private UserSession userSession;
 
     @Override
     public PokemonDto convert(PokemonModel pokemonModel) {
@@ -72,6 +78,8 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
             throw new RuntimeException(e);
         }
 
+        boolean isFavorite = userService.isFavoritePokemon(pokemonModel.getId());
+
         return PokemonDto.builder()
                          .id(pokemonModel.getId())
                          .name(StringUtils.capitalize(pokemonModel.getName()))
@@ -95,6 +103,7 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
                          .img(image)
                          .thumbnail(thumbnail)
                          .description(StringUtils.capitalize(pokemonModel.getDescription()))
+                         .isFavorite(isFavorite)
                          .build();
     }
 }

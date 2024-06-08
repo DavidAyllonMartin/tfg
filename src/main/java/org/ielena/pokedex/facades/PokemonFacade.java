@@ -25,4 +25,6 @@ public interface PokemonFacade {
     Page<PokemonDto> findByName(String name, Pageable pageable);
 
     Page<PokemonDto> findByNameAndType(String name, TypeDto type, Pageable pageable);
+
+    Page<PokemonDto> findUserFavorites(Pageable pageable);
 }

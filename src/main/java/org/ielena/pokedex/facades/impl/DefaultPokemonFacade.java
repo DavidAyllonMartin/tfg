@@ -7,6 +7,7 @@ import org.ielena.pokedex.facades.PokemonFacade;
 import org.ielena.pokedex.models.PokemonModel;
 import org.ielena.pokedex.models.TypeModel;
 import org.ielena.pokedex.services.PokemonService;
+import org.ielena.pokedex.services.UserService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +22,8 @@ public class DefaultPokemonFacade implements PokemonFacade {
 
     @Resource
     private PokemonService pokemonService;
+    @Resource
+    private UserService userService;
     @Resource
     private Converter<TypeDto, TypeModel> typeModelConverter;
     @Resource
@@ -79,5 +82,11 @@ public class DefaultPokemonFacade implements PokemonFacade {
     public Page<PokemonDto> findByNameAndType(String name, TypeDto type, Pageable pageable) {
         return pokemonService.findByNameAndType(name, typeModelConverter.convert(type), pageable)
                              .map(pokemonDtoConverter::convert);
+    }
+
+    @Override
+    public Page<PokemonDto> findUserFavorites(Pageable pageable) {
+        return userService.findUserFavorites(pageable)
+                          .map(pokemonDtoConverter::convert);
     }
 }

@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -21,12 +22,16 @@ import org.ielena.pokedex.dtos.AbilityDto;
 import org.ielena.pokedex.dtos.MoveDto;
 import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.dtos.TypeDto;
+import org.ielena.pokedex.facades.UserFacade;
 import org.ielena.pokedex.services.MoveService;
 import org.ielena.pokedex.services.impl.DefaultCacheService;
 import org.ielena.pokedex.singletons.MasterControllerSingleton;
+import org.ielena.pokedex.singletons.UserSession;
 import org.springframework.stereotype.Component;
 
+import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 
 @Component
 public class PokemonInfoController implements ViewController {
@@ -37,8 +42,11 @@ public class PokemonInfoController implements ViewController {
     public static final String TYPE_ITEM_FXML = "views/items/type-item.fxml";
     public static final String ABILITY_ITEM_FXML = "views/items/ability-item.fxml";
 
+
     @Resource
     private DefaultCacheService defaultCacheService;
+    @Resource
+    private UserFacade userFacade;
 
     @FXML
     private AnchorPane infoContainer;
@@ -86,6 +94,8 @@ public class PokemonInfoController implements ViewController {
     private HBox abilitiesHBox;
     @FXML
     private GridPane movesGridPane;
+    @FXML
+    public ImageView favoriteImage;
 
     private PokemonInfoControllerMediator mediator;
     private PokemonDto pokemon;
@@ -104,6 +114,7 @@ public class PokemonInfoController implements ViewController {
         configurePokemonDetails();
         configurePokemonStats();
         configureContainers();
+        updateFavoriteButton();
     }
 
     private void configurePokemonDetails() {
@@ -133,11 +144,18 @@ public class PokemonInfoController implements ViewController {
     }
 
     private void configureContainers() {
+        clearContainers();
         pokemon.getTypes()
                .forEach(this::addType);
         pokemon.getAbilities()
                .forEach(this::addAbility);
         addMovesToGrid(pokemon.getMoves());
+    }
+
+    private void clearContainers() {
+        abilitiesHBox.getChildren().clear();
+        typesHBox.getChildren().clear();
+        movesGridPane.getChildren().clear();
     }
 
     @SneakyThrows
@@ -209,5 +227,28 @@ public class PokemonInfoController implements ViewController {
     public void onMoves() {
         statisticsContainer.setVisible(false);
         movesContainer.setVisible(true);
+    }
+
+    @FXML
+    private void onFavoriteButtonClicked() {
+        pokemon.setFavorite(!pokemon.isFavorite());
+        updateFavoriteButton();
+        updateDatabaseInfo();
+    }
+
+    private void updateDatabaseInfo(){
+        if (pokemon.isFavorite()) {
+            userFacade.addFavoritePokemon(pokemon.getId());
+        } else {
+            userFacade.removeFavoritePokemon(pokemon.getId());
+        }
+    }
+
+    private void updateFavoriteButton() {
+        if (pokemon.isFavorite()) {
+            favoriteImage.setImage(new Image(Objects.requireNonNull(ProjectJavaFxApp.class.getResourceAsStream("img/star-filled.png"))));
+        } else {
+            favoriteImage.setImage(new Image(Objects.requireNonNull(ProjectJavaFxApp.class.getResourceAsStream("img/star-empty.png"))));
+        }
     }
 }

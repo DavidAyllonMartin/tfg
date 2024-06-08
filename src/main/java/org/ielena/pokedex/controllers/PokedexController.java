@@ -64,11 +64,13 @@ public class PokedexController implements ViewController {
 
     private IntFunction<Page<PokemonDto>> load;
     private Page<PokemonDto> currentPage;
+    private Integer currentPageNumber;
     private PokedexControllerMediator mediator;
 
     public void initialize() {
         loadTypes();
-        loadPokemons();
+        currentPageNumber = 0;
+        load = pageNum -> pokemonFacade.findAll(PageRequest.of(pageNum, ITEMS_PER_PAGE));
         configureSearchField();
         setMediator(MasterControllerSingleton.getInstance());
     }
@@ -127,37 +129,44 @@ public class PokedexController implements ViewController {
 
     @FXML
     private void onShowFavorites() {
-        // Implement logic to show favorite Pokemons here
+        load = pageNum -> pokemonFacade.findUserFavorites(PageRequest.of(pageNum, ITEMS_PER_PAGE));
+        currentPageNumber = 0;
+        executeLoad();
     }
 
     private void loadPokemons() {
         load = pageNum -> pokemonFacade.findAll(PageRequest.of(pageNum, ITEMS_PER_PAGE));
-        executeLoad(0);
+        currentPageNumber = 0;
+        executeLoad();
     }
 
     private void loadPokemonsByName(String name) {
         load = pageNum -> pokemonFacade.findByName(name, PageRequest.of(pageNum, ITEMS_PER_PAGE));
-        executeLoad(0);
+        currentPageNumber = 0;
+        executeLoad();
     }
 
     private void loadPokemonsByType(TypeDto type) {
         load = pageNum -> pokemonFacade.findByType(type, PageRequest.of(pageNum, ITEMS_PER_PAGE));
-        executeLoad(0);
+        currentPageNumber = 0;
+        executeLoad();
     }
 
     private void loadPokemonsByNameAndType(String name, TypeDto type) {
         load = pageNum -> pokemonFacade.findByNameAndType(name, type, PageRequest.of(pageNum, ITEMS_PER_PAGE));
-        executeLoad(0);
+        currentPageNumber = 0;
+        executeLoad();
     }
 
     private void navigateToPage(int page) {
         if (currentPage != null && page >= 0 && page < currentPage.getTotalPages()) {
-            executeLoad(page);
+            currentPageNumber = page;
+            executeLoad();
         }
     }
 
-    private void executeLoad(int page) {
-        currentPage = load.apply(page);
+    public void executeLoad() {
+        currentPage = load.apply(currentPageNumber);
         updateGrid();
         updatePaginationControls();
     }

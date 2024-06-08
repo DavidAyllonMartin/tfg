@@ -52,7 +52,7 @@ public class LoginController implements ViewController {
 
         UserModel user = userService.findByUsername(username);
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
-            userSession.setActiveUser(user);
+            userSession.setUserId(user.getId());
             mediator.changeToMainWindow();
         } else {
             errorMessage.setText("Wrong username or password");

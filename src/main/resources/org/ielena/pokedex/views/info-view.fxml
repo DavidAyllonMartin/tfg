@@ -18,6 +18,13 @@
     <Button layoutX="1133.0" layoutY="21.0" mnemonicParsing="true" onAction="#onBack" prefHeight="60.0" prefWidth="120.0" styleClass="info-back-button" text="_BACK" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
     <ImageView fx:id="pokemonImg" fitHeight="325.0" fitWidth="325.0" layoutX="52.0" layoutY="125.0" pickOnBounds="true" />
 
+       <Button onAction="#onFavoriteButtonClicked" styleClass="favorite-button" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="50.0">
+          <graphic>
+             <ImageView fx:id="favoriteImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+             </ImageView>
+          </graphic>
+       </Button>
+
     <VBox layoutX="-1.0" layoutY="460.0" prefHeight="218.0" prefWidth="411.0" spacing="5.0">
         <HBox alignment="CENTER">
             <Label fx:id="idLabel" styleClass="info-name" text="#001 BULBASAUR" />
@@ -81,12 +88,12 @@
                 <Label fx:id="sDefenseLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="info-grid-value" text="5" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <Label fx:id="speedLabel" alignment="CENTER" prefHeight="33.0" prefWidth="76.0" styleClass="info-grid-value" text="6" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 
-                <ProgressBar fx:id="hpProgressBar" styleClass="info-progress-bar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" />
-                <ProgressBar fx:id="attackProgressBar" styleClass="info-progress-bar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                <ProgressBar fx:id="defenseProgressBar" styleClass="info-progress-bar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                <ProgressBar fx:id="sAttackProgressBar" styleClass="info-progress-bar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                <ProgressBar fx:id="sDefenseProgressBar" styleClass="info-progress-bar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                <ProgressBar fx:id="speedProgressBar" styleClass="info-progress-bar" prefHeight="25.0" prefWidth="460.0" progress="0.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                <ProgressBar fx:id="hpProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" styleClass="info-progress-bar" GridPane.columnIndex="2" />
+                <ProgressBar fx:id="attackProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" styleClass="info-progress-bar" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <ProgressBar fx:id="defenseProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" styleClass="info-progress-bar" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <ProgressBar fx:id="sAttackProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" styleClass="info-progress-bar" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <ProgressBar fx:id="sDefenseProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" styleClass="info-progress-bar" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <ProgressBar fx:id="speedProgressBar" prefHeight="25.0" prefWidth="460.0" progress="0.0" styleClass="info-progress-bar" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <VBox.margin>
                <Insets bottom="40.0" />
             </VBox.margin>

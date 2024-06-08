@@ -9,9 +9,10 @@ import org.springframework.stereotype.Component;
 @Setter
 @Component
 public class UserSession {
-    private UserModel activeUser;
+
+    private Long userId;
 
     public void clear() {
-        this.activeUser = null;
+        this.userId = null;
     }
 }

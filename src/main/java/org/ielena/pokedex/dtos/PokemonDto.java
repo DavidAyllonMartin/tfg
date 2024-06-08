@@ -38,4 +38,5 @@ public class PokemonDto {
     private Image thumbnail;
     private byte[] cry;
     private String description;
+    private boolean isFavorite;
 }
