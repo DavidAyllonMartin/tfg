@@ -128,6 +128,7 @@ public class MasterController implements Mediator, PokedexControllerMediator, Po
             @Override
             protected void succeeded() {
                 closeLoadingWindow();
+                pokedexView = null;
                 changeToMainWindow();
             }
 
