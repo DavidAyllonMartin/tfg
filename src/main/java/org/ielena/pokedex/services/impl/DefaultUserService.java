@@ -44,7 +44,8 @@ public class DefaultUserService implements UserService {
     @Override
     public Page<PokemonModel> findUserFavorites(Pageable pageable) {
         Long userId = userSession.getUserId();
-        return userDao.findFavoritesByUserId(userId, pageable).map(pokemonModelConverter::convert);
+        return userDao.findFavoritesByUserId(userId, pageable)
+                      .map(pokemonModelConverter::convert);
     }
 
     @Override

@@ -32,11 +32,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.IntFunction;
 
+import static org.ielena.pokedex.utils.Constants.View.POKEMON_ITEM_FXML_PATH;
+
 @Component
 public class PokedexController implements ViewController {
 
     private static final int ITEMS_PER_PAGE = 15;
-    private static final String POKEMON_ITEM_FXML = "views/items/pokemon-item.fxml";
 
     @Resource
     private PokemonFacade pokemonFacade;
@@ -61,8 +62,6 @@ public class PokedexController implements ViewController {
     private ComboBox<Integer> pageComboBox;
     @FXML
     private ComboBox<TypeDto> typeComboBox;
-    @FXML
-    private Button favoriteButton;
 
     private IntFunction<Page<PokemonDto>> load;
     private Page<PokemonDto> currentPage;
@@ -180,9 +179,9 @@ public class PokedexController implements ViewController {
 
         updatePaginationComboBox();
         updatePaginationButtons();
-        if(currentPage.getTotalPages() != 0){
+        if (currentPage.getTotalPages() != 0) {
             pageLabel.setText((currentPage.getNumber() + 1) + "/" + currentPage.getTotalPages());
-        }else{
+        } else {
             pageLabel.setText("0/0");
         }
     }
@@ -233,7 +232,7 @@ public class PokedexController implements ViewController {
     @SneakyThrows
     private Node createPokemonNode(PokemonDto pokemon) {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(POKEMON_ITEM_FXML));
+        fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(POKEMON_ITEM_FXML_PATH));
         Node node = fxmlLoader.load();
         PokemonItemController itemController = fxmlLoader.getController();
         itemController.setData(pokemon);

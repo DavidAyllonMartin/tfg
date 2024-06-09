@@ -19,14 +19,16 @@ public class FadeTransitionService {
 
     public void applyFadeTransition(Node node, Duration duration) {
         if (fadeTransitions.containsKey(node)) {
-            fadeTransitions.get(node).stop();
+            fadeTransitions.get(node)
+                           .stop();
         } else {
             fadeTransitions.put(node, createFadeTransition(node, duration));
         }
 
         node.setVisible(true);
         node.setOpacity(1.0);
-        fadeTransitions.get(node).playFromStart();
+        fadeTransitions.get(node)
+                       .playFromStart();
     }
 
     private FadeTransition createFadeTransition(Node node, Duration duration) {

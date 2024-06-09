@@ -9,8 +9,8 @@ import javafx.util.Duration;
 import org.ielena.pokedex.controllers.mediator.LoginControllerMediator;
 import org.ielena.pokedex.controllers.mediator.Mediator;
 import org.ielena.pokedex.models.UserModel;
-import org.ielena.pokedex.services.impl.FadeTransitionService;
 import org.ielena.pokedex.services.UserService;
+import org.ielena.pokedex.services.impl.FadeTransitionService;
 import org.ielena.pokedex.singletons.MasterControllerSingleton;
 import org.ielena.pokedex.singletons.UserSession;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -61,7 +61,7 @@ public class LoginController implements ViewController {
     }
 
     @FXML
-    public void goToRegister(){
+    public void goToRegister() {
         mediator.changeToRegisterWindow();
     }
 

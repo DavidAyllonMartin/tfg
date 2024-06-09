@@ -35,7 +35,7 @@
    </center>
    <top>
        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1280.0" spacing="30.0" BorderPane.alignment="CENTER">
-            <Button fx:id="favoriteButton" onAction="#onShowFavorites" styleClass="pokedex-favorite-button">
+            <Button onAction="#onShowFavorites" styleClass="pokedex-favorite-button">
                 <graphic>
                     <StackPane>
                         <Circle fill="#FFFFFF80" radius="30.0" />

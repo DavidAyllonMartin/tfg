@@ -45,11 +45,11 @@ public class UserModel {
     )
     private Set<PokemonBasicInfoModel> favorites = new HashSet<>();
 
-    public void addFavorite(PokemonBasicInfoModel pokemonModel){
+    public void addFavorite(PokemonBasicInfoModel pokemonModel) {
         favorites.add(pokemonModel);
     }
 
-    public void deleteFavorite(PokemonBasicInfoModel pokemonModel){
+    public void deleteFavorite(PokemonBasicInfoModel pokemonModel) {
         favorites.remove(pokemonModel);
     }
 }

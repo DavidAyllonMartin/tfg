@@ -14,14 +14,13 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.Objects;
 
+import static org.ielena.pokedex.utils.Constants.Img.IMG_ICON_PATH;
+import static org.ielena.pokedex.utils.Constants.View.LOGIN_FXML_PATH;
+
 @Component
 public class ProjectJavaFxApp extends Application {
 
     private static final String APP_TITLE = "Pokedex";
-//    public static final String VIEW_FXML = "views/pokedex-view.fxml";
-    private static final String LOGIN_FXML = "views/login-view.fxml";
-    private static final String POKEDEX_FXML = "views/pokedex-view.fxml";
-    private static final String IMG_ICON_PATH = "img/icon.png";
 
     @Override
     public void init() {
@@ -32,10 +31,11 @@ public class ProjectJavaFxApp extends Application {
     public void start(Stage stage) throws IOException {
         stage.setTitle(APP_TITLE);
         Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream(IMG_ICON_PATH)));
-        stage.getIcons().add(icon);
+        stage.getIcons()
+             .add(icon);
         stage.setResizable(false);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource(LOGIN_FXML));
+        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource(LOGIN_FXML_PATH));
         fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
         Scene scene = new Scene(fxmlLoader.load());
 

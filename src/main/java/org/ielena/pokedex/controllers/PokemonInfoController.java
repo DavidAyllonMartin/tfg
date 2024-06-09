@@ -1,5 +1,7 @@
 package org.ielena.pokedex.controllers;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import jakarta.annotation.Resource;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -28,20 +29,18 @@ import org.ielena.pokedex.facades.UserFacade;
 import org.ielena.pokedex.services.impl.DefaultCacheService;
 import org.ielena.pokedex.singletons.MasterControllerSingleton;
 import org.springframework.stereotype.Component;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 
 import java.util.List;
-import java.util.Objects;
+
+import static org.ielena.pokedex.utils.Constants.View.ABILITY_ITEM_FXML_PATH;
+import static org.ielena.pokedex.utils.Constants.View.MOVE_ITEM_FXML_PATH;
+import static org.ielena.pokedex.utils.Constants.View.TYPE_ITEM_FXML_PATH;
 
 @Component
 public class PokemonInfoController implements ViewController {
 
     private static final double MAX_STAT = 255.0;
-    public static final String MOVE_ITEM_FXML = "views/items/move-item.fxml";
-    public static final String FX_BACKGROUND_COLOR = "-fx-background-color: %s;";
-    public static final String TYPE_ITEM_FXML = "views/items/type-item.fxml";
-    public static final String ABILITY_ITEM_FXML = "views/items/ability-item.fxml";
+    private static final String FX_BACKGROUND_COLOR = "-fx-background-color: %s;";
 
     @Resource
     private DefaultCacheService defaultCacheService;
@@ -166,7 +165,7 @@ public class PokemonInfoController implements ViewController {
 
     @SneakyThrows
     private void addType(TypeDto typeDto) {
-        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource(TYPE_ITEM_FXML));
+        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource(TYPE_ITEM_FXML_PATH));
         AnchorPane anchorPane = fxmlLoader.load();
         TypeItemController typeItemController = fxmlLoader.getController();
         typeItemController.setPokemonType(typeDto, 18);
@@ -176,7 +175,7 @@ public class PokemonInfoController implements ViewController {
 
     @SneakyThrows
     private void addAbility(AbilityDto abilityDto) {
-        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource(ABILITY_ITEM_FXML));
+        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource(ABILITY_ITEM_FXML_PATH));
         AnchorPane anchorPane = fxmlLoader.load();
         AbilityItemController abilityItemController = fxmlLoader.getController();
         abilityItemController.setData(abilityDto, pokemon.getColor());
@@ -211,7 +210,7 @@ public class PokemonInfoController implements ViewController {
 
     @SneakyThrows
     private Node createMoveDtoNode(MoveDto moveDto) {
-        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource(MOVE_ITEM_FXML));
+        FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource(MOVE_ITEM_FXML_PATH));
         Node anchorPane = fxmlLoader.load();
         MoveItemController moveItemController = fxmlLoader.getController();
         moveItemController.setData(moveDto);

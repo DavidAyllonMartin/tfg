@@ -6,7 +6,7 @@ import javafx.scene.layout.VBox;
 import org.ielena.pokedex.dtos.AbilityDto;
 import org.springframework.stereotype.Component;
 
-import java.awt.Color;
+import java.awt.*;
 
 @Component
 public class AbilityItemController {

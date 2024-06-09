@@ -14,7 +14,7 @@ import java.util.Optional;
 @Component
 public class MoveModelToMoveDtoConverter implements Converter<MoveModel, MoveDto> {
 
-    public static final String NULL_VALUE_REPLACE = "-";
+    private static final String NULL_VALUE_REPLACE = "-";
     @Resource
     private Converter<TypeModel, TypeDto> typeDtoConverter;
 

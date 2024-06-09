@@ -17,13 +17,13 @@ import org.ielena.pokedex.controllers.mediator.RegisterControllerMediator;
 import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.singletons.SpringContextSingleton;
 
+import static org.ielena.pokedex.utils.Constants.View.INFO_FXML_PATH;
+import static org.ielena.pokedex.utils.Constants.View.LOGIN_FXML_PATH;
+import static org.ielena.pokedex.utils.Constants.View.POKEDEX_FXML_PATH;
+import static org.ielena.pokedex.utils.Constants.View.REGISTER_FXML_PATH;
+
 @Setter
 public class MasterController implements Mediator, PokedexControllerMediator, PokemonInfoControllerMediator, PokemonItemMediator, LoginControllerMediator, RegisterControllerMediator {
-
-    private static final String VIEW_FXML = "views/info-view.fxml";
-    private static final String POKEDEX_FXML = "views/pokedex-view.fxml";
-    private static final String REGISTER_FXML = "views/register-view.fxml";
-    private static final String LOGIN_FXML = "views/login-view.fxml";
 
     private Stage stage;
     private Scene pokedexView;
@@ -36,7 +36,7 @@ public class MasterController implements Mediator, PokedexControllerMediator, Po
     public void changeToInfoWindow(PokemonDto pokemon) {
         if (infoView == null) {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(VIEW_FXML));
+            fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(INFO_FXML_PATH));
             fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
             infoView = new Scene(fxmlLoader.load());
             PokemonInfoController infoController = fxmlLoader.getController();
@@ -56,13 +56,13 @@ public class MasterController implements Mediator, PokedexControllerMediator, Po
     public void changeToMainWindow() {
         if (pokedexView == null) {
             FXMLLoader pokedexLoader = new FXMLLoader();
-            pokedexLoader.setLocation(ProjectJavaFxApp.class.getResource(POKEDEX_FXML));
+            pokedexLoader.setLocation(ProjectJavaFxApp.class.getResource(POKEDEX_FXML_PATH));
             pokedexLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
             pokedexView = new Scene(pokedexLoader.load());
             PokedexController pokedexController = pokedexLoader.getController();
             pokedexController.executeLoad();
             pokedexView.setUserData(pokedexController);
-        }else{
+        } else {
             PokedexController pokedexController = (PokedexController) pokedexView.getUserData();
             pokedexController.executeLoad();
         }
@@ -76,7 +76,7 @@ public class MasterController implements Mediator, PokedexControllerMediator, Po
     public void changeToRegisterWindow() {
         if (registerView == null) {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(REGISTER_FXML));
+            fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(REGISTER_FXML_PATH));
             fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
             registerView = new Scene(fxmlLoader.load());
         }
@@ -90,7 +90,7 @@ public class MasterController implements Mediator, PokedexControllerMediator, Po
     public void changeToLoginWindow() {
         if (loginView == null) {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(LOGIN_FXML));
+            fxmlLoader.setLocation(ProjectJavaFxApp.class.getResource(LOGIN_FXML_PATH));
             fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
             loginView = new Scene(fxmlLoader.load());
         }
@@ -100,7 +100,8 @@ public class MasterController implements Mediator, PokedexControllerMediator, Po
     }
 
     private void centerStage(Stage stage) {
-        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        Rectangle2D screenBounds = Screen.getPrimary()
+                                         .getVisualBounds();
 
         stage.setX((screenBounds.getWidth() - stage.getWidth()) / 2);
         stage.setY((screenBounds.getHeight() - stage.getHeight()) / 2);
