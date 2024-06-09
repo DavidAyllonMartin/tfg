@@ -22,6 +22,7 @@ module org.ielena.pokedex {
     requires spring.security.config;
     requires spring.security.core;
     requires spring.security.web;
+    requires de.jensd.fx.glyphs.fontawesome;
 
     opens org.ielena.pokedex to spring.core, spring.beans, spring.context, javafx.fxml;
     opens org.ielena.pokedex.controllers to javafx.fxml, spring.beans, spring.context, spring.core;

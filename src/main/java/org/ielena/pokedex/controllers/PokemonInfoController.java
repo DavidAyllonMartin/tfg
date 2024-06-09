@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.ScrollPane;
@@ -14,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import lombok.SneakyThrows;
 import org.ielena.pokedex.ProjectJavaFxApp;
 import org.ielena.pokedex.controllers.mediator.Mediator;
@@ -23,13 +25,12 @@ import org.ielena.pokedex.dtos.MoveDto;
 import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.dtos.TypeDto;
 import org.ielena.pokedex.facades.UserFacade;
-import org.ielena.pokedex.services.MoveService;
 import org.ielena.pokedex.services.impl.DefaultCacheService;
 import org.ielena.pokedex.singletons.MasterControllerSingleton;
-import org.ielena.pokedex.singletons.UserSession;
 import org.springframework.stereotype.Component;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 
-import java.net.URL;
 import java.util.List;
 import java.util.Objects;
 
@@ -41,7 +42,6 @@ public class PokemonInfoController implements ViewController {
     public static final String FX_BACKGROUND_COLOR = "-fx-background-color: %s;";
     public static final String TYPE_ITEM_FXML = "views/items/type-item.fxml";
     public static final String ABILITY_ITEM_FXML = "views/items/ability-item.fxml";
-
 
     @Resource
     private DefaultCacheService defaultCacheService;
@@ -95,7 +95,10 @@ public class PokemonInfoController implements ViewController {
     @FXML
     private GridPane movesGridPane;
     @FXML
-    public ImageView favoriteImage;
+    private Button favoriteButton;
+    @FXML
+    private FontAwesomeIconView starIcon;
+
 
     private PokemonInfoControllerMediator mediator;
     private PokemonDto pokemon;
@@ -153,9 +156,12 @@ public class PokemonInfoController implements ViewController {
     }
 
     private void clearContainers() {
-        abilitiesHBox.getChildren().clear();
-        typesHBox.getChildren().clear();
-        movesGridPane.getChildren().clear();
+        abilitiesHBox.getChildren()
+                     .clear();
+        typesHBox.getChildren()
+                 .clear();
+        movesGridPane.getChildren()
+                     .clear();
     }
 
     @SneakyThrows
@@ -236,7 +242,7 @@ public class PokemonInfoController implements ViewController {
         updateDatabaseInfo();
     }
 
-    private void updateDatabaseInfo(){
+    private void updateDatabaseInfo() {
         if (pokemon.isFavorite()) {
             userFacade.addFavoritePokemon(pokemon.getId());
         } else {
@@ -246,9 +252,11 @@ public class PokemonInfoController implements ViewController {
 
     private void updateFavoriteButton() {
         if (pokemon.isFavorite()) {
-            favoriteImage.setImage(new Image(Objects.requireNonNull(ProjectJavaFxApp.class.getResourceAsStream("img/star-filled.png"))));
+            starIcon.setIcon(FontAwesomeIcon.STAR);
+            starIcon.setFill(Color.GOLD);
         } else {
-            favoriteImage.setImage(new Image(Objects.requireNonNull(ProjectJavaFxApp.class.getResourceAsStream("img/star-empty.png"))));
+            starIcon.setIcon(FontAwesomeIcon.STAR_ALT);
+            starIcon.setFill(Color.BLACK);
         }
     }
 }

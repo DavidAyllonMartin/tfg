@@ -34,11 +34,11 @@
             <Label styleClass="move-item-label" text="Accuracy" GridPane.columnIndex="2" />
             <Label styleClass="move-item-label" text="PP" GridPane.columnIndex="3" />
             <Label styleClass="move-item-label" text="Ef. Chance" GridPane.columnIndex="4" />
-            <Label fx:id="name" styleClass="move-item-data" text="Impactrueno" GridPane.rowIndex="1" />
-            <Label fx:id="power" styleClass="move-item-data" text="50" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="accuracy" styleClass="move-item-data" text="100" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <Label fx:id="pp" styleClass="move-item-data" text="25" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <Label fx:id="effectChance" styleClass="move-item-data" text="30" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Label fx:id="name" styleClass="move-item-name" GridPane.rowIndex="1" />
+            <Label fx:id="power" styleClass="move-item-data" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="accuracy" styleClass="move-item-data" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label fx:id="pp" styleClass="move-item-data" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Label fx:id="effectChance" styleClass="move-item-data" GridPane.columnIndex="4" GridPane.rowIndex="1" />
         </GridPane>
 
         <HBox alignment="CENTER_RIGHT" maxWidth="360.0" minWidth="330.0" prefHeight="26.0" prefWidth="360.0" spacing="10.0" styleClass="move-item-type-box">

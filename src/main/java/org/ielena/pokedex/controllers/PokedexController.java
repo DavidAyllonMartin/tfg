@@ -61,6 +61,8 @@ public class PokedexController implements ViewController {
     private ComboBox<Integer> pageComboBox;
     @FXML
     private ComboBox<TypeDto> typeComboBox;
+    @FXML
+    private Button favoriteButton;
 
     private IntFunction<Page<PokemonDto>> load;
     private Page<PokemonDto> currentPage;

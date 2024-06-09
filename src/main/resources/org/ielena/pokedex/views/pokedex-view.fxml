@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -12,6 +13,8 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="688.0" prefWidth="1280.0" styleClass="pokedex-container" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controllers.PokedexController">
    <center>
@@ -32,12 +35,19 @@
    </center>
    <top>
        <HBox alignment="CENTER" prefHeight="60.0" prefWidth="1280.0" spacing="30.0" BorderPane.alignment="CENTER">
-            <Button onAction="#onShowFavorites" text="Show Favorites" />
+            <Button fx:id="favoriteButton" onAction="#onShowFavorites" styleClass="pokedex-favorite-button">
+                <graphic>
+                    <StackPane>
+                        <Circle fill="#FFFFFF80" radius="30.0" />
+                        <FontAwesomeIconView styleClass="starIcon" fill="GOLD" glyphName="STAR" selectionStart="1" size="45" stroke="black" strokeType="INSIDE" strokeWidth="3" />
+                    </StackPane>
+                </graphic>
+            </Button>
             <ComboBox fx:id="typeComboBox" onAction="#onSearch" prefWidth="200.0" promptText="Filter by Type" styleClass="pokedex-type-combobox" />
            <TextField fx:id="searchField" promptText="Search" styleClass="pokedex-search-box" />
            <Button onAction="#onSearch" styleClass="pokedex-go-button" text="GO!" />
          <BorderPane.margin>
-            <Insets top="25.0" />
+            <Insets top="12.0" />
          </BorderPane.margin>
        </HBox>
    </top>
@@ -52,7 +62,7 @@
                     </ImageView>
                 </graphic>
             </Button>
-            <Label fx:id="pageLabel" alignment="CENTER_RIGHT" styleClass="pokedex-page-label" text="10/10" />
+            <Label fx:id="pageLabel" alignment="CENTER_RIGHT" styleClass="pokedex-page-label" />
             <ComboBox fx:id="pageComboBox" onAction="#onGoToPage" styleClass="pokedex-page-combobox" />
             <Button fx:id="nextButton" onAction="#onNext" styleClass="pokedex-navigation-button">
                 <graphic>
