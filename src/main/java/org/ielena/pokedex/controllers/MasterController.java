@@ -120,7 +120,7 @@ public class MasterController implements Mediator, PokedexControllerMediator, Po
             @Override
             protected Void call() {
 
-                databaseUpdateService.updateDatabase(251, 0);
+                databaseUpdateService.updateDatabase(386, 0);
 
                 return null;
             }

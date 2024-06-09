@@ -23,10 +23,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Collections;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -79,6 +76,7 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
                                             .stream()
                                             .map(PokemonType::getType)
                                             .map(type -> type.createObject(Type.class))
+                                            .filter(Objects::nonNull)
                                             .map(typeConverter::convert)
                                             .collect(Collectors.toSet());
 
@@ -87,6 +85,7 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
                                                   .stream()
                                                   .map(PokemonAbility::getAbility)
                                                   .map(ability -> ability.createObject(Ability.class))
+                                                  .filter(Objects::nonNull)
                                                   .map(abilityConverter::convert)
                                                   .collect(Collectors.toSet());
 
@@ -95,6 +94,7 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
                                             .stream()
                                             .map(PokemonMove::getMove)
                                             .map(move -> move.createObject(Move.class))
+                                            .filter(Objects::nonNull)
                                             .map(moveConverter::convert)
                                             .collect(Collectors.toSet());
 
