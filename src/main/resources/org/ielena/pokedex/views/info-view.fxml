@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,17 +14,17 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.shape.Circle?>
+
 <AnchorPane fx:id="infoContainer" prefHeight="688.0" prefWidth="1280.0" styleClass="info-container" stylesheets="@../styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ielena.pokedex.controllers.PokemonInfoController">
     <Button layoutX="1133.0" layoutY="21.0" mnemonicParsing="true" onAction="#onBack" prefHeight="60.0" prefWidth="120.0" styleClass="info-back-button" text="_BACK" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
-    <ImageView fx:id="pokemonImg" fitHeight="325.0" fitWidth="325.0" layoutX="52.0" layoutY="125.0" pickOnBounds="true" AnchorPane.topAnchor="75.0"/>
+    <ImageView fx:id="pokemonImg" fitHeight="325.0" fitWidth="325.0" layoutX="52.0" layoutY="125.0" pickOnBounds="true" AnchorPane.topAnchor="75.0" />
 
-       <Button fx:id="favoriteButton" onAction="#onFavoriteButtonClicked" prefHeight="60.0" prefWidth="60.0" styleClass="info-favorite-button" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
+       <Button fx:id="favoriteButton" maxHeight="-Infinity" minHeight="-Infinity" onAction="#onFavoriteButtonClicked" prefHeight="60.0" styleClass="info-favorite-button" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0">
            <graphic>
-               <StackPane>
-                   <Circle radius="30.0" fill="#FFFFFF80" />
-                   <FontAwesomeIconView fx:id="starIcon" fill="GOLD" stroke="black" strokeWidth="3" strokeType="INSIDE" glyphName="STAR" selectionStart="1" size="45" />
+               <StackPane maxHeight="60.0" minHeight="60.0" prefHeight="60.0">
+                   <Circle fill="#FFFFFF80" radius="30.0" />
+                   <FontAwesomeIconView fx:id="starIcon" fill="GOLD" glyphName="STAR" selectionStart="1" size="45" stroke="black" strokeType="INSIDE" strokeWidth="3" />
                </StackPane>
            </graphic>
        </Button>
