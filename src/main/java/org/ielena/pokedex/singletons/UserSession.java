@@ -2,7 +2,6 @@ package org.ielena.pokedex.singletons;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.ielena.pokedex.models.UserModel;
 import org.springframework.stereotype.Component;
 
 @Getter
