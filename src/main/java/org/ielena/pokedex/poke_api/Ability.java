@@ -24,15 +24,6 @@ public class Ability {
     @JsonProperty("generation")
     private NamedAPIResource generation;
 
-//    @JsonProperty("names")
-//    private List<Name> names;
-
-//    @JsonProperty("effect_entries")
-//    private List<VerboseEffect> effectEntries;
-//
-//    @JsonProperty("effect_changes")
-//    private List<AbilityEffectChange> effectChanges;
-
     @JsonProperty("flavor_text_entries")
     private List<FlavorText> flavorTextEntries;
 }

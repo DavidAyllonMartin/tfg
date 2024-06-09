@@ -15,7 +15,6 @@ import org.ielena.pokedex.controllers.mediator.Mediator;
 import org.ielena.pokedex.controllers.mediator.PokemonItemMediator;
 import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.dtos.TypeDto;
-import org.ielena.pokedex.singletons.MasterControllerSingleton;
 import org.ielena.pokedex.singletons.SpringContextSingleton;
 import org.springframework.stereotype.Component;
 
@@ -43,7 +42,8 @@ public class PokemonItemController implements ViewController {
     private PokemonDto pokemon;
 
     public void initialize() {
-        setMediator(MasterControllerSingleton.getInstance());
+        setMediator(SpringContextSingleton.getContext()
+                                          .getBean(MasterController.class));
     }
 
     public void setData(PokemonDto pokemon) {

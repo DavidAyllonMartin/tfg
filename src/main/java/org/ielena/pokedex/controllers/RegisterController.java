@@ -12,7 +12,7 @@ import org.ielena.pokedex.controllers.mediator.RegisterControllerMediator;
 import org.ielena.pokedex.models.UserModel;
 import org.ielena.pokedex.services.UserService;
 import org.ielena.pokedex.services.impl.FadeTransitionService;
-import org.ielena.pokedex.singletons.MasterControllerSingleton;
+import org.ielena.pokedex.singletons.SpringContextSingleton;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -35,7 +35,8 @@ public class RegisterController implements ViewController {
     private RegisterControllerMediator mediator;
 
     public void initialize() {
-        setMediator(MasterControllerSingleton.getInstance());
+        setMediator(SpringContextSingleton.getContext()
+                                          .getBean(MasterController.class));
     }
 
     @FXML

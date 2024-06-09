@@ -10,9 +10,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-
-<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.ielena.pokedex.controllers.LoginController" stylesheets="@../styles.css" spacing="10" alignment="CENTER">
-    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="org.ielena.pokedex.controllers.LoginController"
+      stylesheets="@../styles.css" spacing="10" alignment="CENTER">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
 
     <HBox alignment="CENTER">
         <ImageView>
@@ -22,16 +24,20 @@
 
     <GridPane hgap="10" vgap="10" styleClass="login-view-grid">
         <Label text="Username:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="login-view-username-label"/>
-        <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="login-view-username-field"/>
+        <TextField fx:id="usernameField" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                   styleClass="login-view-username-field"/>
 
         <Label text="Password:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="login-view-password-label"/>
-        <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="1" styleClass="login-view-password-field"/>
+        <PasswordField fx:id="passwordField" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                       styleClass="login-view-password-field"/>
     </GridPane>
 
     <Label fx:id="errorMessage" visible="false" styleClass="login-view-error"/>
 
-    <HBox spacing="10" alignment="CENTER" styleClass="login-view-button-box">
-        <Button text="Login" onAction="#handleLogin" styleClass="login-view-login-button"/>
+    <Button text="Login" onAction="#handleLogin" styleClass="login-view-login-button"/>
+
+    <HBox spacing="10" alignment="CENTER">
         <Button text="Register" onAction="#goToRegister" styleClass="login-view-register-button"/>
     </HBox>
+
 </VBox>

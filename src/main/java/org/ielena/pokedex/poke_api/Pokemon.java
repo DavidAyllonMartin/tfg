@@ -41,23 +41,8 @@ public class Pokemon {
     @JsonProperty("abilities")
     private List<PokemonAbility> abilities;
 
-//    @JsonProperty("forms")
-//    private List<NamedAPIResource> forms;
-//
-//    @JsonProperty("game_indices")
-//    private List<VersionGameIndex> gameIndices;
-//
-//    @JsonProperty("held_items")
-//    private List<PokemonHeldItem> heldItems;
-//
-//    @JsonProperty("location_area_encounters")
-//    private String locationAreaEncounters;
-
     @JsonProperty("moves")
     private List<PokemonMove> moves;
-
-//    @JsonProperty("past_types")
-//    private List<PokemonTypePast> pastTypes;
 
     @JsonProperty("sprites")
     private PokemonSprites sprites;

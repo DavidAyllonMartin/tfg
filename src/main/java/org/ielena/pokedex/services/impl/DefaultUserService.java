@@ -7,7 +7,7 @@ import org.ielena.pokedex.models.PokemonBasicInfoModel;
 import org.ielena.pokedex.models.PokemonModel;
 import org.ielena.pokedex.models.UserModel;
 import org.ielena.pokedex.services.UserService;
-import org.ielena.pokedex.singletons.UserSession;
+import org.ielena.pokedex.services.UserSessionService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +24,7 @@ public class DefaultUserService implements UserService {
     @Resource
     private PokemonBasicInfoDao pokemonBasicInfoDao;
     @Resource
-    private UserSession userSession;
+    private UserSessionService userSessionService;
     @Resource
     private Converter<PokemonBasicInfoModel, PokemonModel> pokemonModelConverter;
     @Resource
@@ -43,15 +43,14 @@ public class DefaultUserService implements UserService {
 
     @Override
     public Page<PokemonModel> findUserFavorites(Pageable pageable) {
-        Long userId = userSession.getUserId();
+        Long userId = userSessionService.getUserId();
         return userDao.findFavoritesByUserId(userId, pageable)
                       .map(pokemonModelConverter::convert);
     }
 
     @Override
     public boolean addFavoritePokemon(Long pokemonId) {
-        Long userId = userSession.getUserId();
-        System.out.println(pokemonId);
+        Long userId = userSessionService.getUserId();
         Optional<PokemonBasicInfoModel> pokemonOptional = pokemonBasicInfoDao.findById(pokemonId);
         Optional<UserModel> userOptional = userDao.findById(userId);
 
@@ -68,8 +67,7 @@ public class DefaultUserService implements UserService {
     }
 
     public boolean removeFavoritePokemon(Long pokemonId) {
-        Long userId = userSession.getUserId();
-        System.out.println(pokemonId);
+        Long userId = userSessionService.getUserId();
         Optional<PokemonBasicInfoModel> pokemonOptional = pokemonBasicInfoDao.findById(pokemonId);
         Optional<UserModel> userOptional = userDao.findById(userId);
 
@@ -87,9 +85,8 @@ public class DefaultUserService implements UserService {
 
     @Override
     public boolean isFavoritePokemon(Long pokemonId) {
-        Long userId = userSession.getUserId();
+        Long userId = userSessionService.getUserId();
 
         return userDao.isFavorite(userId, pokemonId);
     }
 }
-

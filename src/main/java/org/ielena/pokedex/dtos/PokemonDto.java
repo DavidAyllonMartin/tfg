@@ -32,11 +32,9 @@ public class PokemonDto {
     private Boolean isDefault;
     private Integer baseExperience;
     private String imgUrl;
-    private String cryUrl;
     private String color;
     private Image img;
     private Image thumbnail;
-    private byte[] cry;
     private String description;
     private boolean isFavorite;
 }

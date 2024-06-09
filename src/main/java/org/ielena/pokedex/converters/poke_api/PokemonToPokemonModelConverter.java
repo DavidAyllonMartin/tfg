@@ -13,7 +13,6 @@ import org.ielena.pokedex.poke_api.side_classes.FlavorText;
 import org.ielena.pokedex.poke_api.side_classes.OfficialArtwork;
 import org.ielena.pokedex.poke_api.side_classes.Other;
 import org.ielena.pokedex.poke_api.side_classes.PokemonAbility;
-import org.ielena.pokedex.poke_api.side_classes.PokemonCries;
 import org.ielena.pokedex.poke_api.side_classes.PokemonMove;
 import org.ielena.pokedex.poke_api.side_classes.PokemonSpecies;
 import org.ielena.pokedex.poke_api.side_classes.PokemonSprites;
@@ -63,9 +62,6 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
                                          .map(OfficialArtwork::getFrontDefault)
                                          .orElse(null);
 
-        String cryUrl = Optional.ofNullable(pokemon.getCries())
-                                .map(PokemonCries::getLatest)
-                                .orElse(null);
 
         String flavorText = Optional.ofNullable(pokemon.getSpecies())
                                     .map(species -> species.createObject(PokemonSpecies.class))
@@ -103,7 +99,6 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
                                             .collect(Collectors.toSet());
 
         byte[] imgData = downloadData(frontDefaultUrl);
-        byte[] cryData = downloadData(cryUrl);
 
         return PokemonModel.builder()
                            .id(pokemon.getId())
@@ -131,9 +126,7 @@ public class PokemonToPokemonModelConverter implements Converter<Pokemon, Pokemo
                            .isDefault(pokemon.getIsDefault())
                            .baseExperience(pokemon.getBaseExperience())
                            .imgUrl(frontDefaultUrl)
-                           .cryUrl(cryUrl)
                            .imgData(imgData)
-                           .cryData(cryData)
                            .color(defaultImageService.getDominantColorHex(imgData))
                            .types(typeModels)
                            .abilities(abilityModels)

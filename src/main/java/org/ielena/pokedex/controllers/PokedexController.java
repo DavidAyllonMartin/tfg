@@ -1,9 +1,7 @@
 package org.ielena.pokedex.controllers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import jakarta.annotation.Resource;
 import javafx.collections.FXCollections;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -23,7 +21,7 @@ import org.ielena.pokedex.facades.PokemonFacade;
 import org.ielena.pokedex.facades.TypeFacade;
 import org.ielena.pokedex.services.DatabaseUpdateService;
 import org.ielena.pokedex.services.impl.DefaultCacheService;
-import org.ielena.pokedex.singletons.MasterControllerSingleton;
+import org.ielena.pokedex.singletons.SpringContextSingleton;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
@@ -73,7 +71,8 @@ public class PokedexController implements ViewController {
         currentPageNumber = 0;
         load = pageNum -> pokemonFacade.findAll(PageRequest.of(pageNum, ITEMS_PER_PAGE));
         configureSearchField();
-        setMediator(MasterControllerSingleton.getInstance());
+        setMediator(SpringContextSingleton.getContext()
+                                          .getBean(MasterController.class));
     }
 
     private void loadTypes() {
@@ -240,34 +239,13 @@ public class PokedexController implements ViewController {
     }
 
     @FXML
-    private void updateDatabase() {
-        Task<Void> task = new Task<>() {
-            @Override
-            protected Void call() {
-                try {
-                    databaseUpdateService.updateDatabase(904, 0);
-                } catch (JsonProcessingException e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
+    public void onLogOut() {
+        mediator.logOut();
+    }
 
-            @Override
-            protected void succeeded() {
-                // Aquí puedes actualizar la UI de JavaFX si es necesario
-                System.out.println("Database update completed successfully.");
-            }
-
-            @Override
-            protected void failed() {
-                // Aquí puedes manejar errores si es necesario
-                System.err.println("Database update failed.");
-            }
-        };
-
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
+    @FXML
+    public void onUpdateDatabase() {
+        mediator.updateDatabase();
     }
 
     @Override

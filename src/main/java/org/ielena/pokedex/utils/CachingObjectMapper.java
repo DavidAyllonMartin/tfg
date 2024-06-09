@@ -3,7 +3,6 @@ package org.ielena.pokedex.utils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.ielena.pokedex.singletons.HttpClientSingleton;
-import org.ielena.pokedex.singletons.ObjectCache;
 
 import java.io.IOException;
 import java.net.URI;

@@ -32,8 +32,6 @@ public class MoveItemController {
     @FXML
     public Label pp;
     @FXML
-    public Label priority;
-    @FXML
     public Label power;
     @FXML
     public Label typeLabel;

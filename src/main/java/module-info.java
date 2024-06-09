@@ -26,7 +26,6 @@ module org.ielena.pokedex {
 
     opens org.ielena.pokedex to spring.core, spring.beans, spring.context, javafx.fxml;
     opens org.ielena.pokedex.controllers to javafx.fxml, spring.beans, spring.context, spring.core;
-    opens org.ielena.pokedex.services.impl to spring.core, org.hibernate.orm.core;
     opens org.ielena.pokedex.converters to spring.core, org.hibernate.orm.core;
     opens org.ielena.pokedex.facades.impl to spring.core;
     opens org.ielena.pokedex.models to org.hibernate.orm.core, spring.core;
@@ -34,6 +33,9 @@ module org.ielena.pokedex {
     opens org.ielena.pokedex.poke_api to com.fasterxml.jackson.databind, com.fasterxml.jackson.core, com.fasterxml.jackson.annotation;
     opens org.ielena.pokedex.poke_api.side_classes to com.fasterxml.jackson.databind, com.fasterxml.jackson.core, com.fasterxml.jackson.annotation;
     opens org.ielena.pokedex.singletons to spring.beans;
+    opens org.ielena.pokedex.utils to spring.beans;
+    opens org.ielena.pokedex.services to spring.beans;
+    opens org.ielena.pokedex.services.impl to org.hibernate.orm.core, spring.beans, spring.core;
 
 
     exports org.ielena.pokedex;

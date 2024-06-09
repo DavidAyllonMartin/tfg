@@ -52,14 +52,9 @@ public class PokemonModel {
     private Integer baseExperience;
     @Column(name = "img")
     private String imgUrl;
-    @Column(name = "cry")
-    private String cryUrl;
     @Lob
     @Column(name = "img_data")
     private byte[] imgData;
-    @Lob
-    @Column(name = "cry_data")
-    private byte[] cryData;
     @Column(name = "color")
     private String color;
     @Column(name = "description")

@@ -12,7 +12,6 @@ import org.ielena.pokedex.models.PokemonModel;
 import org.ielena.pokedex.models.TypeModel;
 import org.ielena.pokedex.services.ImageService;
 import org.ielena.pokedex.services.UserService;
-import org.ielena.pokedex.singletons.UserSession;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -37,8 +36,6 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
     private ImageService defaultImageService;
     @Resource
     private UserService userService;
-    @Resource
-    private UserSession userSession;
 
     @Override
     public PokemonDto convert(PokemonModel pokemonModel) {
@@ -92,14 +89,12 @@ public class PokemonModelToPokemonDtoConverter implements Converter<PokemonModel
                          .baseExperience(pokemonModel.getBaseExperience())
                          .height(BigDecimal.valueOf(pokemonModel.getHeight() / 10.0))
                          .weight(BigDecimal.valueOf(pokemonModel.getWeight() / 10.0))
-                         .cryUrl(pokemonModel.getCryUrl())
                          .imgUrl(pokemonModel.getImgUrl())
                          .isDefault(pokemonModel.getIsDefault())
                          .abilities(abilities)
                          .moves(moves)
                          .types(types)
                          .color(pokemonModel.getColor())
-                         .cry(pokemonModel.getCryData())
                          .img(image)
                          .thumbnail(thumbnail)
                          .description(StringUtils.capitalize(pokemonModel.getDescription()))

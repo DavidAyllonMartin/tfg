@@ -6,13 +6,13 @@
     -fx-border-color: #d3d3d3;
     -fx-border-width: 1px;
     -fx-border-radius: 5px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0.1, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 10, 0.1, 0, 0);
 }
 
 .login-view-username-label,
 .login-view-password-label,
 .register-view-username-label,
-.register-view-password-label{
+.register-view-password-label {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
@@ -20,19 +20,14 @@
 .login-view-username-field,
 .login-view-password-field,
 .register-view-username-field,
-.register-view-password-field{
+.register-view-password-field {
     -fx-pref-width: 200px;
     -fx-font-size: 12px;
     -fx-padding: 5px;
 }
 
-.login-view-button-box {
-    -fx-alignment: center;
-}
-
 .login-view-login-button,
-.login-view-register-button,
-.register-view-register-button{
+.register-view-register-button {
     -fx-pref-width: 100px;
     -fx-background-color: #0078d7;
     -fx-text-fill: white;
@@ -42,8 +37,7 @@
 }
 
 .login-view-login-button:hover,
-.login-view-register-button:hover,
-.register-view-register-button:hover{
+.register-view-register-button:hover {
     -fx-background-color: #005bb5;
 }
 
@@ -54,7 +48,8 @@
     -fx-padding: 5px;
 }
 
-.register-view-back-button {
+.register-view-back-button,
+.login-view-register-button {
     -fx-pref-width: 100px;
     -fx-background-color: transparent;
     -fx-text-fill: #0078d7;
@@ -63,7 +58,8 @@
     -fx-cursor: hand;
 }
 
-.register-view-back-button:hover {
+.register-view-back-button:hover,
+.login-view-register-button {
     -fx-text-fill: #005bb5;
 }
 
@@ -210,21 +206,21 @@
     -fx-font-size: 60;
 }
 
-.info-name{
+.info-name {
     -fx-font-weight: bold;
     -fx-font-size: 30px;
 }
 
-.info-data{
+.info-data {
     -fx-font-weight: bold;
     -fx-font-size: 16px;
 }
 
-.info-value{
+.info-value {
     -fx-font-size: 14px;
 }
 
-.info-description{
+.info-description {
     -fx-font-weight: bold;
     -fx-font-size: 15px;
 }
@@ -238,14 +234,14 @@
     -fx-font-size: 16px;
 }
 
-.info-grid-label{
+.info-grid-label {
     -fx-font-weight: bold;
     -fx-font-size: 26px;
     -fx-text-fill: white;
     -fx-padding: 0 0 0 25px;
 }
 
-.info-grid-value{
+.info-grid-value {
     -fx-font-weight: bold;
     -fx-font-size: 26px;
     -fx-text-fill: white;
@@ -273,7 +269,7 @@
 }
 
 /*POKEMON ITEM*/
-.pokemon-item-container{
+.pokemon-item-container {
     -fx-background-radius: 15;
     -fx-background-image: url("img/pokemon-item-background.png");
     -fx-background-size: cover;
@@ -281,7 +277,7 @@
     -fx-background-repeat: no-repeat;
 }
 
-.pokemon-item-label{
+.pokemon-item-label {
     -fx-font-weight: bold;
     -fx-font-size: 18;
     -fx-text-fill: white;
@@ -329,7 +325,7 @@
 .move-item-data {
 }
 
-.move-item-name{
+.move-item-name {
     -fx-font-weight: bold;
 }
 
@@ -398,8 +394,8 @@
     -fx-background-color: transparent;
 }
 
-.scroll-bar:horizontal, .scroll-bar:vertical{
-    -fx-background-color:transparent;
+.scroll-bar:horizontal, .scroll-bar:vertical {
+    -fx-background-color: transparent;
 }
 
 .increment-button, .decrement-button {
@@ -408,7 +404,7 @@
 }
 
 .scroll-bar:horizontal .track,
-.scroll-bar:vertical .track{
+.scroll-bar:vertical .track {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-radius: 0em;

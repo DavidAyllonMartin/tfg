@@ -6,7 +6,6 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.ielena.pokedex.controllers.MasterController;
-import org.ielena.pokedex.singletons.MasterControllerSingleton;
 import org.ielena.pokedex.singletons.SpringContextSingleton;
 import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Component;
@@ -35,12 +34,13 @@ public class ProjectJavaFxApp extends Application {
              .add(icon);
         stage.setResizable(false);
 
+        MasterController masterController = SpringContextSingleton.getContext()
+                                                                  .getBean(MasterController.class);
+        masterController.setStage(stage);
+
         FXMLLoader fxmlLoader = new FXMLLoader(ProjectJavaFxApp.class.getResource(LOGIN_FXML_PATH));
         fxmlLoader.setControllerFactory(SpringContextSingleton.getContext()::getBean);
         Scene scene = new Scene(fxmlLoader.load());
-
-        MasterController masterController = MasterControllerSingleton.getInstance();
-        masterController.setStage(stage);
 
         stage.setScene(scene);
         stage.show();

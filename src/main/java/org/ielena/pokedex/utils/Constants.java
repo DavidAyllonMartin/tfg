@@ -11,6 +11,8 @@ public final class Constants {
         public static final String INFO_FXML_PATH = "views/info-view.fxml";
         public static final String POKEDEX_FXML_PATH = "views/pokedex-view.fxml";
         public static final String REGISTER_FXML_PATH = "views/register-view.fxml";
+        public static final String LOADING_FXML_PATH = "views/loading-view.fxml";
+
         public static final String POKEMON_ITEM_FXML_PATH = "views/items/pokemon-item.fxml";
         public static final String TYPE_ITEM_FXML_PATH = "views/items/type-item.fxml";
         public static final String ABILITY_ITEM_FXML_PATH = "views/items/ability-item.fxml";

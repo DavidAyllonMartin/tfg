@@ -27,7 +27,7 @@ import org.ielena.pokedex.dtos.PokemonDto;
 import org.ielena.pokedex.dtos.TypeDto;
 import org.ielena.pokedex.facades.UserFacade;
 import org.ielena.pokedex.services.impl.DefaultCacheService;
-import org.ielena.pokedex.singletons.MasterControllerSingleton;
+import org.ielena.pokedex.singletons.SpringContextSingleton;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -103,7 +103,8 @@ public class PokemonInfoController implements ViewController {
     private PokemonDto pokemon;
 
     public void initialize() {
-        setMediator(MasterControllerSingleton.getInstance());
+        setMediator(SpringContextSingleton.getContext()
+                                          .getBean(MasterController.class));
     }
 
     @Override
@@ -257,5 +258,15 @@ public class PokemonInfoController implements ViewController {
             starIcon.setIcon(FontAwesomeIcon.STAR_ALT);
             starIcon.setFill(Color.BLACK);
         }
+    }
+
+    @FXML
+    public void onUpdateDatabase() {
+        mediator.updateDatabase();
+    }
+
+    @FXML
+    public void onLogOut() {
+        mediator.logOut();
     }
 }
